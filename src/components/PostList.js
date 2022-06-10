@@ -6,11 +6,11 @@ class PostList extends Component {
       super(props)
     
       this.state = {
-         posts: []
+        posts: []
       }
     }
 handlerSubmitClick() {
-    axios.get('https://149f-116-15-168-211.ap.ngrok.io/routes/buyer')
+    axios.get('http://5f72-2406-3003-206f-4ac0-4847-2509-e0d-ec17.ap.ngrok.io/routes/buyer')
     .then(response => {
         console.log(response)
     })
