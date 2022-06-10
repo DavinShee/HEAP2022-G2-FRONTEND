@@ -9,10 +9,13 @@ import ErrorPage from './components/pages/ErrorPage';
 import LoginBar from './components/LoginBar';
 import Upload from './components/Upload';*/
 import Login from './components/pages/Login';
+import PostList from './components/PostList';
+
 
 function App() {
   return (
     <>
+    <PostList />
     <Router>
       <Routes>
         <Route path="/" element={<Home  />} />

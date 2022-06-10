@@ -1,7 +1,7 @@
 import React from 'react';
 import Upload from '../Upload';
 import LoginBar from '../LoginBar';
-import ModBar from '../ModProfBar';
+/*import ModBar from '../ModProfBar';*/
 
 
 function home() {
@@ -9,7 +9,7 @@ function home() {
     <>
     <Upload />
     <LoginBar />
-    <ModBar />
+    
     <hr></hr>
         THIS IS THE HOME PAGE
     </>
