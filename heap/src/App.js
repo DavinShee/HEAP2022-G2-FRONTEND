@@ -1,4 +1,3 @@
-import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Seller from './components/pages/Seller';
 import Buyer from './components/pages/Buyer';
@@ -18,7 +17,7 @@ function App() {
     <PostList />
     <Router>
       <Routes>
-        <Route path="/" element={<Home  />} />
+        <Route path="/" element={<Home />} />
         <Route path="/seller" element={<Seller />} />
         <Route path="/buyer" element={<Buyer />} />
         <Route path="/buyer/details" element={<Details />} />

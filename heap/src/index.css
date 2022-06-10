@@ -1,0 +1,40 @@
+/* FIND FONTS HERE
+https://fonts.google.com/ */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+* {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.LoginBar .search {
+  margin-left: auto;
+}
+
+.LoginBar {
+  display: flex;
+  align-items: center;
+  padding: 20px 10%;
+  position: sticky;
+  top: 0px;
+  border-bottom: 1px solid black;
+}
+
+.LoginBar a {
+  text-decoration: none;
+  color: black;
+}
+
+.LoginBar .links {
+  margin-left: auto;
+}
+
+.LoginBar .buttons {
+  width: 150px;
+  padding: 8px;
+  margin: 20px 10px;
+  border-radius: 4px;
+  color: black;
+  text-align: center;
+  border: 1px solid black;
+}
