@@ -9,16 +9,21 @@ class PostList extends Component {
         posts: []
       }
     }
+
 handlerSubmitClick() {
-    axios.get('http://5f72-2406-3003-206f-4ac0-4847-2509-e0d-ec17.ap.ngrok.io/routes/buyer')
+    axios.get('https://1d0f-2406-3003-206f-4ac0-2de8-3ce9-31e3-993d.ap.ngrok.io/routes/buyer')
     .then(response => {
-        console.log(response)
+      const notes = response.data.data.notes
+      notes.map(note => {
+        console.log("authorName: " + note.authorName)
+        console.log("modId: " + note.modId)
+        console.log("profName: " + note.profName)
+      })
     })
     .catch(error => {
         console.log(error)
     })
 }
-
 
   render() {
     return (
