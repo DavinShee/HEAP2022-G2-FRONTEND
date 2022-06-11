@@ -11,16 +11,22 @@ class PostList extends Component {
          
       }
     }
-    
-  handlerSubmitClick = async() => {
-    let response =await axios.get('https://aeb0-116-15-168-211.ap.ngrok.io/routes/buyer?mod-id=')       //http url changes, copy from ngrok//
-    this.setState({
-      posts: response.data.data.notes,
+
+handlerSubmitClick() {
+    axios.get('https://1d0f-2406-3003-206f-4ac0-2de8-3ce9-31e3-993d.ap.ngrok.io/routes/buyer')
+    .then(response => {
+      const notes = response.data.data.notes
+      notes.map(note => {
+        console.log("authorName: " + note.authorName)
+        console.log("modId: " + note.modId)
+        console.log("profName: " + note.profName)
+      })
     })
-    console.log(this.state.posts)
-    }
-    
-  
+    .catch(error => {
+        console.log(error)
+    })
+}
+
   render() {
       return (
         <div>PostList
