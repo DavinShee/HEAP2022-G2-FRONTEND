@@ -1,32 +1,51 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import axios from 'axios';
+
 
 class PostList extends Component {
     constructor(props) {
       super(props)
     
       this.state = {
-        posts: []
+         posts: [],
+         click: true,
       }
     }
-handlerSubmitClick() {
-    axios.get('http://5f72-2406-3003-206f-4ac0-4847-2509-e0d-ec17.ap.ngrok.io/routes/buyer')
-    .then(response => {
-        console.log(response)
+    
+  handlerSubmitClick = async() => {
+    let response =await axios.get('https://7a65-116-15-168-211.ap.ngrok.io/routes/buyer?mod-id=')       //http url changes, copy from ngrok//
+    this.setState({
+      posts: response.data.data.notes,
+      click: false
     })
-    .catch(error => {
-        console.log(error)
-    })
-}
-
-
+    console.log(this.state.posts)
+    }
+    
   render() {
+    if(this.state.click === false){
+      return (
+        <div>PostList
+      <button onClick={this.handlerSubmitClick}>YOLO</button>
+        {this.state.posts.map(post => (
+          <div key={post._id}>
+            <div>{post.modId}</div>
+            <div>{post.profName}</div>
+            <div>{post.authorName}</div>
+            <div>{post.createdAt}</div>
+          </div>
+        ))}
+      </div>
+      )
+    }
     return (
       <div>PostList
       <button onClick={this.handlerSubmitClick}>YOLO</button>
       </div>
+      
     )
+    
   }
+  
 }
 
 export default PostList
