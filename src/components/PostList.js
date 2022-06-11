@@ -8,24 +8,34 @@ class PostList extends Component {
     
       this.state = {
          posts: [],
-         click: true,
+         
       }
     }
     
   handlerSubmitClick = async() => {
-    let response =await axios.get('https://7a65-116-15-168-211.ap.ngrok.io/routes/buyer?mod-id=')       //http url changes, copy from ngrok//
+    let response =await axios.get('https://aeb0-116-15-168-211.ap.ngrok.io/routes/buyer?mod-id=')       //http url changes, copy from ngrok//
     this.setState({
       posts: response.data.data.notes,
-      click: false
     })
     console.log(this.state.posts)
     }
     
+  
   render() {
-    if(this.state.click === false){
       return (
         <div>PostList
       <button onClick={this.handlerSubmitClick}>YOLO</button>
+        <form>
+          <label>
+            Mod:
+            <input type="text" name="mod-id" />
+          </label>
+          <label>
+            Prof:
+            <input type="text" name="prof-name" />
+          </label>
+          <button type='submit'>Submit</button>
+        </form>
         {this.state.posts.map(post => (
           <div key={post._id}>
             <div>{post.modId}</div>
@@ -35,15 +45,7 @@ class PostList extends Component {
           </div>
         ))}
       </div>
-      )
-    }
-    return (
-      <div>PostList
-      <button onClick={this.handlerSubmitClick}>YOLO</button>
-      </div>
-      
-    )
-    
+      )   
   }
   
 }

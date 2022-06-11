@@ -9,12 +9,13 @@ import LoginBar from './components/LoginBar';
 import Upload from './components/Upload';*/
 import Login from './components/pages/Login';
 import PostList from './components/PostList';
+import PostList2 from './components/PostList2';
 
 
 function App() {
   return (
     <>
-    <PostList />
+    <PostList2 />
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
