@@ -1,36 +1,38 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState } from 'react';
 import axios from 'axios';
 
-
 class PostList extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         posts: [],
-         
-      }
-    }
+  constructor(props) {
+    super(props);
 
-handlerSubmitClick() {
-    axios.get('https://1d0f-2406-3003-206f-4ac0-2de8-3ce9-31e3-993d.ap.ngrok.io/routes/buyer')
-    .then(response => {
-      const notes = response.data.data.notes
-      notes.map(note => {
-        console.log("authorName: " + note.authorName)
-        console.log("modId: " + note.modId)
-        console.log("profName: " + note.profName)
+    this.state = {
+      posts: []
+    };
+  }
+
+  handlerSubmitClick() {
+    axios
+      .get(
+        'https://ff4b-2406-3003-206f-4ac0-e97e-a025-b0bf-6e90.ap.ngrok.io/routes/buyer'
+      )
+      .then((response) => {
+        const notes = response.data.data.notes;
+        notes.map((note) => {
+          console.log('authorName: ' + note.authorName);
+          console.log('modId: ' + note.modId);
+          console.log('profName: ' + note.profName);
+        });
       })
-    })
-    .catch(error => {
-        console.log(error)
-    })
-}
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
-      return (
-        <div>PostList
-      <button onClick={this.handlerSubmitClick}>YOLO</button>
+    return (
+      <div>
+        PostList
+        <button onClick={this.handlerSubmitClick}>YOLO</button>
         <form>
           <label>
             Mod:
@@ -40,9 +42,9 @@ handlerSubmitClick() {
             Prof:
             <input type="text" name="prof-name" />
           </label>
-          <button type='submit'>Submit</button>
+          <button type="submit">Submit</button>
         </form>
-        {this.state.posts.map(post => (
+        {this.state.posts.map((post) => (
           <div key={post._id}>
             <div>{post.modId}</div>
             <div>{post.profName}</div>
@@ -51,9 +53,8 @@ handlerSubmitClick() {
           </div>
         ))}
       </div>
-      )   
+    );
   }
-  
 }
 
-export default PostList
+export default PostList;

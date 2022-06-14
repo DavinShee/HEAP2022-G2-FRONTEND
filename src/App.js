@@ -1,31 +1,26 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Seller from './components/pages/Seller';
 import Buyer from './components/pages/Buyer';
 import Details from './components/pages/Details';
 import Home from './components/pages/Home';
 import ErrorPage from './components/pages/ErrorPage';
-/*import ModBar from './components/ModProfBar';
-import LoginBar from './components/LoginBar';
-import Upload from './components/Upload';*/
 import Login from './components/pages/Login';
-import PostList from './components/PostList';
-import PostList2 from './components/PostList2';
-
+import LoginBar from './components/LoginBar';
 
 function App() {
   return (
     <>
-    <PostList2 />
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/seller" element={<Seller />} />
-        <Route path="/buyer" element={<Buyer />} />
-        <Route path="/buyer/details" element={<Details />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Router>
+      <Router>
+      <LoginBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/seller" element={<Seller />} />
+          <Route path="/buyer" element={<Buyer />} />
+          <Route path="/buyer/details" element={<Details />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }
