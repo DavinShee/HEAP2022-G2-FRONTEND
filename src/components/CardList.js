@@ -11,10 +11,8 @@ const CardList = ({ notes }) => {
             <Card.Body>
               <Card.Title>NOTE {index + 1} DESCRIPTION GOES HERE</Card.Title>
               <Card.Text>
-                <ul>
-                  <li>Mod ID: {note.modId}</li>
-                  <li>Prof Name: {note.profName}</li>
-                </ul>
+                Mod ID: {note.modId} <br />
+                Prof Name: {note.profName}
               </Card.Text>
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
