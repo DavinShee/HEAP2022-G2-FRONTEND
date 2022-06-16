@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Buyer() {
-  return (
-    <div>THIS IS A BUYER PAGE</div>
-  )
+  return <div>THIS IS A BUYER PAGE</div>;
 }
 
-export default Buyer
+export default Buyer;
