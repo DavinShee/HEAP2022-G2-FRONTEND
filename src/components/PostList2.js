@@ -62,5 +62,4 @@ function PostList2() {
     )
 }
 
-
 export default PostList2
