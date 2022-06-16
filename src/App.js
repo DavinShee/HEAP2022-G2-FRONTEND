@@ -5,13 +5,13 @@ import Details from './components/pages/Details';
 import Home from './components/pages/Home';
 import ErrorPage from './components/pages/ErrorPage';
 import Login from './components/pages/Login';
-import LoginBar from './components/LoginBar';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <>
       <Router>
-      <LoginBar />
+      <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/seller" element={<Seller />} />

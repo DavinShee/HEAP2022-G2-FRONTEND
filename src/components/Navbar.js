@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function LoginBar() {
+function Navbar() {
   return (
-    <div className="LoginBar">
+    <div className="Navbar">
       <Link to="/">
         <h1>Notes</h1>
       </Link>
       <div className="search">
-        <form>
+        <form action="/buyer" method="get">
           <label>
             Mod:
-            <input type="text" />
+            <input type="text" name="mod-id" />
           </label>
-          <br />
           <label>
             Prof:
-            <input type="text" />
+            <input type="text" name="prof-id" />
           </label>
+          <button>Submit</button>
         </form>
       </div>
       <div className="links">
@@ -32,4 +32,4 @@ function LoginBar() {
   );
 }
 
-export default LoginBar;
+export default Navbar;
