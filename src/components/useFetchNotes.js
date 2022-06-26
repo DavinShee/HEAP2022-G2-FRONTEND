@@ -20,34 +20,32 @@ const useFetchNotes = (baseURL, modId, profId) => {
   baseURL = baseURL + query;
 
   useEffect(() => {
-    const source = axios.CancelToken.source();
+    const controller = new AbortController();
 
     const fetchData = async (url) => {
       await axios
         .get(url, {
-          cancelToken: source.token
+          signal: controller.signal
         })
         .then((response) => {
-          setData(response.data.data);
+          setData(response.data.data.notes);
           setLoading(false);
           setError(null);
         })
         .catch((err) => {
-          if (err.name === 'AbortError') {
-            console.log('fetch aborted');
+          if (err.name === 'CanceledError' || err.name === 'AbortError') {
+            console.log('Canceled/Aborted');
           } else {
             // auto catches network / connection error
-            setLoading(false);
             setError(err.message);
+            setLoading(false);
           }
         });
     };
 
     fetchData(baseURL);
 
-    return () => {
-      source.cancel();
-    };
+    return () => controller.abort();
   }, [baseURL]);
 
   return { data, loading, error };
