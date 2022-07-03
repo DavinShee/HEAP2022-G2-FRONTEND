@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useFetchNotes from '../useFetchNotes';
 import { databaseURLs } from '../../URLConstants';
@@ -21,7 +20,9 @@ function Buyer() {
       {error && <div>{error}</div>}
       {data && !loading && !error && (
         <>
-          <h1>Search results ({data.length})</h1>
+          {/* <h1>Search results ({data.length})</h1> */}
+          <br />
+          <br />
           <CardList notes={data} />
         </>
       )}

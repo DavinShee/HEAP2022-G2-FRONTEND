@@ -6,8 +6,8 @@ const CardList = ({ notes }) => {
     <div className="card-list">
       {notes.map((note, index) => (
         <div className="note-preview" key={index}>
-          <Card style={{ width: '18rem' }} border="primary">
-            <Card.Img variant="top" src="https://via.placeholder.com/250x150" />
+          <Card style={{ width: '20rem' }} border="primary">
+            <Card.Img variant="top" src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
             <Card.Body>
               <Card.Title>NOTE {index + 1} DESCRIPTION GOES HERE</Card.Title>
               <Card.Text>
@@ -17,7 +17,6 @@ const CardList = ({ notes }) => {
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
           </Card>
-          <br />
         </div>
       ))}
     </div>
