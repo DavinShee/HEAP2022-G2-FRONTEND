@@ -5,7 +5,7 @@ const CardList = ({ notes }) => {
   return (
     <div className="card-list">
       {notes.map((note, index) => (
-        <div className="note-preview" key={index}>
+        <div className="card-note-preview" key={index}>
           <Card style={{ width: '20rem' }} border="primary">
             <Card.Img variant="top" src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
             <Card.Body>

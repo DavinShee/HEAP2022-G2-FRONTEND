@@ -8,10 +8,14 @@ import NavigationBar from './components/pages/NavigationBar';
 import { UserContext } from './components/UserContext';
 import { useState, useMemo } from 'react';
 import background from './Images/opensea.jpg';
+import { useEffect } from 'react';
 
 function App() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')));
+  }, []);
 
   return (
     <div
@@ -19,9 +23,10 @@ function App() {
       style={{
         backgroundImage: `url(${background})`,
         backgroundRepeat: 'no-repeat',
-        width: '100vw',
-        maxWidth: '1080px',
+        // width: '100vw',
+        // maxWidth: '1080px',
         backgroundSize: 'cover',
+        height: '100vh',
         backgroundAttachment: 'fixed' // how to make the img max size fixed??
       }}
     >
