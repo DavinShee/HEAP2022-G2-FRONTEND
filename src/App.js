@@ -4,24 +4,40 @@ import Buyer from './components/pages/Buyer';
 import Details from './components/pages/Details';
 import Home from './components/pages/Home';
 import ErrorPage from './components/pages/ErrorPage';
-import Login from './components/pages/Login';
-import Navbar from './components/Navbar';
+import NavigationBar from './components/pages/NavigationBar';
+import { UserContext } from './components/UserContext';
+import { useState, useMemo } from 'react';
+import background from './Images/opensea.jpg';
 
 function App() {
+  const [user, setUser] = useState(false);
+  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+
   return (
-    <>
+    <div
+      className="App"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        maxWidth: '1080px',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed' // how to make the img max size fixed??
+      }}
+    >
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/seller" element={<Seller />} />
-          <Route path="/buyer" element={<Buyer />} />
-          <Route path="/buyer/details" element={<Details />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+        <UserContext.Provider value={providerValue}>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/seller" element={<Seller />} />
+            <Route path="/buyer" element={<Buyer />} />
+            <Route path="/buyer/details" element={<Details />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </UserContext.Provider>
       </Router>
-    </>
+    </div>
   );
 }
 

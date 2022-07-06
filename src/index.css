@@ -3,42 +3,61 @@ https://fonts.google.com/ */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 * {
-  margin: 0;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
 }
 
-.Navbar .search {
-  margin-left: auto;
-}
-
-.Navbar {
-  background-color: white;
-  display: flex;
-  align-items: center;
-  padding: 20px 10%;
-  position: sticky;
-  top: 0px;
-  border-bottom: 1px solid black;
-}
-
-.Navbar a {
-  text-decoration: none;
-  color: black;
-}
-
-.Navbar .links {
-  margin-left: auto;
-}
-
-.Navbar .buttons {
-  width: 150px;
-  padding: 8px;
-  margin: 20px 10px;
-  border-radius: 4px;
-  color: black;
+.App {
   text-align: center;
-  border: 1px solid black;
 }
+
+.bg-image {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.modal-body {
+  padding-top: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.modal-content {
+  border-radius: 20px;
+}
+
+.form-control {
+  border-radius: 15px;
+}
+
+body {
+  max-width: 1080px;
+  margin: 0 auto !important;
+}  
+
+nav {
+  width: 100%;
+}  
+
+#root nav div button {
+  margin: 0 10px;
+}
+
+.card-list {
+  display: flex;
+  row-gap: 50px;
+  column-gap: 50px;
+  grid-auto-columns: auto;
+}
+
+/* .note-preview:hover{
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+} */
 
 /* .results {
   max-width: 1200px;

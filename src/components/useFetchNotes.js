@@ -17,12 +17,13 @@ const useFetchNotes = (baseURL, modId, profId) => {
   if (query !== '') {
     query = '?' + query;
   }
-  baseURL = baseURL + query;
+  const queryURL = baseURL + query;
 
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchData = async (url) => {
+      setLoading(true);
       await axios
         .get(url, {
           signal: controller.signal
@@ -43,10 +44,10 @@ const useFetchNotes = (baseURL, modId, profId) => {
         });
     };
 
-    fetchData(baseURL);
+    fetchData(queryURL);
 
     return () => controller.abort();
-  }, [baseURL]);
+  }, [queryURL]);
 
   return { data, loading, error };
 };
