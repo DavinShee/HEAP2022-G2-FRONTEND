@@ -1,6 +1,6 @@
 export const databaseURLs = {
   BUYER:
-    'https://a8cb-116-15-168-211.ap.ngrok.io' +
+    'https://e814-101-78-113-236.ap.ngrok.io' +
     '/routes/buyer',
   URL2: 'google.com'
 };

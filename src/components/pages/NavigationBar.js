@@ -48,11 +48,15 @@ function NavigationBar() {
 
   let loggedOut = (
     <>
-      <Button variant="info" onClick={handleShowSignup}>
+      <Button variant="" onClick={handleShowSignup}>
+        <div className='btn-text'>
         Signup
+        </div>
       </Button>
-      <Button variant="info" onClick={handleShowLogin}>
+      <Button variant="" onClick={handleShowLogin}>
+      <div className='btn-text2'>
         Login
+        </div>
       </Button>
 
       <Modal show={showSignupModal} onHide={handleCloseSignup} centered>
@@ -169,18 +173,23 @@ function NavigationBar() {
 
   return (
     <>
-      <Navbar bg="light" sticky="top">
+      <Navbar className='color-nav' fixed="top">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <h1>Notes</h1>
+            <div className='brand-text'>
+            <h1>NotesNow</h1>
+            </div>
           </Navbar.Brand>
+          
           <Nav>
-            <Button variant="info" onClick={handleShowSearch}>
+            <Button variant='' onClick={handleShowSearch}>
+              <div className='btn-text'>
               Search
+              </div>
             </Button>
             {user ? loggedIn : loggedOut}
-          </Nav>
-        </Container>
+          </Nav> 
+    </Container>
       </Navbar>
 
       <Modal show={showSearchModal} onHide={handleCloseSearch} centered>

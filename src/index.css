@@ -1,15 +1,19 @@
 /* FIND FONTS HERE
 https://fonts.google.com/ */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
-* {
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-}
-
-.App {
+/*.App {
   text-align: center;
-}
+  background-image: url(../src/Images/opensea.jpg);
+  background-repeat: no-repeat;
+  background-attachment: contain;
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  background-position: 0% 0%;
+
+}*/
 
 .bg-image {
   width: 100%;
@@ -55,6 +59,77 @@ nav {
   grid-auto-columns: auto;
 }
 
+.color-nav {
+  background-color: rgb(194, 220, 255);
+  
+}
+
+.push {
+  padding-top: 80px;
+
+}
+.btn {
+  background-color: white;
+  width: 133px;
+  height: 42px;
+  color: black;
+}
+
+.btn-text {
+  width: 133px;
+  height: 42px;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  padding-left: 8px;
+  padding-bottom: 15px;
+  /*search + signup*/
+} 
+
+.btn-text2 {
+  width: 133px;
+  height: 42px;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  padding-left: 16px;
+  padding-bottom: 15px;
+  /*login*/
+} 
+
+.home-1 {
+  padding-top: 250px;
+  font-family: 'Lato', sans-serif;
+  font-style: Bold;
+  font-size: 80px;
+  line-height: 96px;
+  line-height: 100%;
+
+}
+
+.home-2 {
+  font-family: 'Lato', sans-serif;
+  font-style: Bold;
+  font-size: 30px;
+  line-height: 36px;
+  line-height: 100%;
+  padding-right: 150px;
+}
+
+.brand-text{
+  font-family: 'Lato', sans-serif;
+
+}
 /* .note-preview:hover{
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 } */

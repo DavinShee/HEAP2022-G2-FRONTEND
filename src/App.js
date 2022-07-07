@@ -12,22 +12,17 @@ import background from './Images/opensea.jpg';
 function App() {
   const [user, setUser] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  
 
   return (
     <div
       className="App"
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundRepeat: 'no-repeat',
-        width: '100vw',
-        maxWidth: '1080px',
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed' // how to make the img max size fixed??
-      }}
     >
+      <div className='push'></div>
       <Router>
         <UserContext.Provider value={providerValue}>
           <NavigationBar />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/seller" element={<Seller />} />
