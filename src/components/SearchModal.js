@@ -15,7 +15,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
     e.stopPropagation();
     handleCloseSearch();
     navigate(
-      `/buyer?mod-id=${modID}&prof-id=${profName}&author-name=${authorName}`
+      `/search?mod-id=${modID}&prof-id=${profName}&author-name=${authorName}`
     );
     setModID('');
     setProfName('');

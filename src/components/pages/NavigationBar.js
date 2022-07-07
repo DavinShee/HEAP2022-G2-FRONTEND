@@ -1,15 +1,13 @@
 import { useState, useContext } from 'react';
 import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import SearchModal from '../SearchModal';
 import LoginModal from '../LoginModal';
 import SignupModal from '../SignupModal';
 
 function NavigationBar() {
-  const { user, setUser } = useContext(UserContext);
-
-  let navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   const [showSearchModal, setSearchModal] = useState(false);
 

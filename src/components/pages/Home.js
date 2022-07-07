@@ -5,7 +5,7 @@ import SignupModal from '../SignupModal';
 import { UserContext } from '../UserContext';
 
 const Home = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const [showSignupModal, setSignupModal] = useState(false);
   const handleShowSignup = () => setSignupModal(true);
@@ -19,6 +19,7 @@ const Home = () => {
       <br />
       USER PASSWORD: {user ? user.password : 'NO USER'}
       {/* TEST */}
+      <br />
       <Button variant="info" onClick={handleShowSignup}>
         Signup
       </Button>

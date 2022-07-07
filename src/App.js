@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Seller from './components/pages/Seller';
-import Buyer from './components/pages/Buyer';
+import Search from './components/pages/Search';
 import Details from './components/pages/Details';
 import Home from './components/pages/Home';
 import ErrorPage from './components/pages/ErrorPage';
@@ -14,7 +14,12 @@ function App() {
   const [user, setUser] = useState(null);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('user')));
+    let fetchedUser = JSON.parse(localStorage.getItem('user'));
+    if (fetchedUser) {
+      setUser(fetchedUser);
+    } else {
+      setUser(null);
+    }
   }, []);
 
   return (
@@ -36,7 +41,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/seller" element={<Seller />} />
-            <Route path="/buyer" element={<Buyer />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/buyer/details" element={<Details />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

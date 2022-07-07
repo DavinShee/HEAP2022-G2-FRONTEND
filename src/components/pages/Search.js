@@ -2,16 +2,15 @@ import { useSearchParams } from 'react-router-dom';
 import useFetchNotes from '../useFetchNotes';
 import { databaseURLs } from '../../URLConstants';
 import CardList from '../CardList';
-import { useEffect } from 'react';
 
-function Buyer() {
+function Search() {
   const [searchParams] = useSearchParams();
   const modId = searchParams.get('mod-id');
   const profId = searchParams.get('prof-id');
   const authorName = searchParams.get('author-name');
 
   const { data, loading, error } = useFetchNotes(
-    databaseURLs.BUYER,
+    databaseURLs.buyer,
     modId ? modId : null,
     profId ? modId : null,
     authorName ? authorName : null
@@ -39,4 +38,4 @@ function Buyer() {
   );
 }
 
-export default Buyer;
+export default Search;
