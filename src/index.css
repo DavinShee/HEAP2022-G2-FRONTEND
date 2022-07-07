@@ -3,7 +3,10 @@ https://fonts.google.com/ */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
-/*.App {
+/* Global Settings */
+* {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
   text-align: center;
   background-image: url(../src/Images/opensea.jpg);
   background-repeat: no-repeat;
@@ -15,11 +18,17 @@ https://fonts.google.com/ */
 
 }*/
 
-.bg-image {
-  width: 100%;
-  max-width: 1080px;
+body {
+  margin: 0 auto !important;
 }
 
+/* Background Image */
+.bg-image {
+  width: 100%;
+  /* max-width: 1080px; */
+}
+
+/* Modals */
 .modal-header {
   border-bottom: none;
   padding-bottom: 0;
@@ -39,11 +48,17 @@ https://fonts.google.com/ */
   border-radius: 15px;
 }
 
-body {
-  max-width: 1080px;
-  margin: 0 auto !important;
-}  
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
 
+/* Navbar */
 nav {
   width: 100%;
 }  
@@ -52,8 +67,20 @@ nav {
   margin: 0 10px;
 }
 
+.dropdown-menu.show {
+  text-align: center;
+}
+
+/* Search Results */
+.search-results {
+  margin: 0 5%;
+}
+
+/* Cards */
 .card-list {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   row-gap: 50px;
   column-gap: 50px;
   grid-auto-columns: auto;
