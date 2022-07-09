@@ -1,10 +1,28 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, Col, FloatingLabel, Form, Modal, Row } from 'react-bootstrap';
+import {
+  Alert,
+  Button,
+  Col,
+  FloatingLabel,
+  Form,
+  Modal,
+  Row
+} from 'react-bootstrap';
 import { databaseURLs } from '../URLConstants';
 
 const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
-  const handleCloseSignup = () => setSignupModal(false);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertDetails, setAlertDetails] = useState({
+    variant: '',
+    message: ''
+  });
+
+  const handleCloseSignup = () => {
+    setShowAlert(false);
+    setSignupModal(false);
+  };
 
   const [signupFormValues, setSignupFormValues] = useState({
     firstName: '',
@@ -24,69 +42,83 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
         [name]: value
       };
     });
+
+    if (
+      !signupFormValues.firstName ||
+      !signupFormValues.lastName ||
+      !signupFormValues.emailAddress ||
+      !signupFormValues.password ||
+      !signupFormValues.confirmPassword
+    ) {
+      setSubmitDisabled(true);
+    } else {
+      setSubmitDisabled(false);
+    }
   };
 
   const handleSignup = (e) => {
     e.preventDefault();
-
-    const requestHeader = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-    };
-
-    const signupData = {
-      email: signupFormValues.emailAddress,
-      fullname: signupFormValues.firstName + ' ' + signupFormValues.lastName,
-      password: signupFormValues.password
-    };
-
-    let newNote = {
-      authorName: 'test',
-      comments: [],
-      description: 'test',
-      image: ['test1', 'test2'],
-      modId: 'test',
-      price: 5,
-      profName: 'test',
-      year: 'test'
-    };
-
-    axios
-      .post(
-        databaseURLs.buyer,
-        JSON.stringify(newNote),
-        // {
-        //   authorName: 'test',
-        //   comments: [],
-        //   description: 'test',
-        //   image: ['test1', 'test2'],
-        //   modId: 'test',
-        //   price: 5,
-        //   profName: 'test',
-        //   year: 'test'
-        // },
-        { headers: requestHeader }
-      )
-      .then((response) => {
-        console.log('Success=======>', response);
-      })
-      .catch((error) => {
-        console.log('Error=========>', error);
+    e.stopPropagation();
+    if (signupFormValues.password !== signupFormValues.confirmPassword) {
+      setAlertDetails({
+        variant: 'danger',
+        message: 'Password and confirm password do not match'
       });
+      setShowAlert(true);
+    } else {
+      const requestHeader = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      };
+
+      const signupData = {
+        email: signupFormValues.emailAddress,
+        fullname: signupFormValues.firstName + ' ' + signupFormValues.lastName,
+        password: signupFormValues.password
+      };
+
+      axios
+        .post(databaseURLs.signUp, JSON.stringify(signupData), {
+          headers: requestHeader
+        })
+        .then((response) => {
+          // console.log('Success=======>', response);
+          setAlertDetails({
+            variant: 'success',
+            message: 'Account successfully created! Please proceed to login'
+          });
+          setShowAlert(true);
+          setSubmitDisabled(true);
+        })
+        .catch((error) => {
+          // console.log('Error=========>', error);
+          setAlertDetails({
+            variant: 'danger',
+            message: error.response.data
+          });
+          setShowAlert(true);
+        });
+    }
   };
 
   return (
     <Modal show={showSignupModal} onHide={handleCloseSignup} centered>
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
+        {showAlert && (
+          <Alert key={alertDetails.variant} variant={alertDetails.variant}>
+            {`${alertDetails.message}`}
+          </Alert>
+        )}
         <h3>Create an account to start sharing!</h3>
         <Form onSubmit={handleSignup}>
           <Row>
             <Col>
               <FloatingLabel label="First Name" className="my-3">
                 <Form.Control
+                  required
                   type="text"
                   placeholder="First Name"
                   onChange={handleChange}
@@ -97,6 +129,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
             <Col>
               <FloatingLabel label="Last Name" className="my-3">
                 <Form.Control
+                  required
                   type="text"
                   placeholder="Last Name"
                   onChange={handleChange}
@@ -105,20 +138,24 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
               </FloatingLabel>
             </Col>
           </Row>
-          <Form.Group>
-            <FloatingLabel label="Email address" className="my-3">
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                onChange={handleChange}
-                name="emailAddress"
-              ></Form.Control>
-            </FloatingLabel>
-          </Form.Group>
+          <Row>
+            <Form.Group>
+              <FloatingLabel label="Email address" className="my-3">
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="Email address"
+                  onChange={handleChange}
+                  name="emailAddress"
+                ></Form.Control>
+              </FloatingLabel>
+            </Form.Group>
+          </Row>
           <Row>
             <Col>
               <FloatingLabel label="Password" className="my-3">
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Password"
                   onChange={handleChange}
@@ -129,6 +166,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
             <Col>
               <FloatingLabel label="Confirm Password" className="my-3">
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Confirm Password"
                   onChange={handleChange}
@@ -137,7 +175,9 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
               </FloatingLabel>
             </Col>
           </Row>
-          <Button type="submit">Create my account!</Button>
+          <Button type="submit" disabled={submitDisabled}>
+            Create my account!
+          </Button>
         </Form>
         <br />
         Already have an account?{' '}

@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const CardList = ({ notes }) => {
   return (
@@ -7,14 +8,22 @@ const CardList = ({ notes }) => {
       {notes.map((note, index) => (
         <div className="card-note-preview" key={index}>
           <Card style={{ width: '20rem' }} border="primary">
-            <Card.Img variant="top" src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
+            <Card.Img
+              variant="top"
+              src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+            />
             <Card.Body>
               <Card.Title>NOTE {index + 1} DESCRIPTION GOES HERE</Card.Title>
               <Card.Text>
-                Mod ID: {note.modId} <br />
-                Prof Name: {note.profName}
+                Module: {note.modId}
+                <br />
+                Professor: {note.profName}
+                <br />
+                Author: {note.authorName}
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary" as={Link} to={`/note/${note._id}`}>
+                View Note
+              </Button>
             </Card.Body>
           </Card>
         </div>

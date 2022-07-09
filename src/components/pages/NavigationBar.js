@@ -20,14 +20,10 @@ function NavigationBar() {
   let loggedOut = (
     <>
       <Button variant="" onClick={handleShowSignup}>
-        <div className='btn-text'>
-        Signup
-        </div>
+        <div className="btn-text">Signup</div>
       </Button>
       <Button variant="" onClick={handleShowLogin}>
-      <div className='btn-text2'>
-        Login
-        </div>
+        <div className="btn-text2">Login</div>
       </Button>
 
       <SignupModal
@@ -71,40 +67,21 @@ function NavigationBar() {
 
   return (
     <>
-      <Navbar className='color-nav' fixed="top">
+      <Navbar className="color-nav" fixed="top">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <div className='brand-text'>
-            <h1>NotesNow</h1>
+            <div className="brand-text">
+              <h1>NotesNow</h1>
             </div>
           </Navbar.Brand>
-          
+
           <Nav>
-            <Button
-              variant="info"
-              onClick={() => {
-                if (user) {
-                  window.localStorage.removeItem('user');
-                  window.location.reload(false);
-                } else {
-                  let testUser = {
-                    email: 'testemail@gmail.com',
-                    password: 'testtest123'
-                  };
-                  localStorage.setItem('user', JSON.stringify(testUser));
-                  window.location.reload(false);
-                }
-              }}
-            >
-              Test Login/Logout
-            </Button>
             <Button variant="info" onClick={() => setSearchModal(true)}>
               Search
-              </div>
             </Button>
             {user ? loggedIn : loggedOut}
-          </Nav> 
-    </Container>
+          </Nav>
+        </Container>
       </Navbar>
 
       <SearchModal

@@ -1,7 +1,8 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import useFetchNotes from '../useFetchNotes';
 import { databaseURLs } from '../../URLConstants';
 import CardList from '../CardList';
+import { useEffect } from 'react';
 
 function Search() {
   const [searchParams] = useSearchParams();
@@ -9,12 +10,26 @@ function Search() {
   const profId = searchParams.get('prof-id');
   const authorName = searchParams.get('author-name');
 
-  const { data, loading, error } = useFetchNotes(
-    databaseURLs.buyer,
-    modId ? modId : null,
-    profId ? modId : null,
-    authorName ? authorName : null
-  );
+  const location = useLocation();
+  let queryURL = databaseURLs.search + location.search;
+  const query = [modId, profId, authorName];
+  let details = [];
+  query.forEach((item) => {
+    if (item !== '') {
+      details.push(item);
+    }
+  });
+  let searchDetails =
+    details.length > 0
+      ? 'Search results for ' + details.join(', ')
+      : 'Search results';
+
+  const { data, loading, error } = useFetchNotes(queryURL);
+  let notes = data;
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    notes = data;
+  }, [data]);
 
   return (
     <div className="search-results">
@@ -22,10 +37,12 @@ function Search() {
       {error && <div>{error}</div>}
       {data && !loading && !error && (
         <>
-          {data.length ? (
+          {notes.data.notes.length ? (
             <>
-              <h1>Search results ({data.length})</h1>
-              <CardList notes={data} />
+              <h1>
+                {searchDetails} ({notes.data.notes.length})
+              </h1>
+              <CardList notes={notes.data.notes} />
             </>
           ) : (
             <>
