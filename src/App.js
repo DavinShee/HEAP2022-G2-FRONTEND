@@ -11,6 +11,7 @@ import { useEffect, useState, useMemo } from 'react';
 function App() {
   const [user, setUser] = useState(null);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+
   useEffect(() => {
     let fetchedUser = JSON.parse(localStorage.getItem('user'));
     if (fetchedUser) {

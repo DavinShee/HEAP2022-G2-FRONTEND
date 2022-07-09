@@ -1,21 +1,20 @@
+import { useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import useFetchNotes from '../useFetchNotes';
 import { databaseURLs } from '../../URLConstants';
 import CardList from '../CardList';
-import { useEffect } from 'react';
 
 function Search() {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const modId = searchParams.get('mod-id');
   const profId = searchParams.get('prof-id');
   const authorName = searchParams.get('author-name');
-
-  const location = useLocation();
-  let queryURL = databaseURLs.search + location.search;
   const query = [modId, profId, authorName];
+
   let details = [];
   query.forEach((item) => {
-    if (item !== '') {
+    if (item) {
       details.push(item);
     }
   });
@@ -24,6 +23,7 @@ function Search() {
       ? 'Search results for ' + details.join(', ')
       : 'Search results';
 
+  let queryURL = databaseURLs.search + location.search;
   const { data, loading, error } = useFetchNotes(queryURL);
   let notes = data;
   useEffect(() => {
