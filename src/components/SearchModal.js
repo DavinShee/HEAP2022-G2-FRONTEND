@@ -24,12 +24,13 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
 
   return (
     <>
-      <Modal show={showSearchModal} onHide={handleCloseSearch} centered>
+      <Modal className='search-modal' show={showSearchModal} onHide={handleCloseSearch} centered>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
+          <h3>NotesNow</h3><br></br>
           <h3>What are you looking for today?</h3>
           <Form onSubmit={handleSubmitSearch}>
-            <FloatingLabel label="Module" className="my-3">
+            <FloatingLabel label="Your Module" className="my-3">
               <Form.Control
                 type="text"
                 placeholder="Module"
@@ -37,7 +38,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
                 onChange={(e) => setModID(e.target.value)}
               />
             </FloatingLabel>
-            <FloatingLabel label="Prof" className="my-3">
+            <FloatingLabel label="Name of Professor" className="my-3">
               <Form.Control
                 type="text"
                 placeholder="Prof"
@@ -45,7 +46,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
                 onChange={(e) => setProfName(e.target.value)}
               />
             </FloatingLabel>
-            <FloatingLabel label="Author" className="my-3">
+            <FloatingLabel label="Name of Author" className="my-3">
               <Form.Control
                 type="text"
                 placeholder="Author"
@@ -53,8 +54,10 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
                 onChange={(e) => setAuthorName(e.target.value)}
               />
             </FloatingLabel>
-            <Button variant="info" onClick={handleSubmitSearch} type="submit">
+            <Button variant="" className='search-form-button' onClick={handleSubmitSearch} type="submit">
+              <div className='search-search-text'>
               Search!
+              </div>
             </Button>
           </Form>
         </Modal.Body>

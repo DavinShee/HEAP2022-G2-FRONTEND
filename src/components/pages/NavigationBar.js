@@ -20,12 +20,12 @@ function NavigationBar() {
   let loggedOut = (
     <>
       <Button variant="" onClick={handleShowSignup}>
-        <div className='btn-text'>
+        <div className='nav-signup'>
         Signup
         </div>
       </Button>
       <Button variant="" onClick={handleShowLogin}>
-      <div className='btn-text2'>
+      <div className='nav-login'>
         Login
         </div>
       </Button>
@@ -46,7 +46,11 @@ function NavigationBar() {
 
   let loggedIn = (
     <>
-      <Button variant="info">Upload</Button>
+      <Button variant="">
+        <div className='nav-upload-text'>
+        Upload
+        </div>
+        </Button>
       <NavDropdown title={!user ? null : user.email} id="nav-dropdown">
         <NavDropdown.Item as={Link} to="/">
           Change Password
@@ -98,7 +102,8 @@ function NavigationBar() {
             >
               Test Login/Logout
             </Button>
-            <Button variant="info" onClick={() => setSearchModal(true)}>
+            <Button variant="" onClick={() => setSearchModal(true)}>
+              <div className='search-button'>
               Search
               </div>
             </Button>

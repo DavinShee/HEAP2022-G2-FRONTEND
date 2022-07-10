@@ -31,11 +31,15 @@ const Home = () => {
       USER PASSWORD: {user ? user.password : 'NO USER'}
       {/* TEST */}
       <br />
-      <Button variant="info" onClick={handleShowSignup}>
+      <Button variant className='home-signup-button' onClick={handleShowSignup}>
+        <div className='home-signup-text'>
         Signup
+        </div>
       </Button>
-      <Button variant="info" onClick={handleShowLogin}>
+      <Button  variant className='home-login-button' onClick={handleShowLogin}>
+        <div className='home-login-text'>
         Login
+        </div>
       </Button>
       <SignupModal
         showSignupModal={showSignupModal}

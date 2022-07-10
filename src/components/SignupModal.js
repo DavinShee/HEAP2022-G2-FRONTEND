@@ -78,7 +78,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
   };
 
   return (
-    <Modal show={showSignupModal} onHide={handleCloseSignup} centered>
+    <Modal className='signup-form' show={showSignupModal} onHide={handleCloseSignup} centered>
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
         <h3>Create an account to start sharing!</h3>
@@ -137,7 +137,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
               </FloatingLabel>
             </Col>
           </Row>
-          <Button type="submit">Create my account!</Button>
+          <Button variant className='signup-create-button' type="submit">Create!</Button>
         </Form>
         <br />
         Already have an account?{' '}

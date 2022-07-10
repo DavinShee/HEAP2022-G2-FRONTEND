@@ -4,7 +4,7 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
   const handleCloseLogin = () => setLoginModal(false);
 
   return (
-    <Modal show={showLoginModal} onHide={handleCloseLogin} centered>
+    <Modal className='login-form' show={showLoginModal} onHide={handleCloseLogin} centered>
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
         <h3>Login to start sharing!</h3>
@@ -18,7 +18,7 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
           <FloatingLabel label="Password" className="my-3">
             <Form.Control type="password" placeholder="Password" />
           </FloatingLabel>
-          <Button>Login!</Button>
+          <Button variant className='login-login-button'>Login!</Button>
         </Form>
         <br />
         Don't have an account?{' '}
