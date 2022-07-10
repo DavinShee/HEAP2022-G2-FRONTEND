@@ -4,7 +4,7 @@ const DocumentPreviewCarousel = ({ imageURLArray }) => {
   return (
     <Carousel>
       {imageURLArray.map((url, index) => (
-        <Carousel.Item>
+        <Carousel.Item key={index}>
           <img className="d-block w-100" src={url} alt={`${index}`} />
         </Carousel.Item>
       ))}

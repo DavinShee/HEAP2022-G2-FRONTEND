@@ -8,7 +8,7 @@ function Search() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const modId = searchParams.get('mod-id');
-  const profId = searchParams.get('prof-id');
+  const profId = searchParams.get('prof-name');
   const authorName = searchParams.get('author-name');
   const query = [modId, profId, authorName];
 

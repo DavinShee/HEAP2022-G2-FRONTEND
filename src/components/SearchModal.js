@@ -15,7 +15,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
     e.stopPropagation();
     handleCloseSearch();
     navigate(
-      `/search?mod-id=${modID}&prof-id=${profName}&author-name=${authorName}`
+      `/search?mod-id=${modID}&prof-name=${profName}&author-name=${authorName}`
     );
     setModID('');
     setProfName('');
@@ -24,10 +24,16 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
 
   return (
     <>
-      <Modal className='search-modal' show={showSearchModal} onHide={handleCloseSearch} centered>
+      <Modal
+        className="search-modal"
+        show={showSearchModal}
+        onHide={handleCloseSearch}
+        centered
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <h3>NotesNow</h3><br></br>
+          <h3>NotesNow</h3>
+          <br></br>
           <h3>What are you looking for today?</h3>
           <Form onSubmit={handleSubmitSearch}>
             <FloatingLabel label="Your Module" className="my-3">
@@ -54,10 +60,13 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
                 onChange={(e) => setAuthorName(e.target.value)}
               />
             </FloatingLabel>
-            <Button variant="" className='search-form-button' onClick={handleSubmitSearch} type="submit">
-              <div className='search-search-text'>
-              Search!
-              </div>
+            <Button
+              variant=""
+              className="search-form-button"
+              onClick={handleSubmitSearch}
+              type="submit"
+            >
+              <div className="search-search-text">Search!</div>
             </Button>
           </Form>
         </Modal.Body>

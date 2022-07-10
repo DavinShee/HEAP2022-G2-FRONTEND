@@ -19,6 +19,7 @@ function App() {
     } else {
       setUser(null);
     }
+    console.log('action');
   }, []);
 
   return (

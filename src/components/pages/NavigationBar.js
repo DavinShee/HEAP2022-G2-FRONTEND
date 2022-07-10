@@ -50,7 +50,7 @@ function NavigationBar() {
           Change Password
         </NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/">
-          Purchase History
+          Download History
         </NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/">
           Active Listings
