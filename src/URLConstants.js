@@ -1,9 +1,9 @@
-let ngrokLink =
-  'https://1910-101-78-113-236.ap.ngrok.io';
+const NGROKLINK =
+  'http://localhost:3000';
 
 export const databaseURLs = {
-  buyer: ngrokLink + '/routes/buyer',
-  signIn: ngrokLink + '/routes/account/signin',
-  signUp: ngrokLink + '/routes/account/signup',
-  passwordUpdate: ngrokLink + '/routes/account/edit'
+  search: NGROKLINK + '/routes/buyer',
+  signIn: NGROKLINK + '/routes/account/signin',
+  signUp: NGROKLINK + '/routes/account/signup',
+  passwordUpdate: NGROKLINK + '/routes/account/edit'
 };

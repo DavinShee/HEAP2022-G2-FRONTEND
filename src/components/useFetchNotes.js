@@ -1,26 +1,10 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const useFetchNotes = (baseURL, modId, profId, authorName) => {
+const useFetchNotes = (queryURL) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  let queries = [];
-  if (modId) {
-    queries.push(`mod-id=${modId}`);
-  }
-  if (profId) {
-    queries.push(`prof-name=${profId}`);
-  }
-  if (authorName) {
-    queries.push(`author-name=${authorName}`);
-  }
-  queries = queries.join('&');
-  if (queries !== '') {
-    queries = '?' + queries;
-  }
-  const queryURL = baseURL + queries;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -32,7 +16,7 @@ const useFetchNotes = (baseURL, modId, profId, authorName) => {
           signal: controller.signal
         })
         .then((response) => {
-          setData(response.data.data.notes);
+          setData(response.data);
           setLoading(false);
           setError(null);
         })
