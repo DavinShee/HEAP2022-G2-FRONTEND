@@ -263,8 +263,10 @@ nav {
   padding-bottom: 13px;
 }
 
-
-
+/* Note Details */
+.note-other-details p{
+  margin-bottom: 0;
+}
 
 /* .note-preview:hover{
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);

@@ -19,10 +19,8 @@ const Home = () => {
 
   let notes = data;
   useEffect(() => {
-    console.log('BEFORE:', notes.data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     notes = data;
-    console.log('AFTER :', notes.data);
   }, [data]);
 
   let loggedOutHome = (
@@ -51,12 +49,11 @@ const Home = () => {
     </>
   );
 
-  // ???
   let loggedInHome = (
     <div className="search-results">
       {loading && <div>Loading...</div>}
       {error && <div>{error}</div>}
-      {data && !loading && !error && (
+      {data && data.data && data.data.notes && !loading && !error && (
         <>
           {notes.data.notes.length && (
             <>
@@ -74,7 +71,6 @@ const Home = () => {
       )}
     </div>
   );
-  // ???
 
   return <>{user ? loggedInHome : loggedOutHome}</>;
 };

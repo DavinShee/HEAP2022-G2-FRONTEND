@@ -7,9 +7,13 @@ const CardList = ({ notes }) => {
       {notes.map((note, index) => (
         <div className="card-note-preview" key={index}>
           <Card style={{ width: '20rem' }} border="">
-            <Card.Img className='card-img' variant="top" src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
-            <Card.Body className='card-textbox'>
-              <Card.Title>NOTE {index + 1} DESCRIPTION GOES HERE</Card.Title>
+            <Card.Img
+              className="card-img"
+              variant="top"
+              src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+            />
+            <Card.Body className="card-textbox">
+              <Card.Title>{note.description}</Card.Title>
               <Card.Text>
                 Module: {note.modId}
                 <br />
