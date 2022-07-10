@@ -64,13 +64,13 @@ function NoteDetails() {
                         <Col>{data.data.note.year}</Col>
                       </Row>
                     </div>
-                    <div className="button-or-login">
-                      {user ? (
-                        <Button>Download</Button>
-                      ) : (
-                        <p>Please login to view/download</p>
-                      )}
-                    </div>
+                  </div>
+                  <div className="button-or-login mt-auto ms-auto">
+                    {user ? (
+                      <Button>Download</Button>
+                    ) : (
+                      <p>Please login to view/download</p>
+                    )}
                   </div>
                 </Stack>
               </Col>
