@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react';
 import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../UserContext';
-import SearchModal from '../SearchModal';
-import LoginModal from '../LoginModal';
-import SignupModal from '../SignupModal';
+import { UserContext } from './UserContext';
+import SearchModal from './SearchModal';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import UserIcon from './UserIcon';
 
 function NavigationBar() {
   const { user } = useContext(UserContext);
@@ -45,7 +46,10 @@ function NavigationBar() {
       <Button variant="">
         <div className="nav-upload-text">Upload</div>
       </Button>
-      <NavDropdown title={!user ? null : user.email} id="nav-dropdown">
+      <NavDropdown
+        title={!user ? null : <UserIcon name={user.email} />}
+        id="nav-dropdown"
+      >
         <NavDropdown.Item as={Link} to="/">
           Change Password
         </NavDropdown.Item>
@@ -53,7 +57,7 @@ function NavigationBar() {
           Download History
         </NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/">
-          Active Listings
+          My Listings
         </NavDropdown.Item>
         <NavDropdown.Item
           onClick={() => {

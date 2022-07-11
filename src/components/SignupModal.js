@@ -16,7 +16,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertDetails, setAlertDetails] = useState({
     variant: '',
-    message: ''
+    message: ['']
   });
 
   const handleCloseSignup = () => {
@@ -62,7 +62,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
     if (signupFormValues.password !== signupFormValues.confirmPassword) {
       setAlertDetails({
         variant: 'danger',
-        message: 'Password and confirm password do not match'
+        message: ['Password and confirm password do not match']
       });
       setShowAlert(true);
     } else {
@@ -87,16 +87,23 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
           // console.log('Success=======>', response);
           setAlertDetails({
             variant: 'success',
-            message: 'Account successfully created! Please proceed to login'
+            message: [
+              'Account successfully created!',
+              'Redirecting to login page in 3 seconds.'
+            ]
           });
           setShowAlert(true);
           setSubmitDisabled(true);
+          setTimeout(() => {
+            handleCloseSignup();
+            handleShowLogin();
+          }, 3000);
         })
         .catch((error) => {
           // console.log('Error=========>', error);
           setAlertDetails({
             variant: 'danger',
-            message: error.response.data
+            message: [error.response.data]
           });
           setShowAlert(true);
         });
@@ -114,7 +121,11 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
       <Modal.Body>
         {showAlert && (
           <Alert key={alertDetails.variant} variant={alertDetails.variant}>
-            {`${alertDetails.message}`}
+            {alertDetails.message.map((line, index) => (
+              <p style={{ marginBottom: 0 }} key={index}>
+                {line}
+              </p>
+            ))}
           </Alert>
         )}
         <h3>Create an account to start sharing!</h3>

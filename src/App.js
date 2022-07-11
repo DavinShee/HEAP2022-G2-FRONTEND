@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Upload from './components/pages/Upload';
-import Search from './components/pages/Search';
-import NoteDetails from './components/pages/NoteDetails';
-import Home from './components/pages/Home';
+import Search from './pages/Search';
+import NoteDetails from './pages/NoteDetails';
+import Home from './pages/Home';
 import ErrorPage from './components/pages/ErrorPage';
-import NavigationBar from './components/pages/NavigationBar';
+import NavigationBar from './components/NavigationBar';
 import { UserContext } from './components/UserContext';
 import { useEffect, useState, useMemo } from 'react';
 

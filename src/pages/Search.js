@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import useFetchNotes from '../useFetchNotes';
-import { databaseURLs } from '../../URLConstants';
-import CardList from '../CardList';
+import useFetchNotes from '../hooks/useFetchNotes';
+import { databaseURLs } from '../URLConstants';
+import CardList from '../components/CardList';
 
 function Search() {
   const location = useLocation();

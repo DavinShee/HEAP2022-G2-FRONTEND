@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {
   Button,
   Col,
@@ -11,11 +10,11 @@ import {
   Tabs
 } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { databaseURLs } from '../../URLConstants';
-import DocumentPreviewCarousel from '../DocumentPreviewCarousel';
-import useFetchNotes from '../useFetchNotes';
-import { UserContext } from '../UserContext';
-import CardList from '../CardList';
+import { databaseURLs } from '../URLConstants';
+import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
+import useFetchNotes from '../hooks/useFetchNotes';
+import { UserContext } from '../components/UserContext';
+import CardList from '../components/CardList';
 
 function NoteDetails() {
   const { id } = useParams();

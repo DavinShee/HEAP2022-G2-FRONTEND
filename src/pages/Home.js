@@ -1,12 +1,12 @@
 import { useContext, useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { databaseURLs } from '../../URLConstants';
-import useFetchNotes from '../useFetchNotes';
-import { UserContext } from '../UserContext';
-import CardList from '../CardList';
-import LoginModal from '../LoginModal';
-import SignupModal from '../SignupModal';
+import { databaseURLs } from '../URLConstants';
+import useFetchNotes from '../hooks/useFetchNotes';
+import { UserContext } from '../components/UserContext';
+import CardList from '../components/CardList';
+import LoginModal from '../components/LoginModal';
+import SignupModal from '../components/SignupModal';
 
 const Home = () => {
   const { data, loading, error } = useFetchNotes(databaseURLs.search);
