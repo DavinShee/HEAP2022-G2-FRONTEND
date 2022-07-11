@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Upload from './components/pages/Upload';
+import Upload from './pages/Upload';
 import Search from './pages/Search';
 import NoteDetails from './pages/NoteDetails';
 import Home from './pages/Home';
-import ErrorPage from './components/pages/ErrorPage';
+import ErrorPage from './pages/ErrorPage';
 import NavigationBar from './components/NavigationBar';
 import { UserContext } from './components/UserContext';
 import { useEffect, useState, useMemo } from 'react';

@@ -1,41 +1,43 @@
 const UserIcon = ({ name }) => {
   let firstAlpha = (name.toUpperCase().match(/[a-zA-Z]/) || []).pop();
   const rgbColors = {
-    A: '#7CB5D2',
-    B: '#89C4C2',
-    C: '#957DAD',
-    D: '#9EC8D2',
-    E: '#B4D7A2',
-    F: '#B5E0DF',
-    G: '#B9EAED',
-    H: '#BC789E',
-    I: '#D0EBC5',
-    J: '#D291BC',
-    K: '#DCF2EE',
-    L: '#E0BBE4',
-    M: '#E2EEC2',
-    N: '#F1C470',
-    O: '#F3F7C1',
-    P: '#F3FAF1',
-    Q: '#F5A2A2',
-    R: '#F7EF64',
-    S: '#F9D494',
-    T: '#F9D4A4',
-    U: '#FBD7BB',
-    V: '#FCEEC5',
-    W: '#FDD3E3',
-    X: '#FEC8D8',
-    Y: '#FFDFD3',
-    Z: '#FFE5B4'
+    0: '#7CB5D2',
+    1: '#89C4C2',
+    2: '#957DAD',
+    3: '#9EC8D2',
+    4: '#B4D7A2',
+    5: '#B5E0DF',
+    6: '#B9EAED',
+    7: '#BC789E',
+    8: '#D0EBC5',
+    9: '#D291BC',
+    10: '#DCF2EE',
+    11: '#E0BBE4',
+    12: '#E2EEC2',
+    13: '#F1C470',
+    14: '#F3F7C1',
+    15: '#F3FAF1',
+    16: '#F5A2A2',
+    17: '#F7EF64',
+    18: '#F9D494',
+    19: '#F9D4A4',
+    20: '#FBD7BB',
+    21: '#FCEEC5',
+    22: '#FDD3E3',
+    23: '#FEC8D8',
+    24: '#FFDFD3',
+    25: '#FFE5B4'
   };
+  const randomNum =
+    (firstAlpha.charCodeAt(0) + name.length) % Object.keys(rgbColors).length;
 
   return (
     <div
       className="user-icon"
       style={{
-        background: `${rgbColors[firstAlpha]}`,
-        width: '40px',
-        height: '40px',
+        background: `${rgbColors[randomNum]}`,
+        width: '42px',
+        height: '42px',
         borderRadius: '50%',
         display: 'inline-block',
         textAlign: 'center',
