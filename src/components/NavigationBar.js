@@ -52,7 +52,7 @@ function NavigationBar() {
   let loggedIn = (
     <>
       <Nav.Item className="my-auto">
-        <Button variant="">
+        <Button variant="" className="nav-upload-btn">
           <div className="nav-upload-text">Upload</div>
         </Button>
       </Nav.Item>
@@ -60,17 +60,19 @@ function NavigationBar() {
         className="nav-dropdown"
         title={!user ? null : <UserIcon name={user.email} />}
         id="nav-dropdown"
+        align="end"
       >
-        <NavDropdown.Item as={Link} to="/">
+        <NavDropdown.Item className="first-dropdown-box" as={Link} to="/">
           Change Password
         </NavDropdown.Item>
-        <NavDropdown.Item as={Link} to="/">
+        <NavDropdown.Item className="dropdown-box" as={Link} to="/">
           Download History
         </NavDropdown.Item>
-        <NavDropdown.Item as={Link} to="/">
+        <NavDropdown.Item className="dropdown-box" as={Link} to="/">
           My Listings
         </NavDropdown.Item>
         <NavDropdown.Item
+          className="dropdown-box"
           onClick={() => {
             window.localStorage.removeItem('user');
             window.location.reload(false);
