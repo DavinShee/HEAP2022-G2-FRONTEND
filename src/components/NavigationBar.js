@@ -21,13 +21,17 @@ function NavigationBar() {
   let loggedOut = (
     <>
       <Nav.Item>
-        <Button variant="" onClick={handleShowSignup}>
-          <div className="nav-signup">Signup</div>
+        <Button
+          variant=""
+          className="nav-signup-btn"
+          onClick={handleShowSignup}
+        >
+          <div className="nav-signup-text">Signup</div>
         </Button>
       </Nav.Item>
       <Nav.Item>
-        <Button variant="" onClick={handleShowLogin}>
-          <div className="nav-login">Login</div>
+        <Button variant="" className="nav-login-btn" onClick={handleShowLogin}>
+          <div className="nav-login-text">Login</div>
         </Button>
       </Nav.Item>
 
@@ -53,6 +57,7 @@ function NavigationBar() {
         </Button>
       </Nav.Item>
       <NavDropdown
+        className="nav-dropdown"
         title={!user ? null : <UserIcon name={user.email} />}
         id="nav-dropdown"
       >
@@ -88,8 +93,12 @@ function NavigationBar() {
           </Navbar.Brand>
           <Nav style={{ verticalAlign: 'middle' }}>
             <Nav.Item className="my-auto">
-              <Button variant="" onClick={() => setSearchModal(true)}>
-                <div className="search-button-text">Search</div>
+              <Button
+                variant=""
+                className="search-btn"
+                onClick={() => setSearchModal(true)}
+              >
+                <div className="search-btn-text">Search</div>
               </Button>
             </Nav.Item>
             {user ? loggedIn : loggedOut}

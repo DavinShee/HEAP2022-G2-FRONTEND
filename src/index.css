@@ -5,7 +5,6 @@ https://fonts.google.com/ */
 
 /* Global Settings */
 
-
 body {
   margin: 0 auto !important;
 }
@@ -51,9 +50,17 @@ body {
   font-size: 18px;
 }
 
+.signup-create-button:hover{
+  background-color: rgb(194, 220, 255);
+}
+
 .login-login-button{
   font-family: 'Lato', sans-serif;
   font-size: 18px;
+}
+
+.login-login-button:hover{
+  background-color: rgb(194, 220, 255);
 }
 .link-button {
   background-color: transparent;
@@ -83,21 +90,14 @@ body {
   border-radius: 10px;
 }
 
+.search-form-button:hover{
+  background-color: rgb(194, 220, 255);
+}
+
 .signup-form .modal-content{
-  background: rgba(226, 239, 255, 1);;
-}
-/* Navbar */
-nav {
-  width: 100%;
-}  
-
-#root nav div button {
-  margin: 0 10px;
+  background: rgba(226, 239, 255, 1);
 }
 
-.dropdown-menu.show {
-  text-align: center;
-}
 
 /* Search Results */
 .search-results {
@@ -131,7 +131,20 @@ nav {
   border-left: 10px solid rgb(194, 220, 255);
 }
 
-/*navbar color*/
+
+/* Navbar */
+nav {
+  width: 100%;
+}  
+
+#root nav div button {
+  margin: 0 10px;
+}
+
+.dropdown-menu.show {
+  text-align: center;
+}
+
 .color-nav {
   background-color: rgb(194, 220, 255);
   
@@ -149,8 +162,8 @@ nav {
   color: black;
 }
 
-/*nav signup button*/
-.nav-signup {
+
+.nav-signup-text {
   width: 133px;
   height: 42px;
   font-family: 'Lato', sans-serif;
@@ -164,8 +177,8 @@ nav {
   padding-left: 8px;
   padding-bottom: 15px;
 }
-/*search button*/
-.search-button-text {
+
+.search-btn-text {
   width: 133px;
   height: 42px;
   font-family: 'Lato', sans-serif;
@@ -180,8 +193,34 @@ nav {
   padding-bottom: 15px;
 }
 
-/*nav login button*/
-.nav-login {
+.nav-login-text {
+  width: 133px;
+  height: 42px;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  padding-left: 16px;
+  padding-bottom: 15px;
+  
+}
+
+.nav-login-btn:hover{
+  background-color: rgba(226, 239, 255, 1);
+}
+
+.nav-signup-btn:hover{
+  background-color: rgba(226, 239, 255, 1);
+}
+
+.search-btn:hover{
+  background-color: rgba(226, 239, 255, 1);
+}
+
+.nav-upload-text{
   width: 133px;
   height: 42px;
   font-family: 'Lato', sans-serif;
@@ -192,9 +231,10 @@ nav {
   align-items: center;
   text-align: center;
   color: #000000;
-  padding-left: 16px;
-  padding-bottom: 15px;
-} 
+  padding-left: 4px;
+  padding-bottom: 13px;
+}
+
 
 /*text : 'Notes' in homepage*/
 .home-1 {
@@ -226,11 +266,13 @@ nav {
 .home-login-text{
   font-family: 'Lato', sans-serif;
   color: white;
+  font-size: 25px;
 }
 
 .home-signup-text{
   font-family: 'Lato', sans-serif;
   color: white;
+  font-size: 25px;
 }
 
 .home-signup-button{
@@ -238,6 +280,9 @@ nav {
   filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.25));
   margin-left: 300px;
   border-radius: 9px;
+  margin-top: 30px;
+  height: 50px;
+  width: 150px;
 }
 
 .home-login-button{
@@ -245,7 +290,9 @@ nav {
   margin-left: 30px;
   filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.25));
   border-radius: 9px;
-
+  margin-top: 30px;
+  height: 50px;
+  width: 150px;
 }
 
 .nav-upload-text{
