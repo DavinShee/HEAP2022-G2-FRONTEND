@@ -84,7 +84,6 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
           headers: requestHeader
         })
         .then((response) => {
-          // console.log('Success=======>', response);
           setAlertDetails({
             variant: 'success',
             message: [
@@ -100,7 +99,6 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
           }, 3000);
         })
         .catch((error) => {
-          // console.log('Error=========>', error);
           setAlertDetails({
             variant: 'danger',
             message: [error.response.data]

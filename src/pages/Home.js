@@ -17,10 +17,8 @@ const Home = () => {
   const [showLoginModal, setLoginModal] = useState(false);
   const handleShowLogin = () => setLoginModal(true);
 
-  let notes = data;
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    notes = data;
+    console.log(data);
   }, [data]);
 
   let loggedOutHome = (
@@ -55,7 +53,7 @@ const Home = () => {
       {error && <div>{error}</div>}
       {data && data.data && data.data.notes && !loading && !error && (
         <>
-          {notes.data.notes.length && (
+          {data && data.data && data.data.notes.length && (
             <>
               <h1>
                 Recently uploaded (
@@ -64,7 +62,7 @@ const Home = () => {
                 </Link>
                 )
               </h1>
-              <CardList notes={notes.data.notes.slice(0, 6)} />
+              <CardList notes={data.data.notes.slice(0, 6)} />
             </>
           )}
         </>

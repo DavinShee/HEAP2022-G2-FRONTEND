@@ -54,7 +54,6 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
         window.location.reload(false);
       })
       .catch((error) => {
-        // console.log('Error=========>', error);
         setAlertDetails({
           variant: 'danger',
           message: 'Invalid email address or password. Please try again.'

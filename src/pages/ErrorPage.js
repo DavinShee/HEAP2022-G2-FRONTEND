@@ -1,10 +1,20 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ErrorPage() {
+  const navigate = useNavigate();
+
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       Error - The requested resource could not be found. <br />
-      Click <Link to="/">Here</Link> to go back to the home page
+      Click{' '}
+      <button className="link-button" onClick={() => navigate('/')}>
+        Here
+      </button>{' '}
+      to go to the home page, or{' '}
+      <button className="link-button" onClick={() => navigate(-1)}>
+        Here
+      </button>{' '}
+      to go back.
     </div>
   );
 }

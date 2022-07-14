@@ -25,10 +25,8 @@ function Search() {
 
   let queryURL = databaseURLs.search + location.search;
   const { data, loading, error } = useFetchNotes(queryURL);
-  let notes = data;
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    notes = data;
+    data && data.data && data.data.notes && console.log(data);
   }, [data]);
 
   return (
@@ -37,12 +35,12 @@ function Search() {
       {error && <div>{error}</div>}
       {data && !loading && !error && (
         <>
-          {notes.data.notes.length ? (
+          {data && data.data && data.data.notes.length ? (
             <>
               <h1>
-                {searchDetails} ({notes.data.notes.length})
+                {searchDetails} ({data.data.numberOfNotes})
               </h1>
-              <CardList notes={notes.data.notes} />
+              <CardList notes={data.data.notes} />
             </>
           ) : (
             <>

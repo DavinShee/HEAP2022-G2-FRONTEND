@@ -36,10 +36,10 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
           <br></br>
           <h3>What are you looking for today?</h3>
           <Form onSubmit={handleSubmitSearch}>
-            <FloatingLabel label="Your Module" className="my-3">
+            <FloatingLabel label="Module Code" className="my-3">
               <Form.Control
                 type="text"
-                placeholder="Module"
+                placeholder="Module Code"
                 value={modID}
                 onChange={(e) => setModID(e.target.value)}
               />
@@ -47,15 +47,15 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
             <FloatingLabel label="Name of Professor" className="my-3">
               <Form.Control
                 type="text"
-                placeholder="Prof"
+                placeholder="Name of Professor"
                 value={profName}
                 onChange={(e) => setProfName(e.target.value)}
               />
             </FloatingLabel>
-            <FloatingLabel label="Name of Author" className="my-3">
+            <FloatingLabel label="Author's Email Address" className="my-3">
               <Form.Control
                 type="text"
-                placeholder="Author"
+                placeholder="Author's Email Address"
                 value={authorName}
                 onChange={(e) => setAuthorName(e.target.value)}
               />

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   Button,
   Col,
@@ -9,7 +9,7 @@ import {
   Tab,
   Tabs
 } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetchNotes from '../hooks/useFetchNotes';
@@ -23,6 +23,15 @@ function NoteDetails() {
   );
   const { user } = useContext(UserContext);
   const [key, setKey] = useState('related');
+  const [noRelated, setNoRelated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data && data.data && data.data.relatedNotes.length === 0) {
+      setKey('comments');
+      setNoRelated(true);
+    }
+  }, [data]);
 
   let display = (
     <>
@@ -33,7 +42,17 @@ function NoteDetails() {
           </Container>
         </>
       )}
-      {error && <div>{error}</div>}
+      {error && (
+        <>
+          <div>
+            Oops... An error has occurred. Click{' '}
+            <button className="link-button" onClick={() => navigate(-1)}>
+              Here
+            </button>{' '}
+            to go back.
+          </div>
+        </>
+      )}
       {data && data.data && data.data.note && !loading && !error && (
         <>
           <Container>
@@ -85,7 +104,7 @@ function NoteDetails() {
               onSelect={(k) => setKey(k)}
               className="mb-3"
             >
-              <Tab eventKey="related" title="Related">
+              <Tab eventKey="related" title="Related" disabled={noRelated}>
                 <CardList notes={data.data.relatedNotes} />
               </Tab>
               <Tab eventKey="comments" title="Comments">
