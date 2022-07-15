@@ -8,7 +8,7 @@ import {
   Tab,
   Tabs
 } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetchNotes from '../hooks/useFetchNotes';
@@ -32,8 +32,25 @@ function NoteDetails() {
     }
   }, [data]);
 
-  let display = (
-    <>
+  // const handleSubmitSearch = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   handleCloseSearch();
+  //   navigate({
+  //     pathname: '/search',
+  //     search: `?${createSearchParams({
+  //       'mod-id': modId,
+  //       'prof-name': profName,
+  //       'author-name': authorName
+  //     })}`
+  //   });
+  //   setModId('');
+  //   setProfName('');
+  //   setAuthorName('');
+  // };
+
+  return (
+    <div className="note-details">
       {loading && (
         <div className="loading">
           <Container>
@@ -65,15 +82,60 @@ function NoteDetails() {
                   <div className="note-other-details">
                     <Row>
                       <Col>Module: </Col>
-                      <Col>{data.data.note.modId}</Col>
+                      <Col>
+                        <button
+                          type="button"
+                          className="link-button"
+                          onClick={() => {
+                            navigate({
+                              pathname: '/search',
+                              search: `?${createSearchParams({
+                                'mod-id': data.data.note.modId
+                              })}`
+                            });
+                          }}
+                        >
+                          {data.data.note.modId}
+                        </button>
+                      </Col>
                     </Row>
                     <Row>
                       <Col>Prof: </Col>
-                      <Col>{data.data.note.profName}</Col>
+                      <Col>
+                        <button
+                          type="button"
+                          className="link-button"
+                          onClick={() => {
+                            navigate({
+                              pathname: '/search',
+                              search: `?${createSearchParams({
+                                'prof-name': data.data.note.profName
+                              })}`
+                            });
+                          }}
+                        >
+                          {data.data.note.profName}
+                        </button>
+                      </Col>
                     </Row>
                     <Row>
                       <Col>Author: </Col>
-                      <Col>{data.data.note.authorName}</Col>
+                      <Col>
+                        <button
+                          type="button"
+                          className="link-button"
+                          onClick={() => {
+                            navigate({
+                              pathname: '/search',
+                              search: `?${createSearchParams({
+                                'author-name': data.data.note.authorName
+                              })}`
+                            });
+                          }}
+                        >
+                          {data.data.note.authorName}
+                        </button>
+                      </Col>
                     </Row>
                     <Row>
                       <Col>Year: </Col>
@@ -111,10 +173,8 @@ function NoteDetails() {
           </Container>
         </>
       )}
-    </>
+    </div>
   );
-
-  return <>{display}</>;
 }
 
 export default NoteDetails;

@@ -152,6 +152,7 @@ nav {
   font-size: 25px;
   padding: 2px 12px;
 }
+
 .navbar-btn:hover {
   background-color: rgba(226, 239, 255, 1);
 }
@@ -259,10 +260,6 @@ nav {
 /* Note Details */
 .note-other-details p {
   margin-bottom: 0;
-}
-
-.note-details {
-  /* display: flex; */
 }
 
 .button-or-login {
