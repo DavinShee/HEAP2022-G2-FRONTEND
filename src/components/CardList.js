@@ -4,8 +4,8 @@ import { Button, Card } from 'react-bootstrap';
 const CardList = ({ notes }) => {
   return (
     <div className="card-list">
-      {notes.map((note, index) => (
-        <Card style={{ width: '20rem' }} border="" key={index}>
+      {notes.map((note) => (
+        <Card style={{ width: '20rem' }} border="" key={note._id}>
           <Card.Img
             className="card-img"
             variant="top"

@@ -5,7 +5,6 @@ import {
   Container,
   Row,
   Spinner,
-  Stack,
   Tab,
   Tabs
 } from 'react-bootstrap';
@@ -57,40 +56,38 @@ function NoteDetails() {
         <>
           <Container>
             <Row>
-              <Col xs={4}>
-                <Stack gap={2}>
-                  <div className="note-details">
-                    <div className="note-description">
-                      <h3>Description</h3>
-                      <p>{data.data.note.description}</p>
-                    </div>
-                    <div className="note-other-details">
-                      <Row>
-                        <Col>Module: </Col>
-                        <Col>{data.data.note.modId}</Col>
-                      </Row>
-                      <Row>
-                        <Col>Prof: </Col>
-                        <Col>{data.data.note.profName}</Col>
-                      </Row>
-                      <Row>
-                        <Col>Author: </Col>
-                        <Col>{data.data.note.authorName}</Col>
-                      </Row>
-                      <Row>
-                        <Col>Year: </Col>
-                        <Col>{data.data.note.year}</Col>
-                      </Row>
-                    </div>
+              <Col xs={4} className='d-flex flex-column'>
+                <div className="note-details">
+                  <div className="note-description">
+                    <h3>Description</h3>
+                    <p>{data.data.note.description}</p>
                   </div>
-                  <div className="button-or-login mt-auto ms-auto">
-                    {user ? (
-                      <Button>Download</Button>
-                    ) : (
-                      <p>Please login to view/download</p>
-                    )}
+                  <div className="note-other-details">
+                    <Row>
+                      <Col>Module: </Col>
+                      <Col>{data.data.note.modId}</Col>
+                    </Row>
+                    <Row>
+                      <Col>Prof: </Col>
+                      <Col>{data.data.note.profName}</Col>
+                    </Row>
+                    <Row>
+                      <Col>Author: </Col>
+                      <Col>{data.data.note.authorName}</Col>
+                    </Row>
+                    <Row>
+                      <Col>Year: </Col>
+                      <Col>{data.data.note.year}</Col>
+                    </Row>
                   </div>
-                </Stack>
+                </div>
+                <div className="button-or-login mt-auto ms-auto">
+                  {user ? (
+                    <Button>Download</Button>
+                  ) : (
+                    <p>Please login to view/download</p>
+                  )}
+                </div>
               </Col>
               <Col>
                 <DocumentPreviewCarousel imageURLArray={data.data.note.image} />

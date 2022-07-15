@@ -100,7 +100,9 @@ function NavigationBar() {
                 className="search-btn"
                 onClick={() => setSearchModal(true)}
               >
-                <div className="search-btn-text">Search</div>
+                {/* <div className="search-btn-text"> */}
+                  Search
+                {/* </div> */}
               </Button>
             </Nav.Item>
             {user ? loggedIn : loggedOut}
