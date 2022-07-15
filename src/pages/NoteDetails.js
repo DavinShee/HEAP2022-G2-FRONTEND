@@ -35,11 +35,11 @@ function NoteDetails() {
   let display = (
     <>
       {loading && (
-        <>
+        <div className="loading">
           <Container>
             <Spinner animation="grow" variant="info" />
           </Container>
-        </>
+        </div>
       )}
       {error && (
         <>
@@ -56,7 +56,7 @@ function NoteDetails() {
         <>
           <Container>
             <Row>
-              <Col xs={4} className='d-flex flex-column'>
+              <Col xs={4} className="d-flex flex-column">
                 <div className="note-details">
                   <div className="note-description">
                     <h3>Description</h3>

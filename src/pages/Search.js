@@ -1,16 +1,25 @@
 import { useEffect } from 'react';
+import { Container, Spinner } from 'react-bootstrap';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import useFetchNotes from '../hooks/useFetchNotes';
 import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
+import PaginationBar from '../components/PaginationBar';
 
 function Search() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const modId = searchParams.get('mod-id');
-  const profId = searchParams.get('prof-name');
-  const authorName = searchParams.get('author-name');
-  const query = [modId, profId, authorName];
+  const searchParamObject = Object.fromEntries([...searchParams]);
+  const query = [
+    searchParamObject.modId,
+    searchParamObject.profId,
+    searchParamObject.authorName
+  ];
+  const pageNum = searchParams.get('page-num') || 1;
+  const pageSize = searchParams.get('page-size') || 6;
+  const { data, loading, error } = useFetchNotes(
+    databaseURLs.search + location.search
+  );
 
   let details = [];
   query.forEach((item) => {
@@ -23,24 +32,42 @@ function Search() {
       ? 'Search results for ' + details.join(', ')
       : 'Search results';
 
-  let queryURL = databaseURLs.search + location.search;
-  const { data, loading, error } = useFetchNotes(queryURL);
-  useEffect(() => {
-    data && data.data && data.data.notes && console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   if (data && data.data && data.data.notes) {
+  //     console.log(data.data);
+  //   }
+  // }, [data]);
 
   return (
     <div className="search-results">
-      {loading && <div>Loading...</div>}
+      {loading && (
+        <div className="loading">
+          <Container>
+            <Spinner animation="grow" variant="info" />
+          </Container>
+        </div>
+      )}
       {error && <div>{error}</div>}
       {data && !loading && !error && (
         <>
           {data && data.data && data.data.notes.length ? (
             <>
-              <h1>
-                {searchDetails} ({data.data.numberOfNotes})
-              </h1>
+              <div className="search-header">
+                <h1>
+                  {searchDetails} ({data.data.numberOfNotes})
+                </h1>
+                <PaginationBar
+                  activePage={pageNum}
+                  pageSize={pageSize}
+                  totalPosts={data.data.numberOfNotes}
+                />
+              </div>
               <CardList notes={data.data.notes} />
+              <PaginationBar
+                activePage={pageNum}
+                pageSize={pageSize}
+                totalPosts={data.data.numberOfNotes}
+              />
             </>
           ) : (
             <>

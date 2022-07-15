@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Button, FloatingLabel, Form, Modal } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const SearchModal = ({ showSearchModal, setSearchModal }) => {
   let navigate = useNavigate();
-  const [modID, setModID] = useState('');
+  const [modId, setModId] = useState('');
   const [profName, setProfName] = useState('');
   const [authorName, setAuthorName] = useState('');
 
@@ -14,10 +14,15 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
     e.preventDefault();
     e.stopPropagation();
     handleCloseSearch();
-    navigate(
-      `/search?mod-id=${modID}&prof-name=${profName}&author-name=${authorName}`
-    );
-    setModID('');
+    navigate({
+      pathname: '/search',
+      search: `?${createSearchParams({
+        'mod-id': modId,
+        'prof-name': profName,
+        'author-name': authorName
+      })}`
+    });
+    setModId('');
     setProfName('');
     setAuthorName('');
   };
@@ -40,8 +45,8 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
               <Form.Control
                 type="text"
                 placeholder="Module Code"
-                value={modID}
-                onChange={(e) => setModID(e.target.value)}
+                value={modId}
+                onChange={(e) => setModId(e.target.value)}
               />
             </FloatingLabel>
             <FloatingLabel label="Name of Professor" className="my-3">

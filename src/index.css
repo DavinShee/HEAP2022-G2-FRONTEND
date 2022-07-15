@@ -7,13 +7,8 @@ https://fonts.google.com/ */
 
 body {
   margin: 0 auto !important;
+  font-family: 'Lato', sans-serif;
 }
-
-/* Background Image not in use atm  max-width: 1080px; 
-.bg-image {
-  width: 100%;
-  
-}*/
 
 /* Modals */
 .modal-header {
@@ -40,13 +35,11 @@ body {
 }
 
 .my-3 {
-  font-family: 'Lato', sans-serif;
   color: rgba(192, 191, 191, 1);
   font-size: 18px;
 }
 
 .signup-create-button {
-  font-family: 'Lato', sans-serif;
   font-size: 18px;
 }
 
@@ -55,7 +48,6 @@ body {
 }
 
 .login-login-button {
-  font-family: 'Lato', sans-serif;
   font-size: 18px;
 }
 
@@ -81,7 +73,6 @@ body {
 }
 
 .search-search-text {
-  font-family: 'Lato', sans-serif;
   font-size: 20px;
   padding-left: 2px;
 }
@@ -153,25 +144,21 @@ nav {
   padding-top: 80px;
 }
 
-.btn {
+.navbar-btn {
   background-color: white;
   color: black;
-  font-family: 'Lato', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
+  padding: 2px 12px;
 }
-
-.nav-login-btn:hover {
+.navbar-btn:hover {
   background-color: rgba(226, 239, 255, 1);
 }
 
-.nav-signup-btn:hover {
-  background-color: rgba(226, 239, 255, 1);
-}
-
-.search-btn:hover {
-  background-color: rgba(226, 239, 255, 1);
+.nav-item {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
 }
 
 .dropdown-menu.show {
@@ -186,7 +173,6 @@ nav {
 .first-dropdown-box {
   background-color: rgba(226, 239, 255, 1);
   border-radius: 10px;
-  font-family: 'Lato', sans-serif;
   font-size: 20px;
   margin-right: 130px;
   margin-top: 3px;
@@ -197,7 +183,6 @@ nav {
 .dropdown-box {
   background-color: rgba(226, 239, 255, 1);
   border-radius: 10px;
-  font-family: 'Lato', sans-serif;
   margin-top: 11px;
   font-size: 20px;
   padding-top: 10px;
@@ -221,7 +206,6 @@ nav {
 .home-1 {
   padding-top: 300px;
   padding-left: 300px;
-  font-family: 'Lato', sans-serif;
   font-style: Bold;
   font-size: 80px;
   line-height: 96px;
@@ -230,7 +214,6 @@ nav {
 
 /*text : 'Your one-stop marketplace to all things great.' in homepage */
 .home-2 {
-  font-family: 'Lato', sans-serif;
   font-style: Bold;
   font-size: 30px;
   line-height: 36px;
@@ -240,17 +223,15 @@ nav {
 
 /*NotesNow*/
 .brand-text {
-  font-family: 'Lato', sans-serif;
+  font-size: 32px;
 }
 
 .home-login-text {
-  font-family: 'Lato', sans-serif;
   color: white;
   font-size: 25px;
 }
 
 .home-signup-text {
-  font-family: 'Lato', sans-serif;
   color: white;
   font-size: 25px;
 }

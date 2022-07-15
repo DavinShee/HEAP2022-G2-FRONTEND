@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import useFetchNotes from '../hooks/useFetchNotes';
@@ -16,10 +16,6 @@ const Home = () => {
   const handleShowSignup = () => setSignupModal(true);
   const [showLoginModal, setLoginModal] = useState(false);
   const handleShowLogin = () => setLoginModal(true);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   let loggedOutHome = (
     <>
@@ -49,7 +45,13 @@ const Home = () => {
 
   let loggedInHome = (
     <div className="search-results">
-      {loading && <div>Loading...</div>}
+      {loading && (
+        <div className="loading">
+          <Container>
+            <Spinner animation="grow" variant="info" />
+          </Container>
+        </div>
+      )}
       {error && <div>{error}</div>}
       {data && data.data && data.data.notes && !loading && !error && (
         <>

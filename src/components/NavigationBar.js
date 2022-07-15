@@ -21,17 +21,13 @@ function NavigationBar() {
   let loggedOut = (
     <>
       <Nav.Item>
-        <Button
-          variant=""
-          className="nav-signup-btn"
-          onClick={handleShowSignup}
-        >
-          <div className="nav-signup-text">Signup</div>
+        <Button variant="" className="navbar-btn" onClick={handleShowSignup}>
+          Signup
         </Button>
       </Nav.Item>
       <Nav.Item>
-        <Button variant="" className="nav-login-btn" onClick={handleShowLogin}>
-          <div className="nav-login-text">Login</div>
+        <Button variant="" className="navbar-btn" onClick={handleShowLogin}>
+          Login
         </Button>
       </Nav.Item>
 
@@ -51,9 +47,9 @@ function NavigationBar() {
 
   let loggedIn = (
     <>
-      <Nav.Item className="my-auto">
-        <Button variant="" className="nav-upload-btn">
-          <div className="nav-upload-text">Upload</div>
+      <Nav.Item>
+        <Button variant="" className="navbar-btn" as={Link} to="/upload">
+          Upload
         </Button>
       </Nav.Item>
       <NavDropdown
@@ -89,20 +85,16 @@ function NavigationBar() {
       <Navbar className="color-nav" fixed="top">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <div className="brand-text">
-              <h1>NotesNow</h1>
-            </div>
+            <div className="brand-text">NotesNow</div>
           </Navbar.Brand>
           <Nav style={{ verticalAlign: 'middle' }}>
-            <Nav.Item className="my-auto">
+            <Nav.Item>
               <Button
                 variant=""
-                className="search-btn"
+                className="navbar-btn"
                 onClick={() => setSearchModal(true)}
               >
-                {/* <div className="search-btn-text"> */}
-                  Search
-                {/* </div> */}
+                Search
               </Button>
             </Nav.Item>
             {user ? loggedIn : loggedOut}

@@ -36,13 +36,13 @@ const UserIcon = ({ name }) => {
       className="user-icon"
       style={{
         background: `${rgbColors[randomNum]}`,
-        width: '42px',
-        height: '42px',
+        width: '40px',
+        height: '40px',
         borderRadius: '50%',
         display: 'inline-block',
         textAlign: 'center',
         lineHeight: '40px',
-        margin: '5px'
+        margin: '0px 5px'
       }}
     >
       {firstAlpha}
