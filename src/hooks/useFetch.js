@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const useFetchNotes = (queryURL) => {
+const useFetch = (queryURL) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,4 +39,4 @@ const useFetchNotes = (queryURL) => {
   return { data, loading, error };
 };
 
-export default useFetchNotes;
+export default useFetch;

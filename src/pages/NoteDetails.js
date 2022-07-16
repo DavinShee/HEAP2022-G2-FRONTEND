@@ -11,13 +11,14 @@ import {
 import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
-import useFetchNotes from '../hooks/useFetchNotes';
+import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
+import axios from 'axios';
 
 function NoteDetails() {
   const { id } = useParams();
-  const { data, loading, error } = useFetchNotes(
+  const { data, loading, error } = useFetch(
     databaseURLs.search + `/${id}`
   );
   const { user } = useContext(UserContext);
@@ -35,8 +36,32 @@ function NoteDetails() {
   let uploader = false;
   if (user && user.email && data && data.data && data.data.note) {
     uploader = user.email === data.data.note.email;
-    console.log('similaruser', uploader);
   }
+
+  const handleDownload = () => {
+    const requestHeader = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    };
+
+    axios
+      .post(
+        databaseURLs.downloadHist,
+        JSON.stringify({
+          email: user.email,
+          note: data.data.note
+        }),
+        { headers: requestHeader }
+      )
+      .then((postResponse) => {
+        console.log(postResponse);
+      })
+      .catch((postError) => {
+        console.log(postError);
+      });
+  };
 
   return (
     <div className="note-details">
@@ -136,7 +161,7 @@ function NoteDetails() {
                   {uploader ? (
                     <Button>Edit</Button>
                   ) : user ? (
-                    <Button>Download</Button>
+                    <Button onClick={handleDownload}>Download</Button>
                   ) : (
                     <p>Please login to view/download</p>
                   )}

@@ -2,14 +2,14 @@ import { useContext, useState } from 'react';
 import { Button, Container, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
-import useFetchNotes from '../hooks/useFetchNotes';
+import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import LoginModal from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
 
 const Home = () => {
-  const { data, loading, error } = useFetchNotes(databaseURLs.search);
+  const { data, loading, error } = useFetch(databaseURLs.search);
   const { user } = useContext(UserContext);
 
   const [showSignupModal, setSignupModal] = useState(false);
