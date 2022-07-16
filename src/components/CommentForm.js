@@ -34,11 +34,9 @@ const CommentForm = ({ user }) => {
         { headers: requestHeader }
       )
       .then((response) => {
-        // console.log(response);
         window.location.reload(false);
       })
       .catch((error) => {
-        // console.log(error);
         alert('Failed to add comment. Please try again later.');
       });
   };

@@ -2,13 +2,13 @@ import { Pagination } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 
 const PaginationBar = ({ activePage, pageSize, totalPosts }) => {
+  activePage = Number(activePage);
+  pageSize = Number(pageSize);
+  totalPosts = Number(totalPosts);
   let [searchParams, setSearchParams] = useSearchParams();
   const delta = 2;
   const pageNumbers = [];
   const totalPages = Math.ceil(totalPosts / pageSize);
-  activePage = Number(activePage);
-  pageSize = Number(pageSize);
-  totalPosts = Number(totalPosts);
 
   for (
     let i = Math.max(1, activePage - delta);
