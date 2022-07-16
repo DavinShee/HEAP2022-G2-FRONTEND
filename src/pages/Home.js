@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import useFetchNotes from '../hooks/useFetchNotes';
 import { UserContext } from '../components/UserContext';
-import CardList from '../components/CardList';
+import CardList2 from '../components/CardList2';
 import LoginModal from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
 
@@ -57,14 +57,14 @@ const Home = () => {
         <>
           {data && data.data && data.data.notes.length && (
             <>
-              <h1>
+              <div className='recently-uploaded'>
                 Recently uploaded (
                 <Link to="/search" style={{ textDecoration: 'none' }}>
                   View all
                 </Link>
                 )
-              </h1>
-              <CardList notes={data.data.notes.slice(0, 6)} />
+              </div>
+              <CardList2 notes={data.data.notes.slice(0, 6)} />
             </>
           )}
         </>
