@@ -137,6 +137,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
                   placeholder="First Name"
                   onChange={handleChange}
                   name="firstName"
+                  value={signupFormValues.firstName}
                 />
               </FloatingLabel>
             </Col>
@@ -148,6 +149,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
                   placeholder="Last Name"
                   onChange={handleChange}
                   name="lastName"
+                  value={signupFormValues.lastName}
                 />
               </FloatingLabel>
             </Col>
@@ -161,6 +163,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
                   placeholder="Email address"
                   onChange={handleChange}
                   name="emailAddress"
+                  value={signupFormValues.emailAddress}
                 ></Form.Control>
               </FloatingLabel>
             </Form.Group>
@@ -174,6 +177,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
                   placeholder="Password"
                   onChange={handleChange}
                   name="password"
+                  value={signupFormValues.password}
                 />
               </FloatingLabel>
             </Col>
@@ -185,6 +189,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
                   placeholder="Confirm Password"
                   onChange={handleChange}
                   name="confirmPassword"
+                  value={signupFormValues.confirmPassword}
                 />
               </FloatingLabel>
             </Col>

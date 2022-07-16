@@ -6,6 +6,9 @@ const PaginationBar = ({ activePage, pageSize, totalPosts }) => {
   const delta = 2;
   const pageNumbers = [];
   const totalPages = Math.ceil(totalPosts / pageSize);
+  activePage = Number(activePage);
+  pageSize = Number(pageSize);
+  totalPosts = Number(totalPosts);
 
   for (
     let i = Math.max(1, activePage - delta);
@@ -21,7 +24,6 @@ const PaginationBar = ({ activePage, pageSize, totalPosts }) => {
     pageNumbers.splice(0, 0, 1);
   }
   if (pageNumbers[pageNumbers.length - 1] < totalPages - 1) {
-    console.log(totalPages);
     pageNumbers.push('...');
   }
   if (pageNumbers[pageNumbers.length - 1] !== totalPages) {

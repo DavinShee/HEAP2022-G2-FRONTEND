@@ -1,6 +1,6 @@
 import { Container, Spinner } from 'react-bootstrap';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import useFetchNotes from '../hooks/useFetchNotes';
+import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import CardList2 from '../components/CardList2';
 import PaginationBar from '../components/PaginationBar';
@@ -16,9 +16,10 @@ function Search() {
   ];
   const pageNum = searchParams.get('page-num') || 1;
   const pageSize = searchParams.get('page-size') || 6;
-  const { data, loading, error } = useFetchNotes(
+  const { data, loading, error } = useFetch(
     databaseURLs.search + location.search
   );
+  console.log(data);
 
   let details = [];
   query.forEach((item) => {
