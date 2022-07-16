@@ -32,22 +32,11 @@ function NoteDetails() {
     }
   }, [data]);
 
-  // const handleSubmitSearch = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   handleCloseSearch();
-  //   navigate({
-  //     pathname: '/search',
-  //     search: `?${createSearchParams({
-  //       'mod-id': modId,
-  //       'prof-name': profName,
-  //       'author-name': authorName
-  //     })}`
-  //   });
-  //   setModId('');
-  //   setProfName('');
-  //   setAuthorName('');
-  // };
+  let uploader = false;
+  if (user && user.email && data && data.data && data.data.note) {
+    uploader = user.email === data.data.note.email;
+    console.log('similaruser', uploader);
+  }
 
   return (
     <div className="note-details">
@@ -128,7 +117,7 @@ function NoteDetails() {
                             navigate({
                               pathname: '/search',
                               search: `?${createSearchParams({
-                                'author-name': data.data.note.authorName
+                                email: data.data.note.email
                               })}`
                             });
                           }}
@@ -144,7 +133,9 @@ function NoteDetails() {
                   </div>
                 </div>
                 <div className="button-or-login mt-auto ms-auto">
-                  {user ? (
+                  {uploader ? (
+                    <Button>Edit</Button>
+                  ) : user ? (
                     <Button>Download</Button>
                   ) : (
                     <p>Please login to view/download</p>
@@ -156,6 +147,7 @@ function NoteDetails() {
               </Col>
             </Row>
           </Container>
+          <br />
           <Container>
             <Tabs
               id="relatedNotes-comments"

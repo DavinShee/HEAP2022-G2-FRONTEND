@@ -46,10 +46,13 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
         headers: requestHeader
       })
       .then((response) => {
-        console.log('Success=======>', response);
+        // console.log('Success=======>', response);
         localStorage.setItem(
           'user',
-          JSON.stringify({ email: `${loginFormValues.email}` })
+          JSON.stringify({
+            email: `${loginFormValues.email}`,
+            fullname: `${response.data.data.user.fullname}`
+          })
         );
         window.location.reload(false);
       })

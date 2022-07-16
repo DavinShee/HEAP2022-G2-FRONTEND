@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Container, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Container, Spinner } from 'react-bootstrap';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import useFetchNotes from '../hooks/useFetchNotes';
@@ -31,12 +30,6 @@ function Search() {
     details.length > 0
       ? 'Search results for ' + details.join(', ')
       : 'Search results';
-
-  // useEffect(() => {
-  //   if (data && data.data && data.data.notes) {
-  //     console.log(data.data);
-  //   }
-  // }, [data]);
 
   return (
     <div className="search-results">

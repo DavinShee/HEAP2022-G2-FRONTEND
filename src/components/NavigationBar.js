@@ -54,19 +54,33 @@ function NavigationBar() {
       </Nav.Item>
       <NavDropdown
         className="nav-dropdown"
-        title={!user ? null : <UserIcon name={user.email} />}
+        title={!user ? null : <UserIcon name={user.fullname} />}
         id="nav-dropdown"
         align="end"
       >
-        <NavDropdown.Item className="first-dropdown-box" as={Link} to="/">
+        <NavDropdown.Item
+          className="first-dropdown-box"
+          as={Link}
+          to="/account/manage"
+        >
           Change Password
         </NavDropdown.Item>
-        <NavDropdown.Item className="dropdown-box" as={Link} to="/">
+        <NavDropdown.Item
+          className="dropdown-box"
+          as={Link}
+          to="/account/downloaded"
+        >
           Download History
         </NavDropdown.Item>
-        <NavDropdown.Item className="dropdown-box" as={Link} to="/">
-          My Listings
-        </NavDropdown.Item>
+        {user && user.fullname && user.email && (
+          <NavDropdown.Item
+            className="dropdown-box"
+            as={Link}
+            to={`/search?email=${user.email}`}
+          >
+            My Listings
+          </NavDropdown.Item>
+        )}
         <NavDropdown.Item
           className="dropdown-box"
           onClick={() => {

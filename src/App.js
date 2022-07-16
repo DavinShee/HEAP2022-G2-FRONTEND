@@ -7,6 +7,9 @@ import ErrorPage from './pages/ErrorPage';
 import NavigationBar from './components/NavigationBar';
 import { UserContext } from './components/UserContext';
 import { useEffect, useState, useMemo } from 'react';
+import Downloaded from './pages/Downloaded';
+import ManageAccount from './pages/ManageAccount';
+import PrivateRoutes from './components/PrivateRoutes';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,9 +32,13 @@ function App() {
           <NavigationBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/account" element={<PrivateRoutes />}>
+              <Route path="/account/downloaded" element={<Downloaded />} />
+              <Route path="/account/manage" element={<ManageAccount />} />
+            </Route>
+            <Route path="/note/:id" element={<NoteDetails />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/note/:id" element={<NoteDetails />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </UserContext.Provider>
