@@ -40,7 +40,11 @@ body {
 }
 
 .signup-create-button {
-  font-size: 18px;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 20px;
+  padding: 8px 25px;
+  margin-top: 16px;
 }
 
 .signup-create-button:hover {
@@ -48,7 +52,10 @@ body {
 }
 
 .login-login-button {
-  font-size: 18px;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 20px;
+  padding: 8px 25px;
 }
 
 .login-login-button:hover {
@@ -72,13 +79,11 @@ body {
   background-color: rgba(226, 239, 255, 1);
 }
 
-.search-search-text {
-  font-size: 20px;
-  padding-left: 2px;
-}
-
 .search-form-button {
   border-radius: 10px;
+  background-color: white;
+  font-size: 20px;
+  padding: 8px 25px;
 }
 
 .search-form-button:hover {
@@ -99,7 +104,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  row-gap: 50px;
+  row-gap: 40px;
   column-gap: 50px;
   grid-auto-columns: auto;
 }
@@ -114,6 +119,7 @@ body {
   background-color: white;
   border: 10px solid rgb(194, 220, 255);
   border-radius: 20px;
+  color: black;
 }
 
 .card-img {
@@ -141,7 +147,7 @@ nav {
 }
 
 .push {
-  padding-top: 80px;
+  padding-top: 75px;
 }
 
 .navbar-btn {
@@ -203,6 +209,19 @@ nav {
   background-color: rgba(226, 239, 255, 1);
 }
 
+.upload-btn{
+  background-color: white;
+  color: black;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  padding: 2px 12px;
+  margin-left: 10px;
+}
+.nav-dropdown{
+  padding-left: 8px;
+}
+
 /*text : 'Notes' in homepage*/
 .home-1 {
   padding-top: 300px;
@@ -220,6 +239,24 @@ nav {
   line-height: 36px;
   line-height: 100%;
   padding-left: 300px;
+}
+
+.recently-uploaded{
+  font-size: 25px;
+  margin-left: 150px;
+  margin-top: 7px;
+  margin-bottom: 10px;
+}
+
+.search-results-text {
+  font-size: 25px;
+  margin-left: 190px;
+  margin-top: 7px;
+  margin-bottom: 10px;
+}
+
+.pagination-bar{
+  margin-left: 220px;
 }
 
 /*NotesNow*/

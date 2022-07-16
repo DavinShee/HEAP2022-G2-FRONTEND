@@ -48,7 +48,7 @@ function NavigationBar() {
   let loggedIn = (
     <>
       <Nav.Item>
-        <Button variant="" className="navbar-btn" as={Link} to="/upload">
+        <Button variant="" className="upload-btn" as={Link} to="/upload">
           Upload
         </Button>
       </Nav.Item>

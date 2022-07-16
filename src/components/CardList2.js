@@ -1,33 +1,32 @@
 import { Link } from 'react-router-dom';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card , Row , Col , Container } from 'react-bootstrap';
 
-const CardList = ({ notes }) => {
+const CardList2 = ({ notes }) => {
   return (
+    <Container>
     <div className="card-list">
       {notes.map((note) => ( 
-        <Card style={{ width: '20rem' }} border="" key={note._id}>
+        <Card as={Link} to={`/note/${note._id}`} style={{ width: '20rem', textDecoration: 'none'  }} border="" key={note._id}>
           <Card.Img
             className="card-img"
             variant="top"
             src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
           />
           <Card.Body className="card-textbox">
-            <Card.Title>{note.description}</Card.Title>
+            <Card.Title>Module: {note.modId}</Card.Title>
             <Card.Text>
-              Module: {note.modId}
-              <br />
               Professor: {note.profName}
               <br />
               Author: {note.authorName}
+              <br />
+              Year: {note.year}
             </Card.Text>
-            <Button variant="primary" as={Link} to={`/note/${note._id}`}>
-              View Note
-            </Button>
           </Card.Body>
         </Card>
       ))}
     </div>
+    </Container>
   );
 };
 
-export default CardList;
+export default CardList2;
