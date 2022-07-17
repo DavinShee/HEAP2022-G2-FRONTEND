@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Button, Card , Row , Col , Container } from 'react-bootstrap';
 
 const CardList2 = ({ notes }) => {
+  const shortage = 6-notes.length
+
   return (
     <Container>
     <div className="card-list">
@@ -24,6 +26,7 @@ const CardList2 = ({ notes }) => {
           </Card.Body>
         </Card>
       ))}
+    <Card className='filler-card' style={{ width: '20rem', textDecoration: 'none'  }}></Card>
     </div>
     </Container>
   );

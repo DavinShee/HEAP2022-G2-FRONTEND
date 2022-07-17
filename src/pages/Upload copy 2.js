@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Alert,
   Button,
@@ -17,7 +17,6 @@ import { UserContext } from '../components/UserContext';
 
 function Upload() {
   const id = useContext(UserContext);
-  const [previewImage, setPreviewImage] = useState();
   const [uploadFormValues, setUploadFormValues] = useState({
     description: '',
     mod: '',
@@ -49,7 +48,7 @@ function Upload() {
         comments: [],
         description: uploadFormValues.description,
         email: id.user.email,
-        image: 'https://via.placeholder.com/525x350?text=note4_image1',
+        image: uploadFormValues.image[0],
         modId: uploadFormValues.mod,
         price: '5',
         profName: uploadFormValues.prof,
@@ -68,16 +67,15 @@ function Upload() {
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
-        image: e.target.files[0]
+        image: e.target.files
       };
     });
-    setPreviewImage(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
-    console.log(uploadFormValues.image);
+    console.log(uploadFormValues.image[0]);
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
@@ -153,7 +151,6 @@ function Upload() {
           <Form.Label>Img:</Form.Label>
           <Form.Control
             required
-            accept="image/*"
             type="file"
             name="notes-img"
             onChange={handleImgChange}
@@ -163,7 +160,6 @@ function Upload() {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <img src={previewImage}></img>
       <Button type="submit">Upload</Button>
     </Form>
   );

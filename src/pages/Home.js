@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Button, Container, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
-import useFetch from '../hooks/useFetch';
+import useFetch from '../hooks/useFetch.js';
 import { UserContext } from '../components/UserContext';
 import CardList2 from '../components/CardList2';
 import LoginModal from '../components/LoginModal';
