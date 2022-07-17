@@ -30,7 +30,7 @@ const PaginationPreloaded = ({
     pageNumbers.push(totalPages);
   }
 
-  return totalComments === 0 ? (
+  return totalPages <= 1 ? (
     <></>
   ) : (
     <Pagination>

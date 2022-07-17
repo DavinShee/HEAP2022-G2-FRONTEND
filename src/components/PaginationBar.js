@@ -30,7 +30,7 @@ const PaginationBar = ({ activePage, pageSize, totalPosts }) => {
     pageNumbers.push(totalPages);
   }
 
-  return totalPosts === 0 ? (
+  return totalPages <= 1 ? (
     <></>
   ) : (
     <>

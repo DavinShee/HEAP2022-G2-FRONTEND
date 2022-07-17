@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
-import CardList from '../components/CardList';
+import CardList2 from '../components/CardList2';
 import PaginationBar from '../components/PaginationBar';
 import { useSearchParams } from 'react-router-dom';
 import { Container, Spinner } from 'react-bootstrap';
@@ -16,13 +16,7 @@ const Downloaded = () => {
     databaseURLs.downloadHist + `/${user.email}?page-num=${pageNum}`
   );
 
-  let notesArray = [];
-  if (data && data.data && data.data.downloadHistory) {
-    let objectsArr = data.data.downloadHistory;
-    objectsArr.forEach((element) => {
-      notesArray.push(element.note);
-    });
-  }
+  console.log(data);
 
   return (
     <div className="downloaded-notes">
@@ -43,15 +37,14 @@ const Downloaded = () => {
                 <PaginationBar
                   activePage={pageNum}
                   pageSize={pageSize}
-                  totalPosts={data.data.numberOfNotes}
+                  totalPosts={data.data.numberOfDownloadHistory}
                 />
               </div>
-              <CardList notes={notesArray} />
-              {/* <CardList notes={data.data.notes} /> */}
+              <CardList2 notes={data.data.downloadHistory} />
               <PaginationBar
                 activePage={pageNum}
                 pageSize={pageSize}
-                totalPosts={data.data.numberOfNotes}
+                totalPosts={data.data.numberOfDownloadHistory}
               />
             </>
           )}
