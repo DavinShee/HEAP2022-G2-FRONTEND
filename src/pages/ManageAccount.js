@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useContext } from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { databaseURLs } from '../URLConstants';
 import { UserContext } from '../components/UserContext';

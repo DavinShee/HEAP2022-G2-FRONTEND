@@ -15,12 +15,11 @@ import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import axios from 'axios';
+import Comments from '../components/Comments';
 
 function NoteDetails() {
   const { id } = useParams();
-  const { data, loading, error } = useFetch(
-    databaseURLs.search + `/${id}`
-  );
+  const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
   const { user } = useContext(UserContext);
   const [key, setKey] = useState('related');
   const [noRelated, setNoRelated] = useState(false);
@@ -184,7 +183,7 @@ function NoteDetails() {
                 <CardList notes={data.data.relatedNotes} />
               </Tab>
               <Tab eventKey="comments" title="Comments">
-                COMMENTS COME HERE
+                <Comments commentsArray={data.data.note.comments} user={user} />
               </Tab>
             </Tabs>
           </Container>

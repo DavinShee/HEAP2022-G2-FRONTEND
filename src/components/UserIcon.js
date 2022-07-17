@@ -28,8 +28,9 @@ const UserIcon = ({ name }) => {
     24: '#FFDFD3',
     25: '#FFE5B4'
   };
-  const randomNum =
-    (firstAlpha.charCodeAt(0) + name.length) % Object.keys(rgbColors).length;
+  const randomNum = firstAlpha
+    ? (firstAlpha.charCodeAt(0) + name.length) % Object.keys(rgbColors).length
+    : 0;
 
   return (
     <div
@@ -45,7 +46,7 @@ const UserIcon = ({ name }) => {
         margin: '0px 5px'
       }}
     >
-      {firstAlpha}
+      {firstAlpha ? firstAlpha : name[0]}
     </div>
   );
 };

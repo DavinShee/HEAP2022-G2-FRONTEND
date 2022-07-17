@@ -16,13 +16,6 @@ const Downloaded = () => {
     databaseURLs.downloadHist + `/${user.email}?page-num=${pageNum}`
   );
 
-  // data &&
-  //   data.data &&
-  //   data.data.downloadHistory &&
-  //   console.log('data', data.data.downloadHistory);
-  // // console.log('loading', loading);
-  // // console.log('error', error);
-
   let notesArray = [];
   if (data && data.data && data.data.downloadHistory) {
     let objectsArr = data.data.downloadHistory;
