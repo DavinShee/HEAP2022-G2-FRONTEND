@@ -104,7 +104,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  row-gap: 40px;
+  row-gap: 25px;
   column-gap: 50px;
   grid-auto-columns:auto;
   
