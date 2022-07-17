@@ -30,7 +30,9 @@ const PaginationPreloaded = ({
     pageNumbers.push(totalPages);
   }
 
-  return (
+  return totalComments === 0 ? (
+    <></>
+  ) : (
     <Pagination>
       {pageNumbers.map((number, index) => {
         if (number === '...') {

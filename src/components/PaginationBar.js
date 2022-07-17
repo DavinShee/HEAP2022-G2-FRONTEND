@@ -30,7 +30,9 @@ const PaginationBar = ({ activePage, pageSize, totalPosts }) => {
     pageNumbers.push(totalPages);
   }
 
-  return (
+  return totalPosts === 0 ? (
+    <></>
+  ) : (
     <>
       <Pagination>
         {pageNumbers.map((number, index) => {
