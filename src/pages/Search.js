@@ -47,15 +47,15 @@ function Search() {
           {data && data.data && data.data.notes.length ? (
             <>
               <div className="search-header">
-                <div className='search-results-text'>
+                <div className="search-results-text">
                   {searchDetails} ({data.data.numberOfNotes})
                 </div>
-                <div className='pagination-bar'>
-                <PaginationBar
-                  activePage={pageNum}
-                  pageSize={pageSize}
-                  totalPosts={data.data.numberOfNotes}
-                />
+                <div className="pagination-bar">
+                  <PaginationBar
+                    activePage={pageNum}
+                    pageSize={pageSize}
+                    totalPosts={data.data.numberOfNotes}
+                  />
                 </div>
               </div>
               <CardList2 notes={data.data.notes} />
