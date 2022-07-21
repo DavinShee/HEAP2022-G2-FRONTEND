@@ -60,9 +60,10 @@ function Upload() {
       const imgData = {
         noteId: 'test2',
         document: 'https://www.pdfdrive.com/download.pdf?id=10172273&h=84f0f3490acb0a861ce0cf97be914eed&u=cache&ext=pdf'
-      }
+      };
+      console.log("https://7802-116-15-253-148.ap.ngrok.io/routes/seller" , JSON.stringify(imgData));
       console.log("https://7802-116-15-253-148.ap.ngrok.io/routes/seller" + JSON.stringify(imgData));
-      axios.post(databaseURLs.img + JSON.stringify(imgData),{
+      axios.post(databaseURLs.img, JSON.stringify(imgData),{
         header:requestHeader
       });
       console.log(databaseURLs.upload + JSON.stringify(uploadData));
