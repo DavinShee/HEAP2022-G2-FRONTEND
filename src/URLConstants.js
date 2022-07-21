@@ -6,5 +6,6 @@ export const databaseURLs = {
   signUp: NGROKLINK + '/routes/account/signup',
   passwordUpdate: NGROKLINK + '/routes/account/edit',
   downloadHist: NGROKLINK + '/routes/downloadHistory',
-  upload: NGROKLINK + '/routes/buyer'
+  upload: NGROKLINK + '/routes/buyer',
+  img: NGROKLINK + '/routes/seller',
 };

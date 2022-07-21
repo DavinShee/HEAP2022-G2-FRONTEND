@@ -12,7 +12,7 @@ const CardList2 = ({ notes }) => {
           <Card.Img
             className="card-img"
             variant="top"
-            src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+            src={note.image}
           />
           <Card.Body className="card-textbox">
             <Card.Title>Module: {note.modId}</Card.Title>

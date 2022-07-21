@@ -18,12 +18,13 @@ import { UserContext } from '../components/UserContext';
 function Upload() {
   const id = useContext(UserContext);
   const [previewImage, setPreviewImage] = useState();
+  const [noteImage, setNoteImage] = useState();
   const [uploadFormValues, setUploadFormValues] = useState({
     description: '',
     mod: '',
     prof: '',
     year: '',
-    image: ''
+    image:''
   });
 
   const requestHeader = {
@@ -49,17 +50,26 @@ function Upload() {
         comments: [],
         description: uploadFormValues.description,
         email: id.user.email,
-        image: 'https://via.placeholder.com/525x350?text=note4_image1',
+        image: 'test',
         modId: uploadFormValues.mod,
         price: '5',
         profName: uploadFormValues.prof,
         year: uploadFormValues.year
       };
 
+      const imgData = {
+        noteId: 'test2',
+        document: 'https://www.pdfdrive.com/download.pdf?id=10172273&h=84f0f3490acb0a861ce0cf97be914eed&u=cache&ext=pdf'
+      }
+      console.log("https://7802-116-15-253-148.ap.ngrok.io/routes/seller" + JSON.stringify(imgData));
+      axios.post(databaseURLs.img + JSON.stringify(imgData),{
+        header:requestHeader
+      });
       console.log(databaseURLs.upload + JSON.stringify(uploadData));
       axios.post(databaseURLs.upload, JSON.stringify(uploadData), {
         headers: requestHeader
       });
+      
       event.preventDefault();
     }
   };
@@ -72,12 +82,13 @@ function Upload() {
       };
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    setNoteImage(e.target.files[0])
   };
 
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
-    console.log(uploadFormValues.image);
+    console.log(noteImage);
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
@@ -153,7 +164,7 @@ function Upload() {
           <Form.Label>Img:</Form.Label>
           <Form.Control
             required
-            accept="image/*"
+            accept="application/pdf*"
             type="file"
             name="notes-img"
             onChange={handleImgChange}
@@ -163,7 +174,7 @@ function Upload() {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <img src={previewImage}></img>
+      <img src={(previewImage)}></img>
       <Button type="submit">Upload</Button>
     </Form>
   );
