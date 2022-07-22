@@ -33,7 +33,7 @@ const Downloaded = () => {
           {data && data.data && data.data.downloadHistory && (
             <>
               <div className="search-header">
-                <h1>Downloaded Notes ({data.data.numberOfNotes})</h1>
+                <h1>Downloaded Notes ({data.data.numberOfDownloadHistory})</h1>
                 <PaginationBar
                   activePage={pageNum}
                   pageSize={pageSize}

@@ -16,11 +16,11 @@ import { upload } from '@testing-library/user-event/dist/upload';
 import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 
-
-
 function Upload() {
   const id = useContext(UserContext);
-  const [previewImage, setPreviewImage] = useState('https://www.asiaoceania.org/aogs2021/img/no_uploaded.png');
+  const [previewImage, setPreviewImage] = useState(
+    'https://www.asiaoceania.org/aogs2021/img/no_uploaded.png'
+  );
   const [noteImage, setNoteImage] = useState();
   const [uploadFormValues, setUploadFormValues] = useState({
     description: '',
@@ -87,7 +87,7 @@ function Upload() {
       };
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    setNoteImage(e.target.files[0]);
+    setNoteImage(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleChange = (e) => {
@@ -155,7 +155,7 @@ function Upload() {
                 </Col>
               </Row>
               <Row>
-              <Form.Label column lg={2}>
+                <Form.Label column lg={2}>
                   Prof:
                 </Form.Label>
                 <Col>
@@ -177,7 +177,7 @@ function Upload() {
                 </Col>
               </Row>
               <Row>
-              <Form.Label column lg={2}>
+                <Form.Label column lg={2}>
                   Year:
                 </Form.Label>
                 <Col>
@@ -196,34 +196,36 @@ function Upload() {
                   </Form.Group>
                 </Col>
               </Row>
-            
-            <Row>
-            <Form.Label column lg={2}>
+
+              <Row>
+                <Form.Label column lg={2}>
                   Image:
                 </Form.Label>
-              <Col>
-                <Form.Group controlId="validationCustom04">
-                  <Form.Control
-                    required
-                    accept="application/pdf*"
-                    type="file"
-                    name="notes-img"
-                    onChange={handleImgChange}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please attach your notes.
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Col>
-            </Row>
+                <Col>
+                  <Form.Group controlId="validationCustom04">
+                    <Form.Control
+                      required
+                      accept="application/pdf"
+                      type="file"
+                      name="notes-img"
+                      onChange={handleImgChange}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please attach your notes.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+              </Row>
             </div>
             <br></br>
-            <div className='upload-item-3'>
-            <Button variant className='upload-download-btn' type="submit">Upload</Button>
+            <div className="upload-item-3">
+              <Button variant className="upload-download-btn" type="submit">
+                Upload
+              </Button>
             </div>
-            </Col>
+          </Col>
           <Col>
-            <img className='previewimage' src={previewImage}></img>
+            <img className="previewimage" src={previewImage}></img>
           </Col>
         </Row>
       </Form>

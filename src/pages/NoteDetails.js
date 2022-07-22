@@ -8,7 +8,12 @@ import {
   Tab,
   Tabs
 } from 'react-bootstrap';
-import { createSearchParams, useNavigate, useParams , Link } from 'react-router-dom';
+import {
+  createSearchParams,
+  useNavigate,
+  useParams,
+  Link
+} from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetch from '../hooks/useFetch';
@@ -17,28 +22,26 @@ import CardList2 from '../components/CardList2';
 import axios from 'axios';
 import Comments from '../components/Comments';
 
-
 function NoteDetails() {
   const { id } = useParams();
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
-  const ratingData = useFetch(databaseURLs.rating + `/${id}`)
+  const ratingData = useFetch(databaseURLs.rating + `/${id}`);
   const { user } = useContext(UserContext);
   const [key, setKey] = useState('related');
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
-  const [ratings, setRatings] = useState(0)
+  const [ratings, setRatings] = useState(0);
 
   useEffect(() => {
-    if (ratingData && ratingData.data && ratingData.data.data){
-      setRatings((ratingData.data.data))
-
+    if (ratingData && ratingData.data && ratingData.data.data) {
+      setRatings(ratingData.data.data);
     }
 
     if (data && data.data && data.data.relatedNotes.length === 0) {
       setKey('comments');
       setNoRelated(true);
     }
-  }, [data,ratingData]);
+  }, [data, ratingData]);
 
   let uploader = false;
   if (user && user.email && data && data.data && data.data.note) {
@@ -170,9 +173,17 @@ function NoteDetails() {
                 </div>
                 <div className="button-or-login mt-auto ms-auto">
                   {uploader ? (
-                    <Button as={Link} to={`/update/${id}`}>Edit</Button>  
+                    <Button as={Link} to={`/update/${id}`}>
+                      Edit
+                    </Button>
                   ) : user ? (
-                    <Button variant className='upload-download-btn' onClick={handleDownload}>Download</Button>
+                    <Button
+                      variant
+                      className="upload-download-btn"
+                      onClick={handleDownload}
+                    >
+                      Download
+                    </Button>
                   ) : (
                     <p>Please login to view/download</p>
                   )}
