@@ -87,7 +87,7 @@ function Upload() {
       };
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    setNoteImage(URL.createObjectURL(e.target.files[0]));
+    setNoteImage(e.target.files[0]);
   };
 
   const handleChange = (e) => {
@@ -205,7 +205,7 @@ function Upload() {
                 <Form.Group controlId="validationCustom04">
                   <Form.Control
                     required
-                    accept="image*"
+                    accept="application/pdf*"
                     type="file"
                     name="notes-img"
                     onChange={handleImgChange}
