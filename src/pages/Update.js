@@ -217,14 +217,16 @@ function Update() {
               </Row>
             </div>
             <br></br>
+            <Row>
             <div className="upload-item-3">
               <Button variant className="upload-download-btn" type="submit">
                 Update
               </Button>
-              <Button variant className='upload-download-btn' onClick={handleDelete}>
+              <Button variant className='upload-download-btn1' onClick={handleDelete}>
                 Delete
               </Button>
             </div>
+            </Row>
           </Col>
           <Col>
             <img className="previewimage" src={previewImage}></img>

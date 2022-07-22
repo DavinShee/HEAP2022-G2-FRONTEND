@@ -379,16 +379,37 @@ nav {
 .upload-download-btn{
   color: black;
   background-color: rgb(194, 220, 255);
-
 }
 
 .upload-download-btn:hover{
 background-color: rgb(226, 239, 255);
+}
 
+.upload-download-btn1{
+  color: black;
+  background-color: rgb(194, 220, 255);
+  margin-left: 10px;
+}
 
+.upload-download-btn1:hover{
+background-color: rgb(226, 239, 255);
 }
 
 .previewimage{
   min-width: 500px;
   min-height: 500px;
+}
+
+/*StarRating*/
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: #000;
+}
+.off {
+  color: #ccc;
 }

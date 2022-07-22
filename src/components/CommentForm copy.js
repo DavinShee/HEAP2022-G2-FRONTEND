@@ -10,8 +10,6 @@ const CommentForm = ({ user }) => {
     user = null;
   }
 
-  const [ratings, setRatings] = useState(0);
-  const [hover, setHover] = useState(0);
   const { id } = useParams();
   const [userComment, setUserComment] = useState('');
   const textDisabled = !user;
@@ -24,20 +22,13 @@ const CommentForm = ({ user }) => {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   };
 
-  const requestHeader2 = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-  };
-
   const submitPost = (event) => {
+    console.log(id)
+    console.log(databaseURLs.search + `/${id}`,
+    JSON.stringify({
+      comment: { fullname: user.fullname,email: 'test' , comment: userComment }}))
     event.preventDefault();
     event.stopPropagation();
-    console.log(databaseURLs.rating , JSON.stringify({ noteId: id, rating: ratings}))
-    axios.post(databaseURLs.rating , JSON.stringify({ noteId: id, rating: ratings}),
-    { headers: requestHeader2 })
-
     axios
       .patch(
         databaseURLs.search + `/${id}`,
@@ -56,23 +47,6 @@ const CommentForm = ({ user }) => {
 
   return (
     <div className="comment-form" style={{ margin: '5px' }}>
-      <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button
-            type="button"
-            key={index}
-            className={index <= (hover || ratings) ? "on" : "off"}
-            onClick={() => setRatings(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(ratings)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })}
-    </div>
       <Row>
         <Col xs="auto">
           <UserIcon name={user ? user.fullname : '-'} />

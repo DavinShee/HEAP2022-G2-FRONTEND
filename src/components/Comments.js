@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 import PaginationPreloaded from './PaginationPreloaded';
+import StarRating from './StarRating';
 
 const Comments = ({ commentsArray, user }) => {
   const [currentPage, setCurrentPage] = useState(1);
