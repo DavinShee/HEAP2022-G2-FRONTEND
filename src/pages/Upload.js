@@ -87,7 +87,7 @@ function Upload() {
       };
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    setNoteImage(URL.createObjectURL(e.target.files[0]));
+    setNoteImage((e.target.files[0]));
   };
 
   const handleChange = (e) => {
