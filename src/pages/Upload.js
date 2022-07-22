@@ -34,6 +34,7 @@ function Upload() {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   };
 
+  
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -50,7 +51,7 @@ function Upload() {
         comments: [],
         description: uploadFormValues.description,
         email: id.user.email,
-        image: 'test',
+        image: 'https://via.placeholder.com/525x350?text=note4_image1',
         modId: uploadFormValues.mod,
         price: '5',
         profName: uploadFormValues.prof,
@@ -59,14 +60,15 @@ function Upload() {
 
       const imgData = {
         noteId: 'test2',
-        document: 'https://www.pdfdrive.com/download.pdf?id=10172273&h=84f0f3490acb0a861ce0cf97be914eed&u=cache&ext=pdf'
+        document: noteImage
       };
-      console.log("https://7802-116-15-253-148.ap.ngrok.io/routes/seller" , JSON.stringify(imgData));
-      console.log("https://7802-116-15-253-148.ap.ngrok.io/routes/seller" + JSON.stringify(imgData));
+
+      console.log(databaseURLs.img , JSON.stringify(imgData));
       axios.post(databaseURLs.img, JSON.stringify(imgData),{
-        header:requestHeader
+        headers:requestHeader
       });
-      console.log(databaseURLs.upload + JSON.stringify(uploadData));
+
+      console.log(databaseURLs.upload , JSON.stringify(uploadData));
       axios.post(databaseURLs.upload, JSON.stringify(uploadData), {
         headers: requestHeader
       });

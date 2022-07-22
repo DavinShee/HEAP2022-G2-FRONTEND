@@ -227,8 +227,34 @@ nav {
   padding-left: 8px;
 }
 
+.home{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  height: 700px;
+  flex-direction: column;
+}
+
+
+.home-ctn2{
+
+  flex-direction: row;
+  padding-left: 270px;
+
+}
+.home-1{
+  font-size: 80px;
+  padding-left: 300px;
+}
+
+.home-2{
+  font-size: 30px;
+  padding-left: 300px;
+}
+
+
 /*text : 'Notes' in homepage*/
-.home-1 {
+/*.home-1 {
   padding-top: 300px;
   padding-left: 300px;
   font-style: Bold;
@@ -238,20 +264,28 @@ nav {
 }
 
 /*text : 'Your one-stop marketplace to all things great.' in homepage */
-.home-2 {
+/*.home-2 {
   font-style: Bold;
   font-size: 30px;
   line-height: 36px;
   line-height: 100%;
   padding-left: 300px;
+*/
+
+.recent-ctn{
+  display: flex;
+  width: 35%;
+  justify-content: center;
+
 }
 
 .recently-uploaded{
   font-size: 25px;
-  margin-left: 150px;
+ /*margin-left: 150px;
   margin-top: 7px;
-  margin-bottom: 10px;
+  margin-bottom: 10px;*/
 }
+
 
 .search-results-text {
   font-size: 25px;
@@ -282,7 +316,7 @@ nav {
 .home-signup-button {
   background-color: black;
   filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.25));
-  margin-left: 300px;
+  margin-left: 30px;
   border-radius: 9px;
   margin-top: 30px;
   height: 50px;
@@ -291,19 +325,32 @@ nav {
 
 .home-login-button {
   background-color: black;
-  margin-left: 30px;
   filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.25));
   border-radius: 9px;
   margin-top: 30px;
   height: 50px;
   width: 150px;
+  margin-left: 30px;
 }
 
 /* Note Details */
-.note-other-details p {
-  margin-bottom: 0;
-}
 
 .button-or-login {
   margin-top: auto;
+}
+
+.note-details{
+
+  display: flex;
+  flex-direction: column;
+}
+
+.note-description{
+
+  min-height: 250px
+
+}
+
+.note-other-details {
+  font-size: 20px;
 }

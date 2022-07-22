@@ -18,12 +18,13 @@ const Home = () => {
   const handleShowLogin = () => setLoginModal(true);
 
   let loggedOutHome = (
-    <>
+    <div className='home'>
+      <div className='home-ctn1'>
       <div className="home-1">Notes.</div>
-      <div className="home-2">
-        Your one-stop marketplace to all things great.
+      <div className="home-2">Your one-stop marketplace to all things great.</div>
       </div>
 
+      <div className='home-ctn2'>
       <Button variant className="home-signup-button" onClick={handleShowSignup}>
         <div className="home-signup-text">Signup</div>
       </Button>
@@ -40,7 +41,9 @@ const Home = () => {
         setLoginModal={setLoginModal}
         handleShowSignup={handleShowSignup}
       />
-    </>
+      </div>
+    </div>
+
   );
 
   let loggedInHome = (
@@ -57,12 +60,14 @@ const Home = () => {
         <>
           {data && data.data && data.data.notes.length && (
             <>
+            <div className='recent-ctn'>
               <div className='recently-uploaded'>
                 Recently uploaded (
                 <Link to="/search" style={{ textDecoration: 'none' }}>
                   View all
                 </Link>
                 )
+                </div>
               </div>
               <CardList2 notes={data.data.notes.slice(0, 6)} />
             </>
