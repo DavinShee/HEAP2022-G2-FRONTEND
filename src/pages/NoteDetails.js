@@ -8,14 +8,15 @@ import {
   Tab,
   Tabs
 } from 'react-bootstrap';
-import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
+import { createSearchParams, useNavigate, useParams , Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
-import CardList from '../components/CardList';
+import CardList2 from '../components/CardList2';
 import axios from 'axios';
 import Comments from '../components/Comments';
+
 
 function NoteDetails() {
   const { id } = useParams();
@@ -158,9 +159,9 @@ function NoteDetails() {
                 </div>
                 <div className="button-or-login mt-auto ms-auto">
                   {uploader ? (
-                    <Button>Edit</Button>
+                    <Button as={Link} to={`/update/${id}`}>Edit</Button>  
                   ) : user ? (
-                    <Button onClick={handleDownload}>Download</Button>
+                    <Button variant className='upload-download-btn' onClick={handleDownload}>Download</Button>
                   ) : (
                     <p>Please login to view/download</p>
                   )}
@@ -180,7 +181,7 @@ function NoteDetails() {
               className="mb-3"
             >
               <Tab eventKey="related" title="Related" disabled={noRelated}>
-                <CardList notes={data.data.relatedNotes} />
+                <CardList2 notes={data.data.relatedNotes} />
               </Tab>
               <Tab eventKey="comments" title="Comments">
                 <Comments commentsArray={data.data.note.comments} user={user} />

@@ -354,3 +354,41 @@ nav {
 .note-other-details {
   font-size: 20px;
 }
+
+.upload-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-item-1{
+  width: 400px;
+}
+
+.upload-item-2{
+  font-size: 20px;
+  width: 400px;
+}
+
+.upload-item-3{
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  width: 80%;
+}
+
+.upload-download-btn{
+  color: black;
+  background-color: rgb(194, 220, 255);
+
+}
+
+.upload-download-btn:hover{
+background-color: rgb(226, 239, 255);
+
+
+}
+
+.previewimage{
+  min-width: 500px;
+  min-height: 500px;
+}

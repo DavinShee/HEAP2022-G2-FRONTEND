@@ -1,28 +1,21 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Alert,
-  Button,
-  FloatingLabel,
-  Form,
-  Modal,
-  Row,
-  Col,
-  InputGroup,
-  Container
-} from 'react-bootstrap';
-import axios from 'axios';
+  createSearchParams,
+  useNavigate,
+  useParams,
+  Link
+} from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Button, Col, Container, Row, Form, InputGroup } from 'react-bootstrap';
+import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
-import { upload } from '@testing-library/user-event/dist/upload';
-import { useContext } from 'react';
-import { UserContext } from '../components/UserContext';
+import axios from 'axios';
 
 
-
-function Upload() {
-  const id = useContext(UserContext);
-  const [previewImage, setPreviewImage] = useState('https://www.asiaoceania.org/aogs2021/img/no_uploaded.png');
-  const [noteImage, setNoteImage] = useState();
-  const [uploadFormValues, setUploadFormValues] = useState({
+function Update() {
+  const { id } = useParams();
+  const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
+  const [updateFormValues, setUpdateFormValues] = useState({
     description: '',
     mod: '',
     prof: '',
@@ -30,14 +23,32 @@ function Upload() {
     image: ''
   });
 
+  const [previewImage, setPreviewImage] = useState(
+    'https://www.asiaoceania.org/aogs2021/img/no_uploaded.png'
+  );
+
+  useEffect(() => {
+    if (JSON.stringify(data) !== '{}') {
+      setUpdateFormValues({
+        description: data.data.note.description,
+        mod: data.data.note.modId,
+        prof: data.data.note.profName,
+        year: data.data.note.year,
+        image: data.data.note.image  
+      });
+      setPreviewImage(data.data.note.image)
+    }
+  }, [data]);
+
+  /*const [noteImage, setNoteImage] = useState();*/ 
+
+  const [validated, setValidated] = useState(false);
   const requestHeader = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   };
-
-  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -48,59 +59,47 @@ function Upload() {
     event.preventDefault();
     setValidated(true);
     if (form.checkValidity() === true) {
-      const uploadData = {
-        authorName: id.user.fullname,
-        comments: [],
-        description: uploadFormValues.description,
-        email: id.user.email,
-        image: noteImage,
-        modId: uploadFormValues.mod,
-        price: '5',
-        profName: uploadFormValues.prof,
-        year: uploadFormValues.year
+      const updateData = {
+        description: updateFormValues.description,
+        image: previewImage,
+        modId: updateFormValues.mod,
+        profName: updateFormValues.prof,
+        year: updateFormValues.year
       };
 
-      const imgData = {
-        noteId: 'test2',
-        document: noteImage
-      };
 
-      console.log(databaseURLs.img, JSON.stringify(imgData));
-      axios.post(databaseURLs.img, JSON.stringify(imgData), {
+      console.log(databaseURLs.search + `/${id}`, JSON.stringify(updateData));
+      axios.patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
         headers: requestHeader
       });
-
-      console.log(databaseURLs.upload, JSON.stringify(uploadData));
-      axios.post(databaseURLs.upload, JSON.stringify(uploadData), {
-        headers: requestHeader
-      });
-
       event.preventDefault();
     }
   };
 
   const handleImgChange = (e) => {
-    setUploadFormValues((preValue) => {
+    setUpdateFormValues((preValue) => {
       return {
         ...preValue,
         image: e.target.files[0]
       };
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    setNoteImage(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
-    console.log(noteImage);
-    setUploadFormValues((preValue) => {
+    setUpdateFormValues((preValue) => {
       return {
         ...preValue,
         [name]: value
       };
     });
   };
+
+  const handleDelete = () => {
+    axios.delete(databaseURLs.search+`/${id}`)
+  }
 
   return (
     <Container>
@@ -125,7 +124,7 @@ function Upload() {
                 required
                 name="description"
                 placeholder="Description"
-                value={uploadFormValues.description}
+                value={updateFormValues.description}
                 onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
@@ -145,7 +144,7 @@ function Upload() {
                       type="text"
                       name="mod"
                       placeholder="IS111"
-                      value={uploadFormValues.mod}
+                      value={updateFormValues.mod}
                       onChange={handleChange}
                     />
                     <Form.Control.Feedback type="invalid">
@@ -155,7 +154,7 @@ function Upload() {
                 </Col>
               </Row>
               <Row>
-              <Form.Label column lg={2}>
+                <Form.Label column lg={2}>
                   Prof:
                 </Form.Label>
                 <Col>
@@ -166,7 +165,7 @@ function Upload() {
                         type="text"
                         name="prof"
                         placeholder="Dr test example"
-                        value={uploadFormValues.prof}
+                        value={updateFormValues.prof}
                         onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -177,7 +176,7 @@ function Upload() {
                 </Col>
               </Row>
               <Row>
-              <Form.Label column lg={2}>
+                <Form.Label column lg={2}>
                   Year:
                 </Form.Label>
                 <Col>
@@ -187,7 +186,7 @@ function Upload() {
                       type="number"
                       name="year"
                       placeholder="2010-2022"
-                      value={uploadFormValues.year}
+                      value={updateFormValues.year}
                       onChange={handleChange}
                     />
                     <Form.Control.Feedback type="invalid">
@@ -196,34 +195,39 @@ function Upload() {
                   </Form.Group>
                 </Col>
               </Row>
-            
-            <Row>
-            <Form.Label column lg={2}>
+
+              <Row>
+                <Form.Label column lg={2}>
                   Image:
                 </Form.Label>
-              <Col>
-                <Form.Group controlId="validationCustom04">
-                  <Form.Control
-                    required
-                    accept="image*"
-                    type="file"
-                    name="notes-img"
-                    onChange={handleImgChange}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please attach your notes.
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Col>
-            </Row>
+                <Col>
+                  <Form.Group controlId="validationCustom04">
+                    <Form.Control
+                      
+                      accept="image*"
+                      type="file"
+                      name="notes-img"
+                      onChange={handleImgChange}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please attach your notes.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+              </Row>
             </div>
             <br></br>
-            <div className='upload-item-3'>
-            <Button variant className='upload-download-btn' type="submit">Upload</Button>
+            <div className="upload-item-3">
+              <Button variant className="upload-download-btn" type="submit">
+                Update
+              </Button>
+              <Button variant className='upload-download-btn' onClick={handleDelete}>
+                Delete
+              </Button>
             </div>
-            </Col>
+          </Col>
           <Col>
-            <img className='previewimage' src={previewImage}></img>
+            <img className="previewimage" src={previewImage}></img>
           </Col>
         </Row>
       </Form>
@@ -231,4 +235,4 @@ function Upload() {
   );
 }
 
-export default Upload;
+export default Update;

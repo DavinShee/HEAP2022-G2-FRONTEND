@@ -23,13 +23,17 @@ const CommentForm = ({ user }) => {
   };
 
   const submitPost = (event) => {
+    console.log(id)
+    console.log(databaseURLs.search + `/${id}`,
+    JSON.stringify({
+      comment: { fullname: user.fullname,email: 'test' , comment: userComment }}))
     event.preventDefault();
     event.stopPropagation();
     axios
       .patch(
         databaseURLs.search + `/${id}`,
         JSON.stringify({
-          comment: { fullname: user.fullname, comment: userComment }
+          comment: { fullname: user.fullname,email: 'test' , comment: userComment }
         }),
         { headers: requestHeader }
       )

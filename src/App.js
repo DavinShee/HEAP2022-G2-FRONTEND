@@ -10,6 +10,7 @@ import { useEffect, useState, useMemo } from 'react';
 import Downloaded from './pages/Downloaded';
 import ManageAccount from './pages/ManageAccount';
 import PrivateRoutes from './components/PrivateRoutes';
+import Update from './pages/Update';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -39,6 +40,7 @@ function App() {
             <Route path="/note/:id" element={<NoteDetails />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/update/:id" element={<Update />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </UserContext.Provider>
