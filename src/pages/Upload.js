@@ -4,6 +4,16 @@ import axios from 'axios';
 import { databaseURLs } from '../URLConstants';
 import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
+var lineconverter = require('arraybuffer-to-string');
+//const cloudinary = require('cloudinary').v2;
+//preview image ==> url.createobjecturl
+//noteimage ==> readAsDataURL
+//cloudinary.config({
+//  cloud_name: 'ducf3tqph',
+//  api_key: '123521522689914',
+//  api_secret: 'LeALjMRK1sgUXPiStB7v84oILe0',
+//  secure: true
+//});
 
 function Upload() {
   const reader = new FileReader();
@@ -56,13 +66,25 @@ function Upload() {
         document: noteImage
       };
 
-      console.log(databaseURLs.img, JSON.stringify(imgData));
+      /*console.log(databaseURLs.img, JSON.stringify(imgData));
       axios.post(databaseURLs.img, JSON.stringify(imgData), {
         headers: requestHeader
-      });
+      });*/
+      //let returnUrl;
+      //cloudinary.uploader
+      // .upload(previewImage, function (error, result) {
+      //    console.log(result, error);
+      //  })
+      //  .then(console.log('THIS IS WHAT WE WANT TO SEE', result));
 
-      console.log(databaseURLs.upload, JSON.stringify(uploadData));
-      axios.post(databaseURLs.upload, JSON.stringify(uploadData), {
+      //axios
+      //  .post('https://www.file.io', JSON.stringify({ file: noteImage }), {
+      //   headers: requestHeader
+      //  })
+      //  .then((response) => console.log(response));
+
+      console.log(databaseURLs.upload, uploadData);
+      axios.post(databaseURLs.upload, uploadData, {
         headers: requestHeader
       });
 
@@ -77,31 +99,32 @@ function Upload() {
         image: e.target.files[0]
       };
     });
-    setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    setNoteImage(e.target.files[0]);
-    //reader.readAsArrayBuffer(noteImage)
+    //setPreviewImage(URL.createObjectURL(e.target.files[0]));
 
     var file = e.target.files[0];
     var reader = new FileReader();
-    reader.onload = function() {
-    console.log(reader.result);
-    console.log(typeof(reader.result))
-    setNoteImage(reader.result)
-    var blob = URL.dataURLtoBlob(reader.result);
-    console.log(blob, new File([blob], "image.png", {
-      type: "image/png"
-    }));
-  };
-  reader.readAsBinaryString(file);
+    reader.onload = function () {
 
+      setNoteImage(lineconverter(reader.result));
+      var blob = URL.dataURLtoBlob(reader.result);
+      console.log(
+        blob,
+        new File([blob], 'image.png', {
+          type: 'image/png'
+        })
+      );
+    };
+    reader.readAsArrayBuffer(file);
   };
 
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
-    console.log(noteImage);
-    console.log(typeof previewImage);
-    console.log(reader);
+    //setPreviewImage(lineconverter(noteImage));
+    //console.log("This is preview image",previewImage)
+    console.log(noteImage)
+  
+
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
@@ -235,7 +258,7 @@ function Upload() {
           <Col>
             <img
               className="previewimage"
-              src={noteImage}
+              src={previewImage}
               alt="previewImage"
             ></img>
           </Col>
