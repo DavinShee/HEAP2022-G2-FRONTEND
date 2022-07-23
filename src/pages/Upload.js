@@ -103,7 +103,7 @@ function Upload() {
       type: "image/png"
     }));
   };
-  reader.readAsDataURL(file);
+  reader.readAsBinaryString(file);
 
   };
 
