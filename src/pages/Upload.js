@@ -1,23 +1,12 @@
-import { useEffect, useState } from 'react';
-import {
-  Alert,
-  Button,
-  FloatingLabel,
-  Form,
-  Modal,
-  Row,
-  Col,
-  InputGroup,
-  Container
-} from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Form, Row, Col, InputGroup, Container } from 'react-bootstrap';
 import axios from 'axios';
 import { databaseURLs } from '../URLConstants';
-import { upload } from '@testing-library/user-event/dist/upload';
 import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 
 function Upload() {
-  const reader = new FileReader()
+  const reader = new FileReader();
 
   const id = useContext(UserContext);
   const [previewImage, setPreviewImage] = useState(
@@ -89,7 +78,7 @@ function Upload() {
       };
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
-    setNoteImage((e.target.files[0]));
+    setNoteImage(e.target.files[0]);
     //reader.readAsArrayBuffer(noteImage)
 
     var file = e.target.files[0];
@@ -111,8 +100,8 @@ function Upload() {
     let value = e.target.value;
     let name = e.target.name;
     console.log(noteImage);
-    console.log(typeof(previewImage))
-    console.log(reader)
+    console.log(typeof previewImage);
+    console.log(reader);
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
@@ -244,7 +233,11 @@ function Upload() {
             </div>
           </Col>
           <Col>
-            <img className="previewimage" src={noteImage}></img>
+            <img
+              className="previewimage"
+              src={noteImage}
+              alt="previewImage"
+            ></img>
           </Col>
         </Row>
       </Form>

@@ -8,5 +8,5 @@ export const databaseURLs = {
   downloadHist: NGROKLINK + '/routes/downloadHistory',
   upload: NGROKLINK + '/routes/buyer',
   img: NGROKLINK + '/routes/seller',
-  rating: NGROKLINK +'/routes/rating',
+  rating: NGROKLINK + '/routes/rating'
 };

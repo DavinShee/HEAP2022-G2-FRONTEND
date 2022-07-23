@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react';
-import {
-  createSearchParams,
-  useNavigate,
-  useParams,
-  Link
-} from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { Button, Col, Container, Row, Form, InputGroup } from 'react-bootstrap';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import axios from 'axios';
-
 
 function Update() {
   const { id } = useParams();
@@ -34,13 +28,13 @@ function Update() {
         mod: data.data.note.modId,
         prof: data.data.note.profName,
         year: data.data.note.year,
-        image: data.data.note.image  
+        image: data.data.note.image
       });
-      setPreviewImage(data.data.note.image)
+      setPreviewImage(data.data.note.image);
     }
   }, [data]);
 
-  /*const [noteImage, setNoteImage] = useState();*/ 
+  /*const [noteImage, setNoteImage] = useState();*/
 
   const [validated, setValidated] = useState(false);
   const requestHeader = {
@@ -66,7 +60,6 @@ function Update() {
         profName: updateFormValues.prof,
         year: updateFormValues.year
       };
-
 
       console.log(databaseURLs.search + `/${id}`, JSON.stringify(updateData));
       axios.patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
@@ -98,8 +91,8 @@ function Update() {
   };
 
   const handleDelete = () => {
-    axios.delete(databaseURLs.search+`/${id}`)
-  }
+    axios.delete(databaseURLs.search + `/${id}`);
+  };
 
   return (
     <Container>
@@ -203,7 +196,6 @@ function Update() {
                 <Col>
                   <Form.Group controlId="validationCustom04">
                     <Form.Control
-                      
                       accept="image*"
                       type="file"
                       name="notes-img"
@@ -218,18 +210,26 @@ function Update() {
             </div>
             <br></br>
             <Row>
-            <div className="upload-item-3">
-              <Button variant className="upload-download-btn" type="submit">
-                Update
-              </Button>
-              <Button variant className='upload-download-btn1' onClick={handleDelete}>
-                Delete
-              </Button>
-            </div>
+              <div className="upload-item-3">
+                <Button variant className="upload-download-btn" type="submit">
+                  Update
+                </Button>
+                <Button
+                  variant
+                  className="upload-download-btn1"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+              </div>
             </Row>
           </Col>
           <Col>
-            <img className="previewimage" src={previewImage}></img>
+            <img
+              className="previewimage"
+              src={previewImage}
+              alt="previewImage"
+            ></img>
           </Col>
         </Row>
       </Form>

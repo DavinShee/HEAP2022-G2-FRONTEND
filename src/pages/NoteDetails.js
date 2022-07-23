@@ -18,7 +18,7 @@ import { databaseURLs } from '../URLConstants';
 import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
-import CardList2 from '../components/CardList2';
+import CardList from '../components/CardList';
 import axios from 'axios';
 import Comments from '../components/Comments';
 
@@ -203,7 +203,7 @@ function NoteDetails() {
               className="mb-3"
             >
               <Tab eventKey="related" title="Related" disabled={noRelated}>
-                <CardList2 notes={data.data.relatedNotes} />
+                <CardList notes={data.data.relatedNotes} />
               </Tab>
               <Tab eventKey="comments" title="Comments">
                 <Comments commentsArray={data.data.note.comments} user={user} />

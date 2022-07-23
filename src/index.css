@@ -106,8 +106,7 @@ body {
   justify-content: space-between;
   row-gap: 25px;
   column-gap: 50px;
-  grid-auto-columns:auto;
-  
+  grid-auto-columns: auto;
 }
 
 .card {
@@ -130,7 +129,7 @@ body {
   border-left: 10px solid rgb(194, 220, 255);
 }
 
-.filler-card{
+.filler-card {
   background-color: white;
 }
 
@@ -214,7 +213,7 @@ nav {
   background-color: rgba(226, 239, 255, 1);
 }
 
-.upload-btn{
+.upload-btn {
   background-color: white;
   color: black;
   font-style: normal;
@@ -223,11 +222,11 @@ nav {
   padding: 2px 12px;
   margin-left: 10px;
 }
-.nav-dropdown{
+.nav-dropdown {
   padding-left: 8px;
 }
 
-.home{
+.home {
   display: flex;
   justify-content: center;
   align-items: left;
@@ -235,23 +234,19 @@ nav {
   flex-direction: column;
 }
 
-
-.home-ctn2{
-
+.home-ctn2 {
   flex-direction: row;
   padding-left: 270px;
-
 }
-.home-1{
+.home-1 {
   font-size: 80px;
   padding-left: 300px;
 }
 
-.home-2{
+.home-2 {
   font-size: 30px;
   padding-left: 300px;
 }
-
 
 /*text : 'Notes' in homepage*/
 /*.home-1 {
@@ -272,20 +267,18 @@ nav {
   padding-left: 300px;
 */
 
-.recent-ctn{
+.recent-ctn {
   display: flex;
   width: 35%;
   justify-content: center;
-
 }
 
-.recently-uploaded{
+.recently-uploaded {
   font-size: 25px;
- /*margin-left: 150px;
+  /*margin-left: 150px;
   margin-top: 7px;
   margin-bottom: 10px;*/
 }
-
 
 .search-results-text {
   font-size: 25px;
@@ -294,7 +287,7 @@ nav {
   margin-bottom: 10px;
 }
 
-.pagination-bar{
+.pagination-bar {
   margin-left: 220px;
 }
 
@@ -339,63 +332,60 @@ nav {
   margin-top: auto;
 }
 
-.note-details{
-
+.note-details {
   display: flex;
   flex-direction: column;
 }
 
-.note-description{
-
-  min-height: 250px
-
+.note-description {
+  min-height: 250px;
 }
 
 .note-other-details {
   font-size: 20px;
 }
 
-.upload-form{
+.upload-form {
   display: flex;
   flex-direction: column;
 }
 
-.upload-item-1{
+.upload-item-1 {
   width: 400px;
 }
 
-.upload-item-2{
+.upload-item-2 {
   font-size: 20px;
   width: 400px;
 }
 
-.upload-item-3{
+.upload-item-3 {
   display: flex;
   justify-content: right;
   align-items: right;
   width: 80%;
 }
 
-.upload-download-btn{
+.upload-download-btn {
   color: black;
   background-color: rgb(194, 220, 255);
 }
 
-.upload-download-btn:hover{
-background-color: rgb(226, 239, 255);
+.upload-download-btn:hover {
+  background-color: rgb(226, 239, 255);
 }
 
-.upload-download-btn1{
+.upload-download-btn1 {
   color: black;
   background-color: rgb(194, 220, 255);
   margin-left: 10px;
 }
 
-.upload-download-btn1:hover{
-background-color: rgb(226, 239, 255);
+.upload-download-btn1:hover {
+  background-color: rgb(226, 239, 255);
 }
 
-.previewimage{
+.previewimage {
   min-width: 500px;
   min-height: 500px;
 }

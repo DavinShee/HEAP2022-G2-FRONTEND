@@ -71,7 +71,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
               onClick={handleSubmitSearch}
               type="submit"
             >
-            Search!
+              Search!
             </Button>
           </Form>
         </Modal.Body>
