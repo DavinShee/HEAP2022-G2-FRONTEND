@@ -17,6 +17,8 @@ import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 
 function Upload() {
+  const reader = new FileReader()
+
   const id = useContext(UserContext);
   const [previewImage, setPreviewImage] = useState(
     'https://www.asiaoceania.org/aogs2021/img/no_uploaded.png'
@@ -88,12 +90,29 @@ function Upload() {
     });
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setNoteImage((e.target.files[0]));
+    //reader.readAsArrayBuffer(noteImage)
+
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function() {
+    console.log(reader.result);
+    console.log(typeof(reader.result))
+    setNoteImage(reader.result)
+    var blob = URL.dataURLtoBlob(reader.result);
+    console.log(blob, new File([blob], "image.png", {
+      type: "image/png"
+    }));
+  };
+  reader.readAsDataURL(file);
+
   };
 
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
     console.log(noteImage);
+    console.log(typeof(previewImage))
+    console.log(reader)
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
@@ -205,7 +224,7 @@ function Upload() {
                   <Form.Group controlId="validationCustom04">
                     <Form.Control
                       required
-                      accept="application/pdf"
+                      accept="image"
                       type="file"
                       name="notes-img"
                       onChange={handleImgChange}
@@ -225,7 +244,7 @@ function Upload() {
             </div>
           </Col>
           <Col>
-            <img className="previewimage" src={previewImage}></img>
+            <img className="previewimage" src={noteImage}></img>
           </Col>
         </Row>
       </Form>
