@@ -34,15 +34,25 @@ const CommentForm = ({ user }) => {
   const submitPost = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(databaseURLs.rating , JSON.stringify({ noteId: id, rating: ratings}))
-    axios.post(databaseURLs.rating , JSON.stringify({ noteId: id, rating: ratings}),
-    { headers: requestHeader2 })
+    console.log(
+      databaseURLs.rating,
+      JSON.stringify({ noteId: id, rating: ratings })
+    );
+    axios.post(
+      databaseURLs.rating,
+      JSON.stringify({ noteId: id, rating: ratings }),
+      { headers: requestHeader2 }
+    );
 
     axios
       .patch(
         databaseURLs.search + `/${id}`,
         JSON.stringify({
-          comment: { fullname: user.fullname,email: 'test' , comment: userComment }
+          comment: {
+            fullname: user.fullname,
+            email: 'test',
+            comment: userComment
+          }
         }),
         { headers: requestHeader }
       )
@@ -57,22 +67,22 @@ const CommentForm = ({ user }) => {
   return (
     <div className="comment-form" style={{ margin: '5px' }}>
       <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button
-            type="button"
-            key={index}
-            className={index <= (hover || ratings) ? "on" : "off"}
-            onClick={() => setRatings(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(ratings)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })}
-    </div>
+        {[...Array(5)].map((star, index) => {
+          index += 1;
+          return (
+            <button
+              type="button"
+              key={index}
+              className={index <= (hover || ratings) ? 'on' : 'off'}
+              onClick={() => setRatings(index)}
+              onMouseEnter={() => setHover(index)}
+              onMouseLeave={() => setHover(ratings)}
+            >
+              <span className="star">&#9733;</span>
+            </button>
+          );
+        })}
+      </div>
       <Row>
         <Col xs="auto">
           <UserIcon name={user ? user.fullname : '-'} />

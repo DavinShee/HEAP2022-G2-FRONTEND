@@ -2,7 +2,7 @@ import { Container, Spinner } from 'react-bootstrap';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
-import CardList2 from '../components/CardList2';
+import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
 
 function Search() {
@@ -58,7 +58,7 @@ function Search() {
                   />
                 </div>
               </div>
-              <CardList2 notes={data.data.notes} />
+              <CardList notes={data.data.notes} />
             </>
           ) : (
             <>

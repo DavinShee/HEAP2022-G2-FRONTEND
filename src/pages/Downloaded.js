@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
-import CardList2 from '../components/CardList2';
+import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
 import { useSearchParams } from 'react-router-dom';
 import { Container, Spinner } from 'react-bootstrap';
@@ -40,7 +40,7 @@ const Downloaded = () => {
                   totalPosts={data.data.numberOfDownloadHistory}
                 />
               </div>
-              <CardList2 notes={data.data.downloadHistory} />
+              <CardList notes={data.data.downloadHistory} />
               <PaginationBar
                 activePage={pageNum}
                 pageSize={pageSize}

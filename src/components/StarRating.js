@@ -1,5 +1,5 @@
-import React from 'react'
-import { useContext, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 
 function StarRating() {
   const [rating, setRating] = useState(0);
@@ -12,7 +12,7 @@ function StarRating() {
           <button
             type="button"
             key={index}
-            className={index <= (hover || rating) ? "on" : "off"}
+            className={index <= (hover || rating) ? 'on' : 'off'}
             onClick={() => setRating(index)}
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
@@ -23,6 +23,6 @@ function StarRating() {
       })}
     </div>
   );
-};
+}
 
-export default StarRating
+export default StarRating;
