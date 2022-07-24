@@ -84,9 +84,11 @@ function Upload() {
       //  .then((response) => console.log(response));
 
       console.log(databaseURLs.upload, uploadData);
-      axios.post(databaseURLs.upload, uploadData, {
-        headers: requestHeader
-      });
+      axios
+        .post(databaseURLs.upload, uploadData, {
+          headers: requestHeader
+        })
+        .then((response) => console.log(response));
 
       event.preventDefault();
     }
@@ -104,8 +106,7 @@ function Upload() {
     var file = e.target.files[0];
     var reader = new FileReader();
     reader.onload = function () {
-
-      setNoteImage((reader.result));
+      setNoteImage(reader.result);
       var blob = URL.dataURLtoBlob(reader.result);
       console.log(
         blob,
@@ -122,8 +123,7 @@ function Upload() {
     let name = e.target.name;
     //setPreviewImage(lineconverter(noteImage));
     //console.log("This is preview image",previewImage)
-    console.log(noteImage)
-  
+    console.log(noteImage);
 
     setUploadFormValues((preValue) => {
       return {

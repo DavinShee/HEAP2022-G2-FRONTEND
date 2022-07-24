@@ -50,7 +50,7 @@ const CommentForm = ({ user }) => {
         JSON.stringify({
           comment: {
             fullname: user.fullname,
-            email: 'test',
+            email: 'test',   //todo
             comment: userComment
           }
         }),

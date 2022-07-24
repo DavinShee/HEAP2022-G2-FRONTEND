@@ -190,7 +190,7 @@ function NoteDetails() {
                 </div>
               </Col>
               <Col>
-                <DocumentPreviewCarousel imageURLArray={data.data.note.image} />
+                <DocumentPreviewCarousel imageURLArray={['https://res.cloudinary.com/ducf3tqph/image/upload/v1658644026/biincub1hgwixchnpmgd.pdf']} />
               </Col>
             </Row>
           </Container>
