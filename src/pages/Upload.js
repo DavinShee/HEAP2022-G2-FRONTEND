@@ -105,7 +105,7 @@ function Upload() {
     var reader = new FileReader();
     reader.onload = function () {
 
-      setNoteImage(lineconverter(reader.result));
+      setNoteImage((reader.result));
       var blob = URL.dataURLtoBlob(reader.result);
       console.log(
         blob,
@@ -114,7 +114,7 @@ function Upload() {
         })
       );
     };
-    reader.readAsArrayBuffer(file);
+    reader.readAsDataURL(file);
   };
 
   const handleChange = (e) => {
