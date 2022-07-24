@@ -9,7 +9,6 @@ const Comments = ({ commentsArray, user }) => {
   const [commentsPerPage] = useState(10);
   const lastCommentIndex = currentPage * commentsPerPage;
   const firstCommentIndex = lastCommentIndex - commentsPerPage;
-  console.log(commentsArray)
   const currentComments = commentsArray.slice(
     firstCommentIndex,
     lastCommentIndex
@@ -17,7 +16,7 @@ const Comments = ({ commentsArray, user }) => {
 
   return (
     <Container>
-      <CommentForm user={user} />
+      <CommentForm user={user} commentsArray={commentsArray}/>
       <PaginationPreloaded
         activePage={currentPage}
         pageSize={commentsPerPage}

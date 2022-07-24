@@ -31,6 +31,7 @@ function NoteDetails() {
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
   const [ratings, setRatings] = useState(0);
+  data&&data.data&&data.data.note&&console.log(data.data.note.url)
 
   useEffect(() => {
     if (ratingData && ratingData.data && ratingData.data.data) {
@@ -190,7 +191,7 @@ function NoteDetails() {
                 </div>
               </Col>
               <Col>
-                <DocumentPreviewCarousel imageURLArray={['https://res.cloudinary.com/ducf3tqph/image/upload/v1658644026/biincub1hgwixchnpmgd.pdf']} />
+                <DocumentPreviewCarousel imageURLArray={data.data.note.url} />
               </Col>
             </Row>
           </Container>

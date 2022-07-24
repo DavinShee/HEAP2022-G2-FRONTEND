@@ -4,15 +4,15 @@ import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
 const DocumentPreviewCarousel = (imageURLArray) => {
-  const url = 'https://cors-anywhere.herokuapp.com/' + imageURLArray;
+  const url = `https://cors-anywhere.herokuapp.com/${Object.values(imageURLArray)[0]}`;
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
   /*To Prevent right click on screen*/
-  document.addEventListener('contextmenu', (event) => {
-    event.preventDefault();
-  });
+  //document.addEventListener('contextmenu', (event) => {
+  //  event.preventDefault();
+  //});
 
   /*When document gets loaded successfully*/
   function onDocumentLoadSuccess({ numPages }) {

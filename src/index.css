@@ -403,3 +403,9 @@ button {
 .off {
   color: #ccc;
 }
+
+div.card-img-top.card-img > div > div > canvas {
+    width: 100% !important;
+    height: 200px !important;
+}
+

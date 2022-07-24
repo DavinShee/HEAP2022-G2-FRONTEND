@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import UserIcon from './UserIcon';
 
-const CommentForm = ({ user }) => {
+const CommentForm = ({ user, commentsArray }) => {
   if (!user) {
     user = null;
   }
@@ -15,7 +15,16 @@ const CommentForm = ({ user }) => {
   const { id } = useParams();
   const [userComment, setUserComment] = useState('');
   const textDisabled = !user;
-  const submitDisabled = !userComment;
+  let submitDisabled = true;
+
+  if (!user) {
+    submitDisabled = true;
+  } else if (commentsArray.some((comment) => comment.email === user.email)) {
+    console.log('comment alrd exists?');
+    submitDisabled = true;
+  } else {
+    submitDisabled = false;
+  }
 
   const requestHeader = {
     'Content-Type': 'application/json',
@@ -38,30 +47,34 @@ const CommentForm = ({ user }) => {
       databaseURLs.rating,
       JSON.stringify({ noteId: id, rating: ratings })
     );
-    axios.post(
-      databaseURLs.rating,
-      JSON.stringify({ noteId: id, rating: ratings }),
-      { headers: requestHeader2 }
-    );
+    if (!submitDisabled) {
+      axios.post(
+        databaseURLs.rating,
+        JSON.stringify({ noteId: id, rating: ratings }),
+        { headers: requestHeader2 }
+      );
 
-    axios
-      .patch(
-        databaseURLs.search + `/${id}`,
-        JSON.stringify({
-          comment: {
-            fullname: user.fullname,
-            email: 'test',   //todo
-            comment: userComment
-          }
-        }),
-        { headers: requestHeader }
-      )
-      .then((response) => {
-        window.location.reload(false);
-      })
-      .catch((error) => {
-        alert('Failed to add comment. Please try again later.');
-      });
+      axios
+        .patch(
+          databaseURLs.search + `/${id}`,
+          JSON.stringify({
+            comment: {
+              fullname: user.fullname,
+              email: user.email,
+              comment: userComment
+            }
+          }),
+          { headers: requestHeader }
+        )
+        .then((response) => {
+          window.location.reload(false);
+        })
+        .catch((error) => {
+          alert('Failed to add comment. Please try again later.');
+        });
+    } else {
+      alert('You sneaky bastard!');
+    }
   };
 
   return (

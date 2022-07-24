@@ -61,27 +61,6 @@ function Upload() {
         year: uploadFormValues.year
       };
 
-      const imgData = {
-        noteId: 'test2',
-        document: noteImage
-      };
-
-      /*console.log(databaseURLs.img, JSON.stringify(imgData));
-      axios.post(databaseURLs.img, JSON.stringify(imgData), {
-        headers: requestHeader
-      });*/
-      //let returnUrl;
-      //cloudinary.uploader
-      // .upload(previewImage, function (error, result) {
-      //    console.log(result, error);
-      //  })
-      //  .then(console.log('THIS IS WHAT WE WANT TO SEE', result));
-
-      //axios
-      //  .post('https://www.file.io', JSON.stringify({ file: noteImage }), {
-      //   headers: requestHeader
-      //  })
-      //  .then((response) => console.log(response));
 
       console.log(databaseURLs.upload, uploadData);
       axios
