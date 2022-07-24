@@ -215,7 +215,7 @@ function Upload() {
                   <Form.Group controlId="validationCustom04">
                     <Form.Control
                       required
-                      accept="image"
+                      accept="application/pdf"
                       type="file"
                       name="notes-img"
                       onChange={handleImgChange}
