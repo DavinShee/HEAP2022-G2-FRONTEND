@@ -15,14 +15,21 @@ import {
   Link
 } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
-import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
+//import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import axios from 'axios';
 import Comments from '../components/Comments';
+import { Worker } from '@react-pdf-viewer/core';
+import { Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { saveAs } from 'file-saver';
 
 function NoteDetails() {
+  //const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const { id } = useParams();
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
   const ratingData = useFetch(databaseURLs.rating + `/${id}`);
@@ -31,7 +38,7 @@ function NoteDetails() {
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
   const [ratings, setRatings] = useState(0);
-  data&&data.data&&data.data.note&&console.log(data.data.note.url)
+  //data&&data.data&&data.data.note&&console.log(data.data.note.image)
 
   useEffect(() => {
     if (ratingData && ratingData.data && ratingData.data.data) {
@@ -56,6 +63,7 @@ function NoteDetails() {
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     };
+    saveAs(data.data.note.url, 'Notes.pdf');
 
     axios
       .post(
@@ -174,7 +182,12 @@ function NoteDetails() {
                 </div>
                 <div className="button-or-login mt-auto ms-auto">
                   {uploader ? (
-                    <Button as={Link} to={`/update/${id}`}>
+                    <Button
+                      variant
+                      className="upload-download-btn"
+                      as={Link}
+                      to={`/update/${id}`}
+                    >
                       Edit
                     </Button>
                   ) : user ? (
@@ -191,7 +204,21 @@ function NoteDetails() {
                 </div>
               </Col>
               <Col>
-                <DocumentPreviewCarousel imageURLArray={data.data.note.url} />
+                {/* <DocumentPreviewCarousel imageURLArray={data.data.note.url} />  */}
+                <div
+                  className="viewer"
+                  style={{
+                    border: '1px solid rgba(0, 0, 0, 0.3)',
+                    height: '750px'
+                  }}
+                >
+                  <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                    <Viewer
+                      fileUrl={data.data.note.image}
+                      plugins={[]}
+                    ></Viewer>
+                  </Worker>
+                </div>
               </Col>
             </Row>
           </Container>

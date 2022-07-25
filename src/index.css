@@ -363,7 +363,14 @@ nav {
   display: flex;
   justify-content: right;
   align-items: right;
-  width: 80%;
+  width: 100%;
+}
+
+.upload-item-3-btn {
+  color: black;
+  background-color: rgb(194, 220, 255);
+  font-size: 20px;
+  padding: 10px 50px;
 }
 
 .upload-download-btn {
@@ -409,3 +416,12 @@ div.card-img-top.card-img > div > div > canvas {
     height: 200px !important;
 }
 
+.viewer{
+  background-color: #e4e4e4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}

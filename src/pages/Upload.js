@@ -4,32 +4,26 @@ import axios from 'axios';
 import { databaseURLs } from '../URLConstants';
 import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
-var lineconverter = require('arraybuffer-to-string');
-//const cloudinary = require('cloudinary').v2;
-//preview image ==> url.createobjecturl
-//noteimage ==> readAsDataURL
-//cloudinary.config({
-//  cloud_name: 'ducf3tqph',
-//  api_key: '123521522689914',
-//  api_secret: 'LeALjMRK1sgUXPiStB7v84oILe0',
-//  secure: true
-//});
+import { Worker } from '@react-pdf-viewer/core';
+import { Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { useNavigate } from "react-router-dom";
 
 function Upload() {
-  const reader = new FileReader();
-
+  const navigate=useNavigate();
   const id = useContext(UserContext);
-  const [previewImage, setPreviewImage] = useState(
-    'https://www.asiaoceania.org/aogs2021/img/no_uploaded.png'
-  );
-  const [noteImage, setNoteImage] = useState();
+  const [pdfFile, setPdfFile] = useState(null);
+  const [pdfError, setPdfError] = useState('');
   const [uploadFormValues, setUploadFormValues] = useState({
     description: '',
     mod: '',
     prof: '',
-    year: '',
-    image: ''
+    year: ''
   });
+
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   const requestHeader = {
     'Content-Type': 'application/json',
@@ -54,56 +48,46 @@ function Upload() {
         comments: [],
         description: uploadFormValues.description,
         email: id.user.email,
-        image: noteImage,
+        image: pdfFile,
         modId: uploadFormValues.mod,
         price: '5',
         profName: uploadFormValues.prof,
         year: uploadFormValues.year
       };
 
-
-      console.log(databaseURLs.upload, uploadData);
       axios
         .post(databaseURLs.upload, uploadData, {
           headers: requestHeader
         })
-        .then((response) => console.log(response));
+        .then(() => {navigate('/')})          //possible loading? 
+        .catch((error) => console.log(error)) //todo
 
       event.preventDefault();
     }
   };
 
   const handleImgChange = (e) => {
-    setUploadFormValues((preValue) => {
-      return {
-        ...preValue,
-        image: e.target.files[0]
-      };
-    });
-    //setPreviewImage(URL.createObjectURL(e.target.files[0]));
-
-    var file = e.target.files[0];
-    var reader = new FileReader();
-    reader.onload = function () {
-      setNoteImage(reader.result);
-      var blob = URL.dataURLtoBlob(reader.result);
-      console.log(
-        blob,
-        new File([blob], 'image.png', {
-          type: 'image/png'
-        })
-      );
-    };
-    reader.readAsDataURL(file);
+    const allowedFiles = ['application/pdf'];
+    var selectedFile = e.target.files[0];
+    if (selectedFile) {
+      if (selectedFile && allowedFiles.includes(selectedFile.type)) {
+        var reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = (e) => {
+          setPdfError('');
+          setPdfFile(e.target.result);
+        };
+      } else {
+        setPdfError('Not a valid pdf: Please select only PDF');
+      }
+    } else {
+      console.log('Please select a PDF');
+    }
   };
 
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
-    //setPreviewImage(lineconverter(noteImage));
-    //console.log("This is preview image",previewImage)
-    console.log(noteImage);
-
     setUploadFormValues((preValue) => {
       return {
         ...preValue,
@@ -209,7 +193,7 @@ function Upload() {
 
               <Row>
                 <Form.Label column lg={2}>
-                  Image:
+                  PDF:
                 </Form.Label>
                 <Col>
                   <Form.Group controlId="validationCustom04">
@@ -228,18 +212,35 @@ function Upload() {
               </Row>
             </div>
             <br></br>
-            <div className="upload-item-3">
-              <Button variant className="upload-download-btn" type="submit">
-                Upload
-              </Button>
-            </div>
           </Col>
           <Col>
-            <img
-              className="previewimage"
-              src={previewImage}
-              alt="previewImage"
-            ></img>
+            <Row>
+              <h5>Preview PDF</h5>
+              <div
+                className="viewer"
+                style={{
+                  border: '1px solid rgba(0, 0, 0, 0.3)',
+                  height: '750px'
+                }}
+              >
+                {pdfFile && (
+                  <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                    <Viewer
+                      fileUrl={pdfFile}
+                      plugins={[defaultLayoutPluginInstance]}
+                    ></Viewer>
+                  </Worker>
+                )}
+                {!pdfFile && <>No File is selected yet</>}
+              </div>
+            </Row>
+            <Row>
+              <div className="upload-item-3">
+                <Button variant className="upload-item-3-btn" type="submit">
+                  Upload
+                </Button>
+              </div>
+            </Row>
           </Col>
         </Row>
       </Form>
