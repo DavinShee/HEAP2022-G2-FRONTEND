@@ -98,7 +98,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
             handleShowLogin();
           }, 3000);
         })
-        .catch((error) => {
+        .catch((_error) => {
           setAlertDetails({
             variant: 'danger',
             message: ['Failed to signup, please try again later.']

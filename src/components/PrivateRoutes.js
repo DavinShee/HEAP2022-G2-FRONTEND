@@ -1,7 +1,6 @@
 // https://stackoverflow.com/questions/66289122/how-to-create-a-protected-route
 
 import { useState, useContext, useEffect } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
 import { Navigate, Outlet } from 'react-router-dom';
 import { UserContext } from './UserContext';
 
