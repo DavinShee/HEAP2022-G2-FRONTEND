@@ -38,7 +38,6 @@ function NoteDetails() {
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
   const [ratings, setRatings] = useState(0);
-  //data&&data.data&&data.data.note&&console.log(data.data.note.image)
 
   useEffect(() => {
     if (ratingData && ratingData.data && ratingData.data.data) {
@@ -176,7 +175,13 @@ function NoteDetails() {
                     </Row>
                     <Row>
                       <Col>Ratings:</Col>
-                      <Col>{Object.values(ratings)}/5</Col>
+                      <Col>
+                        {ratings.averageRating === 0 ? (
+                          <p>No ratings yet!</p>
+                        ) : (
+                          <p>{Object.values(ratings)} / 5</p>
+                        )}
+                      </Col>
                     </Row>
                   </div>
                 </div>

@@ -36,9 +36,9 @@ function App() {
             <Route path="/account" element={<PrivateRoutes />}>
               <Route path="/account/downloaded" element={<Downloaded />} />
               <Route path="/account/manage" element={<ManageAccount />} />
+              <Route path="/account/upload" element={<Upload />} />
             </Route>
             <Route path="/note/:id" element={<NoteDetails />} />
-            <Route path="/upload" element={<Upload />} />
             <Route path="/search" element={<Search />} />
             <Route path="/update/:id" element={<Update />} />
             <Route path="*" element={<ErrorPage />} />

@@ -83,7 +83,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
         .post(databaseURLs.signUp, JSON.stringify(signupData), {
           headers: requestHeader
         })
-        .then((response) => {
+        .then((_response) => {
           setAlertDetails({
             variant: 'success',
             message: [
@@ -98,10 +98,10 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
             handleShowLogin();
           }, 3000);
         })
-        .catch((error) => {
+        .catch((_error) => {
           setAlertDetails({
             variant: 'danger',
-            message: [error.response.data]
+            message: ['Failed to signup, please try again later.']
           });
           setShowAlert(true);
         });
@@ -110,7 +110,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
 
   return (
     <Modal
-      className="signup-form"
+      className="forms"
       show={showSignupModal}
       onHide={handleCloseSignup}
       centered
@@ -194,14 +194,16 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
               </FloatingLabel>
             </Col>
           </Row>
-          <Button
-            variant
-            className="signup-create-button"
-            type="submit"
-            disabled={submitDisabled}
-          >
-            Create!
-          </Button>
+          <Row>
+            <Button
+              variant
+              className="form-buttons"
+              type="submit"
+              disabled={submitDisabled}
+            >
+              Create!
+            </Button>
+          </Row>
         </Form>
         <br />
         Already have an account?{' '}
