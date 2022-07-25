@@ -1,5 +1,3 @@
-import { Carousel } from 'react-bootstrap';
-
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 

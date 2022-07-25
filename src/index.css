@@ -10,6 +10,16 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
 /* Modals */
 .modal-header {
   border-bottom: none;
@@ -39,59 +49,22 @@ body {
   font-size: 18px;
 }
 
-.signup-create-button {
+.form-buttons {
   border-radius: 10px;
   background-color: white;
   font-size: 20px;
-  padding: 8px 25px;
   margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 464px;
 }
 
-.signup-create-button:hover {
+.form-buttons:hover {
   background-color: rgb(194, 220, 255);
 }
 
-.login-login-button {
-  border-radius: 10px;
-  background-color: white;
-  font-size: 20px;
-  padding: 8px 25px;
-}
-
-.login-login-button:hover {
-  background-color: rgb(194, 220, 255);
-}
-
-.link-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-.login-form .modal-content {
+.forms .modal-content {
   background-color: rgba(226, 239, 255, 1);
-}
-.search-modal .modal-content {
-  background-color: rgba(226, 239, 255, 1);
-}
-
-.search-form-button {
-  border-radius: 10px;
-  background-color: white;
-  font-size: 20px;
-  padding: 8px 25px;
-}
-
-.search-form-button:hover {
-  background-color: rgb(194, 220, 255);
-}
-
-.signup-form .modal-content {
-  background: rgba(226, 239, 255, 1);
 }
 
 /* Search Results */
@@ -148,6 +121,9 @@ nav {
 
 .color-nav {
   background-color: rgb(194, 220, 255);
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 .push {
@@ -181,50 +157,26 @@ nav {
   padding-right: 13px;
 }
 
-.first-dropdown-box {
-  background-color: rgba(226, 239, 255, 1);
+.dropdown-item {
+  background-color: rgba(226, 239, 255, 0);
   border-radius: 10px;
   font-size: 20px;
-  margin-right: 130px;
-  margin-top: 3px;
+  margin-right: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.dropdown-box {
-  background-color: rgba(226, 239, 255, 1);
-  border-radius: 10px;
-  margin-top: 11px;
-  font-size: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 3px;
-}
-
-.dropdown-box:hover {
+.dropdown-item:hover {
   background-color: rgba(226, 239, 255, 1);
 }
 
-.first-dropdown-box:hover {
-  background-color: rgba(226, 239, 255, 1);
-}
-
-.nav-upload-btn:hover {
-  background-color: rgba(226, 239, 255, 1);
-}
-
-.upload-btn {
-  background-color: white;
-  color: black;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  padding: 2px 12px;
-  margin-left: 10px;
-}
 .nav-dropdown {
   padding-left: 8px;
 }
+
+/* Homepage */
 
 .home {
   display: flex;
@@ -247,25 +199,6 @@ nav {
   font-size: 30px;
   padding-left: 300px;
 }
-
-/*text : 'Notes' in homepage*/
-/*.home-1 {
-  padding-top: 300px;
-  padding-left: 300px;
-  font-style: Bold;
-  font-size: 80px;
-  line-height: 96px;
-  line-height: 100%;
-}
-
-/*text : 'Your one-stop marketplace to all things great.' in homepage */
-/*.home-2 {
-  font-style: Bold;
-  font-size: 30px;
-  line-height: 36px;
-  line-height: 100%;
-  padding-left: 300px;
-*/
 
 .recent-ctn {
   display: flex;
@@ -405,7 +338,6 @@ button {
 }
 
 div.card-img-top.card-img > div > div > canvas {
-    width: 100% !important;
-    height: 200px !important;
+  width: 100% !important;
+  height: 200px !important;
 }
-

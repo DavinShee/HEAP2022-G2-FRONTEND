@@ -95,7 +95,7 @@ const ManageAccount = () => {
           console.log(error.response.data);
           setAlertDetails({
             variant: 'danger',
-            message: [error.response.data]
+            message: ['Failed to change password. Please try again later.']
           });
           setShowAlert(true);
         });

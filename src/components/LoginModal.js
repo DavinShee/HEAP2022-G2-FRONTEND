@@ -46,7 +46,6 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
         headers: requestHeader
       })
       .then((response) => {
-        // console.log('Success=======>', response);
         localStorage.setItem(
           'user',
           JSON.stringify({
@@ -56,7 +55,7 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
         );
         window.location.reload(false);
       })
-      .catch((error) => {
+      .catch((_error) => {
         setAlertDetails({
           variant: 'danger',
           message: 'Invalid email address or password. Please try again.'
@@ -67,7 +66,7 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
 
   return (
     <Modal
-      className="login-form"
+      className="forms"
       show={showLoginModal}
       onHide={handleCloseLogin}
       centered
@@ -97,7 +96,7 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
               name="password"
             />
           </FloatingLabel>
-          <Button variant className="login-login-button" type="submit">
+          <Button variant className="form-buttons" type="submit">
             Login!
           </Button>
         </Form>

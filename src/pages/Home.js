@@ -78,9 +78,9 @@ const Home = () => {
             </>
           ) : (
             <>
-              Be the first to share your notes! Upload{' '}
+              Be the first to share your notes! Upload now by clicking{' '}
               <Link to="/upload" style={{ textDecoration: 'none' }}>
-                here
+                this
               </Link>
               !
             </>
@@ -89,7 +89,6 @@ const Home = () => {
       )}
     </div>
   );
-  // console.log(data.data.notes);
 
   return <>{user ? loggedInHome : loggedOutHome}</>;
 };

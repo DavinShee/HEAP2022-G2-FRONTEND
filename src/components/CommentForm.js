@@ -14,14 +14,14 @@ const CommentForm = ({ user, commentsArray }) => {
   const [hover, setHover] = useState(0);
   const { id } = useParams();
   const [userComment, setUserComment] = useState('');
-  const textDisabled = !user;
+  let textDisabled = !user;
   let submitDisabled = true;
 
   if (!user) {
     submitDisabled = true;
   } else if (commentsArray.some((comment) => comment.email === user.email)) {
-    console.log('comment alrd exists?');
     submitDisabled = true;
+    textDisabled = true;
   } else {
     submitDisabled = false;
   }
@@ -47,7 +47,9 @@ const CommentForm = ({ user, commentsArray }) => {
       databaseURLs.rating,
       JSON.stringify({ noteId: id, rating: ratings })
     );
-    if (!submitDisabled) {
+    if (ratings === 0 || !userComment) {
+      alert('Please rate the note and leave a comment!');
+    } else if (!submitDisabled) {
       axios.post(
         databaseURLs.rating,
         JSON.stringify({ noteId: id, rating: ratings }),
@@ -66,10 +68,10 @@ const CommentForm = ({ user, commentsArray }) => {
           }),
           { headers: requestHeader }
         )
-        .then((response) => {
+        .then((_response) => {
           window.location.reload(false);
         })
-        .catch((error) => {
+        .catch((_error) => {
           alert('Failed to add comment. Please try again later.');
         });
     } else {
@@ -80,10 +82,11 @@ const CommentForm = ({ user, commentsArray }) => {
   return (
     <div className="comment-form" style={{ margin: '5px' }}>
       <div className="star-rating">
-        {[...Array(5)].map((star, index) => {
+        {[...Array(5)].map((_star, index) => {
           index += 1;
           return (
             <button
+              disabled={submitDisabled}
               type="button"
               key={index}
               className={index <= (hover || ratings) ? 'on' : 'off'}

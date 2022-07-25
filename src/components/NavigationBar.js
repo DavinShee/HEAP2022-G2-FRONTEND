@@ -48,7 +48,12 @@ function NavigationBar() {
   let loggedIn = (
     <>
       <Nav.Item>
-        <Button variant="" className="upload-btn" as={Link} to="/upload">
+        <Button
+          variant=""
+          className="navbar-btn"
+          as={Link}
+          to="/account/upload"
+        >
           Upload
         </Button>
       </Nav.Item>
@@ -58,31 +63,18 @@ function NavigationBar() {
         id="nav-dropdown"
         align="end"
       >
-        <NavDropdown.Item
-          className="first-dropdown-box"
-          as={Link}
-          to="/account/manage"
-        >
+        <NavDropdown.Item as={Link} to="/account/manage">
           Change Password
         </NavDropdown.Item>
-        <NavDropdown.Item
-          className="dropdown-box"
-          as={Link}
-          to="/account/downloaded"
-        >
+        <NavDropdown.Item as={Link} to="/account/downloaded">
           Download History
         </NavDropdown.Item>
         {user && user.fullname && user.email && (
-          <NavDropdown.Item
-            className="dropdown-box"
-            as={Link}
-            to={`/search?email=${user.email}`}
-          >
+          <NavDropdown.Item as={Link} to={`/search?email=${user.email}`}>
             My Listings
           </NavDropdown.Item>
         )}
         <NavDropdown.Item
-          className="dropdown-box"
           onClick={() => {
             window.localStorage.removeItem('user');
             window.location.reload(false);
@@ -97,7 +89,7 @@ function NavigationBar() {
   return (
     <>
       <Navbar className="color-nav" fixed="top">
-        <Container>
+        <Container style={{ maxWidth: '100%' }}>
           <Navbar.Brand as={Link} to="/">
             <div className="brand-text">NotesNow</div>
           </Navbar.Brand>

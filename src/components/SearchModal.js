@@ -30,7 +30,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
   return (
     <>
       <Modal
-        className="search-modal"
+        className="forms"
         show={showSearchModal}
         onHide={handleCloseSearch}
         centered
@@ -67,7 +67,7 @@ const SearchModal = ({ showSearchModal, setSearchModal }) => {
             </FloatingLabel>
             <Button
               variant=""
-              className="search-form-button"
+              className="form-buttons"
               onClick={handleSubmitSearch}
               type="submit"
             >
