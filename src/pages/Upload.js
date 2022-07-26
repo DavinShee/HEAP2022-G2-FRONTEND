@@ -20,11 +20,11 @@ function Upload() {
     description: '',
     mod: '',
     prof: '',
-    year: ''
+    year: '2022'
   });
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
-
+  
   const requestHeader = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -118,12 +118,13 @@ function Upload() {
                 rows={3}
                 required
                 name="description"
-                placeholder="Description"
+                placeholder="Description (400 Characters Max)"
                 value={uploadFormValues.description}
                 onChange={handleChange}
+                isInvalid={uploadFormValues.description.length > 400}
               />
               <Form.Control.Feedback type="invalid">
-                <h5>Type something here lah...</h5>
+                <h5>Type something...but don't type too much!</h5>
               </Form.Control.Feedback>
             </Form.Group>
             <br></br>
@@ -164,7 +165,7 @@ function Upload() {
                         onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
-                        Please choose the prof.
+                        Please indicate your prof.
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
@@ -180,6 +181,7 @@ function Upload() {
                       required
                       type="number"
                       name="year"
+                      isInvalid={uploadFormValues.year <= 2009 || 2023 <= uploadFormValues.year}
                       placeholder="2010-2022"
                       value={uploadFormValues.year}
                       onChange={handleChange}
@@ -205,7 +207,7 @@ function Upload() {
                       onChange={handleImgChange}
                     />
                     <Form.Control.Feedback type="invalid">
-                      Please attach your notes.
+                      Please attach your PDF.
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>

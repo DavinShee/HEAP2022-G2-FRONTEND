@@ -198,7 +198,7 @@ function Update() {
             </div>
             <br></br>
             <Row>
-              <div className="upload-item-3">
+              <div className="update-delete-item-3">
                 <Button variant className="update-btn" type="submit">
                   Update
                 </Button>
