@@ -85,34 +85,35 @@ const CommentForm = ({ user, commentsArray }) => {
         <Col xs="auto">
           <UserIcon name={user ? user.fullname : '-'} />
         </Col>
-
         <Col style={{ paddingLeft: '0px' }}>
           <Row style={{ paddingLeft: '12px' }}>
             <Col style={{ paddingLeft: '0px' }}>
               {user ? user.fullname : 'Login/Signup to post a comment!'}
             </Col>
-            <Col style={{ textAlign: 'right' }}>
-              <div className="star-rating">
-                {[...Array(5)].map((_star, index) => {
-                  index += 1;
-                  return (
-                    <button
-                      disabled={submitDisabled}
-                      type="button"
-                      key={index}
-                      className={index <= (hover || ratings) ? 'on' : 'off'}
-                      onClick={() => setRatings(index)}
-                      onMouseEnter={() => setHover(index)}
-                      onMouseLeave={() => setHover(ratings)}
-                    >
-                      <span className="star">&#9733;</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </Col>
           </Row>
           <Form onSubmit={submitPost}>
+            <Row>
+              <Col style={{ textAlign: 'left' }}>
+                <div className="star-rating">
+                  {[...Array(5)].map((_star, index) => {
+                    index += 1;
+                    return (
+                      <button
+                        disabled={submitDisabled}
+                        type="button"
+                        key={index}
+                        className={index <= (hover || ratings) ? 'on' : 'off'}
+                        onClick={() => setRatings(index)}
+                        onMouseEnter={() => setHover(index)}
+                        onMouseLeave={() => setHover(ratings)}
+                      >
+                        <span className="star">&#9733;</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <Form.Group>

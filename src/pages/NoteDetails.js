@@ -27,6 +27,7 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { saveAs } from 'file-saver';
 import { Rating } from 'react-simple-star-rating';
+import downloadIcon from '../images/downloadIcon.png';
 
 function NoteDetails() {
   //const defaultLayoutPluginInstance = defaultLayoutPlugin();
@@ -37,7 +38,6 @@ function NoteDetails() {
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     if (data && data.data && data.data.relatedNotes.length === 0) {
       setKey('comments');
@@ -61,13 +61,12 @@ function NoteDetails() {
       data.data.note.url,
       `${data.data.note.modId}-${data.data.note.authorName}.pdf`
     );
-
     axios
       .post(
         databaseURLs.downloadHist,
         JSON.stringify({
           email: user.email,
-          note: data.data.note
+          noteId: data.data.note._id
         }),
         { headers: requestHeader }
       )
@@ -78,7 +77,7 @@ function NoteDetails() {
         console.log(postError);
       });
 
-      axios
+    axios
       .patch(
         databaseURLs.search + `/${id}`,
         JSON.stringify({
@@ -92,7 +91,6 @@ function NoteDetails() {
       .catch((postError) => {
         console.log(postError);
       });
-
   };
   console.log(data);
 
@@ -122,8 +120,42 @@ function NoteDetails() {
             <Row>
               <Col xs={4} className="d-flex flex-column">
                 <div className="note-details">
+                  <Row style={{ marginBottom: '2rem' }}>
+                    <Col
+                      style={{ textAlign: 'center', verticalAlign: 'center' }}
+                    >
+                      {!data.data.note.rating ? (
+                        <h2>No ratings yet!</h2>
+                      ) : (
+                        <div
+                          className="ratings"
+                          // style={{ textAlign: 'center' }}
+                        >
+                          <h2>{data.data.note.rating.toFixed(1)} out of 5</h2>
+                          <Rating
+                            initialValue={data.data.note.rating}
+                            allowHalfIcon={true}
+                            readonly
+                            size={'25px'}
+                          />
+                        </div>
+                      )}
+                    </Col>
+                    <Col
+                      style={{ textAlign: 'center', verticalAlign: 'center' }}
+                    >
+                      <h2>
+                      <img
+                        src="https://cdn-icons.flaticon.com/png/128/4007/premium/4007698.png?token=exp=1658850986~hmac=22caeed498c93f5e50504ab7f3b66e23"
+                        alt="downloadIcon"
+                        height="45px"
+                      /> &nbsp;
+
+                      {data.data.note.download}
+                      </h2>
+                    </Col>
+                  </Row>
                   <Row>
-                    <h3>Description</h3>
                     <div className="note-description">
                       <p>{data.data.note.description}</p>
                     </div>
@@ -190,8 +222,12 @@ function NoteDetails() {
                       <Col>Year: </Col>
                       <Col>{data.data.note.year}</Col>
                     </Row>
-                    <br />
                     <Row>
+                      <Col>Downloads:</Col>
+                      <Col>{data.data.note.download}</Col>
+                    </Row>
+                    <br />
+                    {/* <Row>
                       <Col>
                         {!data.data.note.rating ? (
                           <>No ratings yet!</>
@@ -212,7 +248,7 @@ function NoteDetails() {
                           </div>
                         )}
                       </Col>
-                    </Row>
+                    </Row> */}
                   </div>
                 </div>
                 <div className="button-or-login mt-auto ms-auto">
@@ -239,21 +275,25 @@ function NoteDetails() {
                 </div>
               </Col>
               <Col>
-                {/* <DocumentPreviewCarousel imageURLArray={data.data.note.url} />  */}
-                <div
-                  className="viewer"
-                  style={{
-                    border: '1px solid rgba(0, 0, 0, 0.3)',
-                    height: '750px'
-                  }}
-                >
-                  <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-                    <Viewer
-                      fileUrl={data.data.note.image}
-                      plugins={[]}
-                    ></Viewer>
-                  </Worker>
-                </div>
+                <Row>
+                  <div className='pdfText-notesdetail'>
+                  <h5>PDF Preview</h5>
+                  </div>
+                  <div
+                    className="viewer2"
+                    style={{
+                      border: '1px solid rgba(0, 0, 0, 0.3)',
+                      height: '750px'
+                    }}
+                  >
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                      <Viewer
+                        fileUrl={data.data.note.image}
+                        plugins={[]}
+                      ></Viewer>
+                    </Worker>
+                  </div>
+                </Row>
               </Col>
             </Row>
           </Container>
@@ -268,7 +308,7 @@ function NoteDetails() {
               <Tab eventKey="related" title="Related" disabled={noRelated}>
                 <CardList notes={data.data.relatedNotes} />
               </Tab>
-              <Tab eventKey="comments" title="Comments">
+              <Tab eventKey="comments" title="Reviews">
                 <Comments commentsArray={data.data.note.comments} user={user} />
               </Tab>
             </Tabs>

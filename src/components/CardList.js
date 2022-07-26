@@ -43,6 +43,8 @@ const CardList = ({ notes }) => {
                 Author: {note.authorName}
                 <br />
                 Year: {note.year}
+                <br />
+                Downloads: {note.download}
               </Card.Text>
             </Card.Body>
           </Card>

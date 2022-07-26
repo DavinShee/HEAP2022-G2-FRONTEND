@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
+import notFound from '../images/notFound.png';
 
 function Search() {
   const location = useLocation();
@@ -64,8 +65,9 @@ function Search() {
           ) : (
             <>
               <h1>
+                <img src={notFound} /> {/*todo*/}
                 No results! Upload now by clicking{' '}
-                <Link to="/upload" style={{ textDecoration: 'none' }}>
+                <Link to="/account/upload" style={{ textDecoration: 'none' }}>
                   this
                 </Link>
                 !

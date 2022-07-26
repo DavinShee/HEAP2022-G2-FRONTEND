@@ -215,7 +215,6 @@ function Upload() {
                 </Col>
               </Row>
             </div>
-            <br></br>
           </Col>
           <Col>
             <Row>

@@ -77,11 +77,13 @@ const Home = () => {
             </>
           ) : (
             <>
-              Be the first to share your notes! Upload now by clicking{' '}
-              <Link to="/upload" style={{ textDecoration: 'none' }}>
-                this
-              </Link>
-              !
+              <h1>
+                Be the first to share your notes! Upload now by clicking{' '}
+                <Link to="/account/upload" style={{ textDecoration: 'none' }}>
+                  this
+                </Link>
+                !
+              </h1>
             </>
           )}
         </>
