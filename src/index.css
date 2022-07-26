@@ -296,22 +296,65 @@ nav {
   display: flex;
   justify-content: right;
   align-items: right;
+  padding-top: 385px;
   width: 100%;
+
+  
 }
 
 .upload-item-3-btn {
   color: black;
   background-color: rgb(194, 220, 255);
-  font-size: 20px;
-  padding: 10px 50px;
+  font-size: 30px;
+  padding: 0px 30px;
 }
 
-.upload-download-btn {
+.edit-btn {
   color: black;
   background-color: rgb(194, 220, 255);
+  padding: 0px 50px; 
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
-.upload-download-btn:hover {
+.edit-btn:hover {
+  background-color: rgb(226, 239, 255);
+}
+
+.download-btn {
+  color: black;
+  background-color: rgb(194, 220, 255);
+  padding: 0px 10px; 
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.download-btn:hover {
+  background-color: rgb(226, 239, 255);
+}
+
+.update-btn {
+  color: black;
+  background-color: rgb(194, 220, 255);
+  padding: 0px 27px; 
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.update-btn:hover {
+  background-color: rgb(226, 239, 255);
+}
+
+.delete-btn {
+  color: black;
+  background-color: rgb(194, 220, 255);
+  padding: 0px 30px; 
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.delete-btn:hover {
   background-color: rgb(226, 239, 255);
 }
 

@@ -23,7 +23,6 @@ import axios from 'axios';
 import Comments from '../components/Comments';
 import { Worker } from '@react-pdf-viewer/core';
 import { Viewer } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { saveAs } from 'file-saver';
@@ -39,6 +38,7 @@ function NoteDetails() {
   const navigate = useNavigate();
   const [ratings, setRatings] = useState(0);
 
+  
   useEffect(() => {
     if (ratingData && ratingData.data && ratingData.data.data) {
       setRatings(ratingData.data.data);
@@ -79,6 +79,22 @@ function NoteDetails() {
       .catch((postError) => {
         console.log(postError);
       });
+
+      axios
+      .patch(
+        databaseURLs.search + `/${id}`,
+        JSON.stringify({
+          increaseDownload: true
+        }),
+        { headers: requestHeader }
+      )
+      .then((postResponse) => {
+        console.log(postResponse);
+      })
+      .catch((postError) => {
+        console.log(postError);
+      });
+
   };
 
   return (
@@ -189,7 +205,7 @@ function NoteDetails() {
                   {uploader ? (
                     <Button
                       variant
-                      className="upload-download-btn"
+                      className="edit-btn"
                       as={Link}
                       to={`/update/${id}`}
                     >
@@ -198,7 +214,7 @@ function NoteDetails() {
                   ) : user ? (
                     <Button
                       variant
-                      className="upload-download-btn"
+                      className="download-btn"
                       onClick={handleDownload}
                     >
                       Download

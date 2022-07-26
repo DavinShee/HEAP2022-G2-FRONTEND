@@ -11,7 +11,6 @@ import SignupModal from '../components/SignupModal';
 const Home = () => {
   const { data, loading, error } = useFetch(databaseURLs.search);
   const { user } = useContext(UserContext);
-
   const [showSignupModal, setSignupModal] = useState(false);
   const handleShowSignup = () => setSignupModal(true);
   const [showLoginModal, setLoginModal] = useState(false);

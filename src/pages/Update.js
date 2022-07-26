@@ -5,8 +5,15 @@ import { Button, Col, Container, Row, Form, InputGroup } from 'react-bootstrap';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import axios from 'axios';
+import { Worker } from '@react-pdf-viewer/core';
+import { Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { useNavigate } from 'react-router-dom';
 
 function Update() {
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const { id } = useParams();
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
   const [updateFormValues, setUpdateFormValues] = useState({
@@ -30,7 +37,7 @@ function Update() {
         year: data.data.note.year,
         image: data.data.note.image
       });
-      setPreviewImage(data.data.note.image);
+      setPreviewImage(data.data.note.url);
     }
   }, [data]);
 
@@ -188,48 +195,35 @@ function Update() {
                   </Form.Group>
                 </Col>
               </Row>
-
-              <Row>
-                <Form.Label column lg={2}>
-                  Image:
-                </Form.Label>
-                <Col>
-                  <Form.Group controlId="validationCustom04">
-                    <Form.Control
-                      accept="image*"
-                      type="file"
-                      name="notes-img"
-                      onChange={handleImgChange}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please attach your notes.
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-              </Row>
             </div>
             <br></br>
             <Row>
               <div className="upload-item-3">
-                <Button variant className="upload-download-btn" type="submit">
+                <Button variant className="update-btn" type="submit">
                   Update
                 </Button>
-                <Button
-                  variant
-                  className="upload-download-btn1"
-                  onClick={handleDelete}
-                >
+
+                <Button variant className="delete-btn" onClick={handleDelete}>
                   Delete
                 </Button>
               </div>
             </Row>
           </Col>
           <Col>
-            <img
-              className="previewimage"
-              src={previewImage}
-              alt="previewImage"
-            ></img>
+            <div
+              className="viewer"
+              style={{
+                border: '1px solid rgba(0, 0, 0, 0.3)',
+                height: '750px'
+              }}
+            >
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                <Viewer
+                  fileUrl={previewImage}
+                  plugins={[defaultLayoutPluginInstance]}
+                ></Viewer>
+              </Worker>
+            </div>
           </Col>
         </Row>
       </Form>
