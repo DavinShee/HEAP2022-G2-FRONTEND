@@ -1,5 +1,5 @@
 import { Container, Spinner } from 'react-bootstrap';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
@@ -19,7 +19,6 @@ function Search() {
   const { data, loading, error } = useFetch(
     databaseURLs.search + location.search
   );
-  console.log(data);
 
   let details = [];
   query.forEach((item) => {
@@ -31,6 +30,8 @@ function Search() {
     details.length > 0
       ? 'Search results for ' + details.join(', ')
       : 'Search results';
+
+  console.log(data);
 
   return (
     <div className="search-results">
@@ -62,7 +63,13 @@ function Search() {
             </>
           ) : (
             <>
-              <h1>No results</h1>
+              <h1>
+                No results! Upload now by clicking{' '}
+                <Link to="/upload" style={{ textDecoration: 'none' }}>
+                  this
+                </Link>
+                !
+              </h1>
             </>
           )}
         </>

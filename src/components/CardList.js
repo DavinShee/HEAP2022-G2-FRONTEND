@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Card, Container } from 'react-bootstrap';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { Rating } from 'react-simple-star-rating';
 
 const CardList = ({ notes }) => {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
   return (
     <Container>
       <div className="card-list">
@@ -24,6 +26,16 @@ const CardList = ({ notes }) => {
               </Document>
             </div>
             <Card.Body className="card-textbox">
+              {!note.rating ? (
+                <>No ratings yet!</>
+              ) : (
+                <Rating
+                  initialValue={note.rating}
+                  allowHalfIcon={true}
+                  readonly
+                  size={'15px'}
+                />
+              )}
               <Card.Title>Module: {note.modId}</Card.Title>
               <Card.Text>
                 Professor: {note.profName}

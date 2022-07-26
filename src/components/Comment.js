@@ -12,13 +12,10 @@ const Comment = ({ commentDetails }) => {
           <UserIcon name={commentDetails.fullname} />
         </Col>
         <Col>
-          <Row>{commentDetails.fullname}</Row>
-          <Row>{commentDate}</Row>
-          <Row>
-            Comments:
-            <br />
-            {commentDetails.comment}
+          <Row style={{ fontWeight: 'bold' }}>
+            {commentDetails.fullname} &nbsp;&nbsp;&nbsp;{commentDate}
           </Row>
+          <Row>{commentDetails.comment}</Row>
         </Col>
       </Row>
     </div>

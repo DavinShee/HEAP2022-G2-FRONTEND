@@ -16,8 +16,6 @@ const Downloaded = () => {
     databaseURLs.downloadHist + `/${user.email}?page-num=${pageNum}`
   );
 
-  console.log(data);
-
   return (
     <div className="downloaded-notes">
       {loading && (

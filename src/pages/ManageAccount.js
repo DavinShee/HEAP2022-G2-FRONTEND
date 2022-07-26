@@ -77,8 +77,7 @@ const ManageAccount = () => {
           }),
           { headers: requestHeader }
         )
-        .then((response) => {
-          console.log(response);
+        .then((_response) => {
           setAlertDetails({
             variant: 'success',
             message: [
@@ -91,8 +90,7 @@ const ManageAccount = () => {
             navigate({ pathname: '/' });
           }, 3000);
         })
-        .catch((error) => {
-          console.log(error.response.data);
+        .catch((_error) => {
           setAlertDetails({
             variant: 'danger',
             message: ['Failed to change password. Please try again later.']

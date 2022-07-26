@@ -16,15 +16,13 @@ const Comments = ({ commentsArray, user }) => {
 
   return (
     <Container>
-      <CommentForm user={user} commentsArray={commentsArray}/>
-      <PaginationPreloaded
-        activePage={currentPage}
-        pageSize={commentsPerPage}
-        setCurrentPage={setCurrentPage}
-        totalComments={commentsArray.length}
-      />
+      <CommentForm user={user} commentsArray={commentsArray} />
+      <hr />
       {currentComments.map((comment, index) => (
-        <Comment key={index} commentDetails={comment} />
+        <>
+          <Comment key={index} commentDetails={comment} />
+          {index !== currentComments.length - 1 ? <hr /> : <></>}
+        </>
       ))}
       <PaginationPreloaded
         activePage={currentPage}

@@ -9,10 +9,10 @@ import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Upload() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const id = useContext(UserContext);
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfError, setPdfError] = useState('');
@@ -59,8 +59,10 @@ function Upload() {
         .post(databaseURLs.upload, uploadData, {
           headers: requestHeader
         })
-        .then(() => {navigate('/')})          //possible loading? 
-        .catch((error) => console.log(error)) //todo
+        .then(() => {
+          navigate('/');
+        }) //possible loading?
+        .catch((error) => console.log(error)); //todo
 
       event.preventDefault();
     }

@@ -11,6 +11,7 @@ import Downloaded from './pages/Downloaded';
 import ManageAccount from './pages/ManageAccount';
 import PrivateRoutes from './components/PrivateRoutes';
 import Update from './pages/Update';
+import TestPage from './pages/TestPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ function App() {
           <NavigationBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/test" element={<TestPage />} />
             <Route path="/account" element={<PrivateRoutes />}>
               <Route path="/account/downloaded" element={<Downloaded />} />
               <Route path="/account/manage" element={<ManageAccount />} />

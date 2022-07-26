@@ -26,29 +26,24 @@ import { Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { saveAs } from 'file-saver';
+import { Rating } from 'react-simple-star-rating';
 
 function NoteDetails() {
   //const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const { id } = useParams();
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
-  const ratingData = useFetch(databaseURLs.rating + `/${id}`);
   const { user } = useContext(UserContext);
   const [key, setKey] = useState('related');
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
-  const [ratings, setRatings] = useState(0);
 
   
   useEffect(() => {
-    if (ratingData && ratingData.data && ratingData.data.data) {
-      setRatings(ratingData.data.data);
-    }
-
     if (data && data.data && data.data.relatedNotes.length === 0) {
       setKey('comments');
       setNoRelated(true);
     }
-  }, [data, ratingData]);
+  }, [data]);
 
   let uploader = false;
   if (user && user.email && data && data.data && data.data.note) {
@@ -62,7 +57,10 @@ function NoteDetails() {
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     };
-    saveAs(data.data.note.url, 'Notes.pdf');
+    saveAs(
+      data.data.note.url,
+      `${data.data.note.modId}-${data.data.note.authorName}.pdf`
+    );
 
     axios
       .post(
@@ -96,6 +94,7 @@ function NoteDetails() {
       });
 
   };
+  console.log(data);
 
   return (
     <div className="note-details">
@@ -123,10 +122,12 @@ function NoteDetails() {
             <Row>
               <Col xs={4} className="d-flex flex-column">
                 <div className="note-details">
-                  <div className="note-description">
+                  <Row>
                     <h3>Description</h3>
-                    <p>{data.data.note.description}</p>
-                  </div>
+                    <div className="note-description">
+                      <p>{data.data.note.description}</p>
+                    </div>
+                  </Row>
                   <div className="note-other-details">
                     <Row>
                       <Col>Module: </Col>
@@ -189,13 +190,26 @@ function NoteDetails() {
                       <Col>Year: </Col>
                       <Col>{data.data.note.year}</Col>
                     </Row>
+                    <br />
                     <Row>
-                      <Col>Ratings:</Col>
                       <Col>
-                        {ratings.averageRating === 0 ? (
-                          <p>No ratings yet!</p>
+                        {!data.data.note.rating ? (
+                          <>No ratings yet!</>
                         ) : (
-                          <p>{Object.values(ratings)} / 5</p>
+                          <div
+                            className="ratings"
+                            style={{ textAlign: 'center' }}
+                          >
+                            {data.data.note.rating.toFixed(1)} out of 5
+                            <br />
+                            <Rating
+                              initialValue={data.data.note.rating}
+                              allowHalfIcon={true}
+                              readonly
+                              size={'18px'}
+                              fillColor={'black'}
+                            />
+                          </div>
                         )}
                       </Col>
                     </Row>

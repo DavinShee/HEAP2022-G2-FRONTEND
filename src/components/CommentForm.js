@@ -43,10 +43,10 @@ const CommentForm = ({ user, commentsArray }) => {
   const submitPost = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(
-      databaseURLs.rating,
-      JSON.stringify({ noteId: id, rating: ratings })
-    );
+    // console.log(
+    //   databaseURLs.rating,
+    //   JSON.stringify({ noteId: id, rating: ratings })
+    // );
     if (ratings === 0 || !userComment) {
       alert('Please rate the note and leave a comment!');
     } else if (!submitDisabled) {
@@ -81,46 +81,58 @@ const CommentForm = ({ user, commentsArray }) => {
 
   return (
     <div className="comment-form" style={{ margin: '5px' }}>
-      <div className="star-rating">
-        {[...Array(5)].map((_star, index) => {
-          index += 1;
-          return (
-            <button
-              disabled={submitDisabled}
-              type="button"
-              key={index}
-              className={index <= (hover || ratings) ? 'on' : 'off'}
-              onClick={() => setRatings(index)}
-              onMouseEnter={() => setHover(index)}
-              onMouseLeave={() => setHover(ratings)}
-            >
-              <span className="star">&#9733;</span>
-            </button>
-          );
-        })}
-      </div>
       <Row>
         <Col xs="auto">
           <UserIcon name={user ? user.fullname : '-'} />
         </Col>
-        <Col>
-          <Row>{user ? user.fullname : 'Login/Signup to post a comment!'}</Row>
+
+        <Col style={{ paddingLeft: '0px' }}>
+          <Row style={{ paddingLeft: '12px' }}>
+            <Col style={{ paddingLeft: '0px' }}>
+              {user ? user.fullname : 'Login/Signup to post a comment!'}
+            </Col>
+            <Col style={{ textAlign: 'right' }}>
+              <div className="star-rating">
+                {[...Array(5)].map((_star, index) => {
+                  index += 1;
+                  return (
+                    <button
+                      disabled={submitDisabled}
+                      type="button"
+                      key={index}
+                      className={index <= (hover || ratings) ? 'on' : 'off'}
+                      onClick={() => setRatings(index)}
+                      onMouseEnter={() => setHover(index)}
+                      onMouseLeave={() => setHover(ratings)}
+                    >
+                      <span className="star">&#9733;</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </Col>
+          </Row>
           <Form onSubmit={submitPost}>
-            <Form.Group>
-              <Form.Label>Comments:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                disabled={textDisabled}
-                value={userComment}
-                onChange={(event) => {
-                  setUserComment(event.target.value);
-                }}
-              />
-            </Form.Group>
-            <Button disabled={submitDisabled} type="submit">
-              Post
-            </Button>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Control
+                    as="textarea"
+                    rows={2}
+                    disabled={textDisabled}
+                    value={userComment}
+                    onChange={(event) => {
+                      setUserComment(event.target.value);
+                    }}
+                  />
+                </Form.Group>
+              </Col>
+              <Col xs={1}>
+                <Button disabled={submitDisabled} type="submit">
+                  Post
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Col>
       </Row>

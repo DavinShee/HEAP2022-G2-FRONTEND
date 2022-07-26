@@ -271,7 +271,7 @@ nav {
 }
 
 .note-description {
-  min-height: 250px;
+  min-height: 80px;
 }
 
 .note-other-details {
@@ -406,7 +406,7 @@ div.card-img-top.card-img > div > div > canvas {
   height: 200px !important;
 }
 
-.viewer{
+.viewer {
   background-color: #e4e4e4;
   display: flex;
   justify-content: center;
