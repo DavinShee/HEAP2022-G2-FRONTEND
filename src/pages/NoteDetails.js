@@ -164,7 +164,9 @@ function NoteDetails() {
                   </Row>
                   <Row>
                     <div className="note-description">
-                      <p>{data.data.note.description}</p>
+                      <p style={{ wordBreak: 'break-words' }}>
+                        {data.data.note.description}
+                      </p>
                     </div>
                   </Row>
                   <div className="note-other-details">

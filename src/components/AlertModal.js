@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const AlertModal = ({ alertMsg, sendHomePage, setShowAlert, showAlert }) => {
   const navigate = useNavigate();
   const handleClose = () => {
-    setShowAlert(false)
-  }
-  console.log(sendHomePage)
-  console.log(showAlert)
+    setShowAlert(false);
+  };
+  console.log(sendHomePage);
+  console.log(showAlert);
 
   if (sendHomePage) {
     setTimeout(() => {
@@ -28,14 +28,9 @@ const AlertModal = ({ alertMsg, sendHomePage, setShowAlert, showAlert }) => {
       </Modal>
     );
   }
-  if (sendHomePage===false) {
+  if (sendHomePage === false) {
     return (
-      <Modal
-        className="forms"
-        show={showAlert}
-        centered
-        onHide={handleClose}
-      >
+      <Modal className="forms" show={showAlert} centered onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div className="loading-text-container">
