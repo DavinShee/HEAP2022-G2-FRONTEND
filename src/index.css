@@ -72,6 +72,9 @@ body {
   margin: 0 5%;
 }
 
+
+
+
 /* Cards */
 .card-list {
   display: flex;
@@ -127,7 +130,7 @@ nav {
 }
 
 .push {
-  padding-top: 75px;
+  padding-top: 85px;
 }
 
 .navbar-btn {
@@ -215,13 +218,9 @@ nav {
 
 .search-results-text {
   font-size: 25px;
-  margin-left: 190px;
   margin-bottom: 10px;
 }
 
-.pagination-bar {
-  margin-left: 220px;
-}
 
 /*NotesNow*/
 .brand-text {

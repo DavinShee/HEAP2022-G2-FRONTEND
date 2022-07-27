@@ -100,7 +100,7 @@ function NavigationBar() {
 
   return (
     <>
-      <Navbar className="color-nav" fixed="top">
+      <Navbar className="color-nav" sticky="top">
         <Container style={{ maxWidth: '100%' }}>
           <Navbar.Brand as={Link} to="/">
             <div className="brand-text">NotesNow</div>

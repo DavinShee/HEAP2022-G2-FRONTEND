@@ -27,11 +27,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className="push"></div>
       <Router>
         <UserContext.Provider value={providerValue}>
           <NavigationBar />
-          <Container style={{marginTop:'20px'}}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/account" element={<PrivateRoutes />}>
@@ -43,7 +41,6 @@ function App() {
               <Route path="/update/:id" element={<Update />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
-          </Container>
         </UserContext.Provider>
       </Router>
     </div>
