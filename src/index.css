@@ -72,9 +72,6 @@ body {
   margin: 0 5%;
 }
 
-
-
-
 /* Cards */
 .card-list {
   display: flex;
@@ -213,7 +210,6 @@ nav {
   font-size: 25px;
   margin-bottom: 10px;
 }
-
 
 /*NotesNow*/
 .brand-text {
@@ -443,16 +439,22 @@ div.card-img-top.card-img > div > div > canvas {
   animation: spinner 1.5s linear infinite;
 }
 
-.spinner-container{
+.spinner-container {
   display: flex;
   justify-content: center;
-
 }
 
-.loading-text-container{
+.loading-text-container {
   padding-top: 10px;
 }
-.bars-container{
+.bars-container {
   display: flex;
   justify-content: center;
+}
+
+.card-img {
+  border-radius: 10px 10px 0 0;
+  border-top: 10px solid rgb(194, 220, 255);
+  border-right: 10px solid rgb(194, 220, 255);
+  border-left: 10px solid rgb(194, 220, 255);
 }

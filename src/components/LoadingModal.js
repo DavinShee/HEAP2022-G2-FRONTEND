@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 
-const LoadingModal = ({ loadingPage }) => {
+const LoadingModal = ({ LoadingModal }) => {
   return (
-    <Modal className="forms" show={loadingPage} centered>
+    <Modal className="forms" show={LoadingModal} centered>
       <Modal.Body>
         <div className="loading-text-container">
           <h2>Please wait as we process your request.</h2>
