@@ -28,8 +28,6 @@ const Home = () => {
         backgroundSize: '750px',
         height: '85vh',
         marginRight: '100px',
-        backgroundAttachment:'fixed'
-
       }}
     >
       <div className="home-ctn1">

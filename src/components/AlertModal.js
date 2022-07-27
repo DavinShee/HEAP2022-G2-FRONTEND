@@ -7,8 +7,6 @@ const AlertModal = ({ alertMsg, sendHomePage, setShowAlert, showAlert }) => {
   const handleClose = () => {
     setShowAlert(false);
   };
-  console.log(sendHomePage);
-  console.log(showAlert);
 
   if (sendHomePage) {
     setTimeout(() => {
