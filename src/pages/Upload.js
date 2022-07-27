@@ -10,21 +10,26 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { useNavigate } from 'react-router-dom';
+import LoadingModal from '../components/LoadingModal';
+import AlertModal from '../components/AlertModal';
 
 function Upload() {
   const navigate = useNavigate();
   const id = useContext(UserContext);
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfError, setPdfError] = useState('');
+  const [loadingPage, setLoadingPage] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [sendHomePage, setSendHomePage] = useState('');
   const [uploadFormValues, setUploadFormValues] = useState({
     description: '',
     mod: '',
     prof: '',
     year: '2022'
   });
-
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
-  
+
   const requestHeader = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -54,15 +59,23 @@ function Upload() {
         profName: uploadFormValues.prof,
         year: uploadFormValues.year
       };
-
+      setLoadingPage(true);
       axios
         .post(databaseURLs.upload, uploadData, {
           headers: requestHeader
         })
         .then(() => {
-          navigate('/');
-        }) //possible loading?
-        .catch((error) => console.log(error)); //todo
+          setLoadingPage(false);
+          setSendHomePage(true);
+          setShowAlert(true);
+          setAlertMsg('Your notes has been posted!');
+        })
+        .catch((error) => {
+          setLoadingPage(false);
+          setShowAlert(true);
+          setSendHomePage(false);
+          setAlertMsg('Your upload has failed.');
+        });
 
       event.preventDefault();
     }
@@ -183,7 +196,10 @@ function Upload() {
                       required
                       type="number"
                       name="year"
-                      isInvalid={uploadFormValues.year <= 2009 || 2023 <= uploadFormValues.year}
+                      isInvalid={
+                        uploadFormValues.year <= 2009 ||
+                        2023 <= uploadFormValues.year
+                      }
                       placeholder="2010-2022"
                       value={uploadFormValues.year}
                       onChange={handleChange}
@@ -247,6 +263,13 @@ function Upload() {
           </Col>
         </Row>
       </Form>
+      <LoadingModal LoadingModal={loadingPage} />
+      <AlertModal
+        alertMsg={alertMsg}
+        sendHomePage={sendHomePage}
+        setShowAlert={setShowAlert}
+        showAlert={showAlert}
+      />
     </Container>
   );
 }

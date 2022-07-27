@@ -10,10 +10,15 @@ import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import { useNavigate } from 'react-router-dom';
+import LoadingModal from '../components/LoadingModal';
+import AlertModal from '../components/AlertModal';
 
 function Update() {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  const [loadingPage, setLoadingPage] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [sendHomePage, setSendHomePage] = useState('');
   const { id } = useParams();
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
   const [updateFormValues, setUpdateFormValues] = useState({
@@ -41,8 +46,6 @@ function Update() {
     }
   }, [data]);
 
-  /*const [noteImage, setNoteImage] = useState();*/
-
   const [validated, setValidated] = useState(false);
   const requestHeader = {
     'Content-Type': 'application/json',
@@ -68,10 +71,24 @@ function Update() {
         year: updateFormValues.year
       };
 
-      console.log(databaseURLs.search + `/${id}`, JSON.stringify(updateData));
-      axios.patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
-        headers: requestHeader
-      });
+      setLoadingPage(true);
+      axios
+        .patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
+          headers: requestHeader
+        })
+        .then(() => {
+          setLoadingPage(false);
+          setSendHomePage(true);
+          setShowAlert(true);
+          setAlertMsg('Your notes has been updated!');
+        })
+        .catch((error) => {
+          setLoadingPage(false);
+          setShowAlert(true);
+          setSendHomePage(false);
+          setAlertMsg('Your update has failed.');
+        });
+
       event.preventDefault();
     }
   };
@@ -98,7 +115,21 @@ function Update() {
   };
 
   const handleDelete = () => {
-    axios.delete(databaseURLs.search + `/${id}`);
+    setLoadingPage(true);
+    axios
+      .delete(databaseURLs.search + `/${id}`)
+      .then(() => {
+        setLoadingPage(false);
+        setSendHomePage(true);
+        setShowAlert(true);
+        setAlertMsg('Your notes has been deleted!');
+      })
+      .catch((error) => {
+        setLoadingPage(false);
+        setShowAlert(true);
+        setSendHomePage(false);
+        setAlertMsg('Your delete request has failed.');
+      });
   };
 
   return (
@@ -126,9 +157,10 @@ function Update() {
                 placeholder="Description"
                 value={updateFormValues.description}
                 onChange={handleChange}
+                isInvalid={updateFormValues.description.length > 400}
               />
               <Form.Control.Feedback type="invalid">
-                <h5>Type something here lah...</h5>
+                <h5>Type something...but don't type too much!</h5>
               </Form.Control.Feedback>
             </Form.Group>
             <br></br>
@@ -188,6 +220,10 @@ function Update() {
                       placeholder="2010-2022"
                       value={updateFormValues.year}
                       onChange={handleChange}
+                      isInvalid={
+                        updateFormValues.year <= 2009 ||
+                        2023 <= updateFormValues.year
+                      }
                     />
                     <Form.Control.Feedback type="invalid">
                       Please provide a valid year.
@@ -227,6 +263,13 @@ function Update() {
           </Col>
         </Row>
       </Form>
+      <LoadingModal LoadingModal={loadingPage} />
+      <AlertModal
+        alertMsg={alertMsg}
+        sendHomePage={sendHomePage}
+        setShowAlert={setShowAlert}
+        showAlert={showAlert}
+      />
     </Container>
   );
 }
