@@ -37,64 +37,67 @@ function Search() {
       style={{
         backgroundImage: `url(${signinbackground})`,
         backgroundSize: '750px',
+        height: '100vh',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       }}
     >
-    <div className="search-results">
-      <Container>
-        {loading && (
-          <div className="loading">
-            <Spinner animation="grow" variant="info" />
-          </div>
-        )}
-        {error && <div>{error}</div>}
-        {data && !loading && !error && (
-          <>
-            {data && data.data && data.data.notes.length ? (
-              <>
-                <div className="search-header">
-                  <div className="search-results-text">
-                    {searchDetails} ({data.data.numberOfNotes})
-                  </div>
-                  <div className="pagination-bar">
-                    <PaginationBar
-                      activePage={pageNum}
-                      pageSize={pageSize}
-                      totalPosts={data.data.numberOfNotes}
-                    />
-                  </div>
-                </div>
-                <CardList notes={data.data.notes} />
-              </>
-            ) : (
-              <>
-                <h1>
-                  <Row>
-                    <Col xs={3}>
-                      <img
-                        src="https://cdn-icons-png.flaticon.com/512/7465/7465691.png"
-                        alt="No Results!"
-                        height={'100px'}
+      <div className="search-results">
+        <Container>
+          {loading && (
+            <div className="loading">
+              <Spinner animation="grow" variant="info" />
+            </div>
+          )}
+          {error && <div>{error}</div>}
+          {data && !loading && !error && (
+            <>
+              {data && data.data && data.data.notes.length ? (
+                <>
+                  <div className="search-header">
+                    <div className="search-results-text">
+                      {searchDetails} ({data.data.numberOfNotes})
+                    </div>
+                    <div className="pagination-bar">
+                      <PaginationBar
+                        activePage={pageNum}
+                        pageSize={pageSize}
+                        totalPosts={data.data.numberOfNotes}
                       />
-                    </Col>
-                    <Col>
-                      No results! <br />
-                      Upload now by clicking{' '}
-                      <Link
-                        to="/account/upload"
-                        style={{ textDecoration: 'none' }}
-                      >
-                        this
-                      </Link>
-                      !
-                    </Col>
-                  </Row>
-                </h1>
-              </>
-            )}
-          </>
-        )}
-      </Container>
-    </div>
+                    </div>
+                  </div>
+                  <CardList notes={data.data.notes} />
+                </>
+              ) : (
+                <>
+                  <h1>
+                    <Row>
+                      <Col xs={3}>
+                        <img
+                          src="https://cdn-icons-png.flaticon.com/512/7465/7465691.png"
+                          alt="No Results!"
+                          height={'100px'}
+                        />
+                      </Col>
+                      <Col>
+                        No results! <br />
+                        Upload now by clicking{' '}
+                        <Link
+                          to="/account/upload"
+                          style={{ textDecoration: 'none' }}
+                        >
+                          this
+                        </Link>
+                        !
+                      </Col>
+                    </Row>
+                  </h1>
+                </>
+              )}
+            </>
+          )}
+        </Container>
+      </div>
     </div>
   );
 }

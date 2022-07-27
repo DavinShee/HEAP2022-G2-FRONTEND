@@ -26,9 +26,10 @@ const Home = () => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right',
         backgroundSize: '750px',
-        // backgroundSize:'contain', //tochoose
         height: '85vh',
-        marginRight: '100px'
+        marginRight: '100px',
+        backgroundAttachment:'fixed'
+
       }}
     >
       <div className="home-ctn1">
@@ -67,7 +68,10 @@ const Home = () => {
     <div
       style={{
         backgroundImage: `url(${signinbackground})`,
-        backgroundSize: '750px'
+        backgroundSize: '750px',
+        height:'100vh',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize:'cover'
       }}
     >
       <div className="search-results">
@@ -106,7 +110,7 @@ const Home = () => {
                       />
                     </Col>
                     <Col>
-                      No results! <br />
+                      Be the first to share your notes!<br />
                       Upload now by clicking{' '}
                       <Link
                         to="/account/upload"

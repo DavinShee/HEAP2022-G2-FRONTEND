@@ -6,6 +6,7 @@ import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
 import useFetch from '../hooks/useFetch';
+import signinbackground from '../images/Search_bg.png';
 
 const Downloaded = () => {
   const { user } = useContext(UserContext);
@@ -17,6 +18,15 @@ const Downloaded = () => {
   );
 
   return (
+    <div
+      style={{
+        backgroundImage: `url(${signinbackground})`,
+        backgroundSize: '750px',
+        height:'92vh',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize:'cover'
+      }}
+    >
     <div className="downloaded-notes">
       {loading && (
         <div className="loading">
@@ -48,6 +58,7 @@ const Downloaded = () => {
           )}
         </>
       )}
+    </div>
     </div>
   );
 };

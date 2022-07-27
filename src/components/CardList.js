@@ -50,10 +50,6 @@ const CardList = ({ notes }) => {
             </Card.Body>
           </Card>
         ))}
-        <Card
-          className="filler-card"
-          style={{ width: '20rem', textDecoration: 'none' }}
-        ></Card>
       </div>
     </Container>
   );

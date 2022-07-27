@@ -229,10 +229,6 @@ function NoteDetails() {
                       <Col>Year: </Col>
                       <Col>{data.data.note.year}</Col>
                     </Row>
-                    <Row>
-                      <Col>Downloads:</Col>
-                      <Col>{data.data.note.download}</Col>
-                    </Row>
                     <br />
                   </div>
                 </div>
