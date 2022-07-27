@@ -6,6 +6,7 @@ import SearchModal from './SearchModal';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import UserIcon from './UserIcon';
+import ChangePasswordModal from './ChangePasswordModal';
 
 function NavigationBar() {
   const { user } = useContext(UserContext);
@@ -17,6 +18,8 @@ function NavigationBar() {
 
   const [showLoginModal, setLoginModal] = useState(false);
   const handleShowLogin = () => setLoginModal(true);
+
+  const [showChangePasswordModal, setChangePasswordModal] = useState(false);
 
   let loggedOut = (
     <>
@@ -63,7 +66,13 @@ function NavigationBar() {
         id="nav-dropdown"
         align="end"
       >
-        <NavDropdown.Item as={Link} to="/account/manage">
+        <NavDropdown.Item
+          as={Button}
+          className="mx-0"
+          onClick={() => {
+            setChangePasswordModal(true);
+          }}
+        >
           Change Password
         </NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/account/downloaded">
@@ -79,10 +88,16 @@ function NavigationBar() {
             window.localStorage.removeItem('user');
             window.location.reload(false);
           }}
+          className='mb-0'
         >
           Logout
         </NavDropdown.Item>
       </NavDropdown>
+
+      <ChangePasswordModal
+        showChangePasswordModal={showChangePasswordModal}
+        setChangePasswordModal={setChangePasswordModal}
+      />
     </>
   );
 

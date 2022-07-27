@@ -141,17 +141,15 @@ function NoteDetails() {
                         </div>
                       )}
                     </Col>
-                    <Col
-                      style={{ textAlign: 'center', verticalAlign: 'center' }}
-                    >
+                    <Col style={{ textAlign: 'center' }}>
                       <h2>
-                      <img
-                        src="https://cdn-icons.flaticon.com/png/128/4007/premium/4007698.png?token=exp=1658850986~hmac=22caeed498c93f5e50504ab7f3b66e23"
-                        alt="downloadIcon"
-                        height="45px"
-                      /> &nbsp;
-
-                      {data.data.note.download}
+                        <img
+                          src="https://cdn-icons-png.flaticon.com/512/8083/8083574.png"
+                          alt="downloadIcon"
+                          height="45px"
+                        />{' '}
+                        &nbsp;
+                        {data.data.note.download}
                       </h2>
                     </Col>
                   </Row>
@@ -276,8 +274,8 @@ function NoteDetails() {
               </Col>
               <Col>
                 <Row>
-                  <div className='pdfText-notesdetail'>
-                  <h5>PDF Preview</h5>
+                  <div className="pdfText-notesdetail">
+                    <h5>PDF Preview</h5>
                   </div>
                   <div
                     className="viewer2"

@@ -298,8 +298,6 @@ nav {
   align-items: right;
   padding-top: 385px;
   width: 100%;
-
-  
 }
 
 .update-delete-3-btn {
@@ -326,7 +324,7 @@ nav {
 .edit-btn {
   color: black;
   background-color: rgb(194, 220, 255);
-  padding: 0px 50px; 
+  padding: 0px 50px;
   font-size: 30px;
   margin-bottom: 10px;
 }
@@ -338,7 +336,7 @@ nav {
 .download-btn {
   color: black;
   background-color: rgb(194, 220, 255);
-  padding: 0px 10px; 
+  padding: 0px 10px;
   font-size: 30px;
   margin-bottom: 10px;
 }
@@ -350,7 +348,7 @@ nav {
 .update-btn {
   color: black;
   background-color: rgb(194, 220, 255);
-  padding: 0px 27px; 
+  padding: 0px 27px;
   font-size: 30px;
   margin-bottom: 10px;
   margin-right: 10px;
@@ -363,7 +361,7 @@ nav {
 .delete-btn {
   color: black;
   background-color: rgb(194, 220, 255);
-  padding: 0px 30px; 
+  padding: 0px 30px;
   font-size: 30px;
   margin-bottom: 10px;
 }
@@ -424,15 +422,15 @@ div.card-img-top.card-img > div > div > canvas {
   height: 800px;
   overflow-y: auto;
   margin-bottom: 10px;
-  width:75%;
+  width: 75%;
   margin-left: 100px;
 }
 
-.react-pdf__Page__textContent {
-  z-index: -999999;
+.card .react-pdf__Page__textContent {
+  display: none;
 }
 
-.pdfText-notesdetail{
+.pdfText-notesdetail {
   margin-left: 100px;
-  display:flex
+  display: flex;
 }
