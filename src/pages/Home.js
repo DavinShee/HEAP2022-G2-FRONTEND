@@ -66,7 +66,6 @@ const Home = () => {
   let loggedInHome = (
     <div
       style={{
-        backgroundColor: 'red',
         backgroundImage: `url(${signinbackground})`,
         backgroundSize: '750px',
       }}

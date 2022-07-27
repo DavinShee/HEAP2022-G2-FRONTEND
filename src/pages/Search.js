@@ -38,7 +38,6 @@ function Search() {
   return (
     <div
       style={{
-        backgroundColor: 'red',
         backgroundImage: `url(${signinbackground})`,
         backgroundSize: '750px',
       }}
