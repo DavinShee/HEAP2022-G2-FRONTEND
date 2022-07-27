@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import UserIcon from './UserIcon';
@@ -14,6 +14,12 @@ const CommentForm = ({ user, commentsArray }) => {
   const [hover, setHover] = useState(0);
   const { id } = useParams();
   const [userComment, setUserComment] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertDetails, setAlertDetails] = useState({
+    variant: '',
+    message: ['']
+  });
+
   let textDisabled = !user;
   let submitDisabled = true;
 
@@ -43,12 +49,12 @@ const CommentForm = ({ user, commentsArray }) => {
   const submitPost = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    // console.log(
-    //   databaseURLs.rating,
-    //   JSON.stringify({ noteId: id, rating: ratings })
-    // );
     if (ratings === 0 || !userComment) {
-      alert('Please rate the note and leave a comment!');
+      setAlertDetails({
+        variant: 'danger',
+        message: ['Please rate the note AND leave a review :)']
+      });
+      setShowAlert(true);
     } else if (!submitDisabled) {
       axios.post(
         databaseURLs.rating,
@@ -72,10 +78,18 @@ const CommentForm = ({ user, commentsArray }) => {
           window.location.reload(false);
         })
         .catch((_error) => {
-          alert('Failed to add comment. Please try again later.');
+          setAlertDetails({
+            variant: 'danger',
+            message: ['Failed to add comment. Please try again later.']
+          });
+          setShowAlert(true);
         });
     } else {
-      alert('You sneaky bastard!');
+      setAlertDetails({
+        variant: 'danger',
+        message: ['You sneaky bastard!']
+      });
+      setShowAlert(true);
     }
   };
 
@@ -94,6 +108,21 @@ const CommentForm = ({ user, commentsArray }) => {
           <Form onSubmit={submitPost}>
             <Row>
               <Col style={{ textAlign: 'left' }}>
+                {showAlert && (
+                  <Alert
+                    key={alertDetails.variant}
+                    variant={alertDetails.variant}
+                  >
+                    {alertDetails.message.map((line, index) => (
+                      <p
+                        style={{ marginBottom: 0, textAlign: 'center' }}
+                        key={index}
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </Alert>
+                )}
                 <div className="star-rating">
                   {[...Array(5)].map((_star, index) => {
                     index += 1;

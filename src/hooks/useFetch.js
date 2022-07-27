@@ -22,7 +22,7 @@ const useFetch = (queryURL) => {
         })
         .catch((err) => {
           if (err.name === 'CanceledError' || err.name === 'AbortError') {
-            console.log('Canceled/Aborted');
+            console.log('Fetch Canceled/Aborted');
           } else {
             // auto catches network / connection error
             setError(err.message);

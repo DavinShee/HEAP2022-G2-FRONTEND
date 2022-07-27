@@ -68,7 +68,6 @@ function Update() {
         year: updateFormValues.year
       };
 
-      console.log(databaseURLs.search + `/${id}`, JSON.stringify(updateData));
       axios.patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
         headers: requestHeader
       });

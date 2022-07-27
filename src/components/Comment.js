@@ -5,6 +5,7 @@ const Comment = ({ commentDetails }) => {
   const commentDate = new Date(commentDetails.dateTime).toLocaleDateString(
     'en-SG'
   );
+
   return (
     <div className="comment" style={{ margin: '5px' }}>
       <Row>

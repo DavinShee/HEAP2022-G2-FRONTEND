@@ -1,10 +1,9 @@
-import { Container, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useSearchParams, useLocation, Link } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
-import notFound from '../images/notFound.png';
+import useFetch from '../hooks/useFetch';
 
 function Search() {
   const location = useLocation();
@@ -32,50 +31,62 @@ function Search() {
       ? 'Search results for ' + details.join(', ')
       : 'Search results';
 
-  console.log(data);
-
   return (
     <div className="search-results">
-      {loading && (
-        <div className="loading">
-          <Container>
+      <Container>
+        {loading && (
+          <div className="loading">
             <Spinner animation="grow" variant="info" />
-          </Container>
-        </div>
-      )}
-      {error && <div>{error}</div>}
-      {data && !loading && !error && (
-        <>
-          {data && data.data && data.data.notes.length ? (
-            <>
-              <div className="search-header">
-                <div className="search-results-text">
-                  {searchDetails} ({data.data.numberOfNotes})
+          </div>
+        )}
+        {error && <div>{error}</div>}
+        {data && !loading && !error && (
+          <>
+            {data && data.data && data.data.notes.length ? (
+              <>
+                <div className="search-header">
+                  <div className="search-results-text">
+                    {searchDetails} ({data.data.numberOfNotes})
+                  </div>
+                  <div className="pagination-bar">
+                    <PaginationBar
+                      activePage={pageNum}
+                      pageSize={pageSize}
+                      totalPosts={data.data.numberOfNotes}
+                    />
+                  </div>
                 </div>
-                <div className="pagination-bar">
-                  <PaginationBar
-                    activePage={pageNum}
-                    pageSize={pageSize}
-                    totalPosts={data.data.numberOfNotes}
-                  />
-                </div>
-              </div>
-              <CardList notes={data.data.notes} />
-            </>
-          ) : (
-            <>
-              <h1>
-                <img src={notFound} /> {/*todo*/}
-                No results! Upload now by clicking{' '}
-                <Link to="/account/upload" style={{ textDecoration: 'none' }}>
-                  this
-                </Link>
-                !
-              </h1>
-            </>
-          )}
-        </>
-      )}
+                <CardList notes={data.data.notes} />
+              </>
+            ) : (
+              <>
+                <h1>
+                  <Row>
+                    <Col xs={3}>
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/7465/7465691.png"
+                        alt="No Results!"
+                        height={'100px'}
+                      />
+                    </Col>
+                    <Col>
+                      No results! <br />
+                      Upload now by clicking{' '}
+                      <Link
+                        to="/account/upload"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        this
+                      </Link>
+                      !
+                    </Col>
+                  </Row>
+                </h1>
+              </>
+            )}
+          </>
+        )}
+      </Container>
     </div>
   );
 }

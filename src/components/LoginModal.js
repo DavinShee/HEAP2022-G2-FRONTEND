@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Alert, Button, FloatingLabel, Form, Modal } from 'react-bootstrap';
-import axios from 'axios';
 import { databaseURLs } from '../URLConstants';
 
 const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {

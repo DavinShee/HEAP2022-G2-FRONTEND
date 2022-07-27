@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { UserContext } from '../components/UserContext';
-import useFetch from '../hooks/useFetch';
+import { Container, Spinner } from 'react-bootstrap';
+import { useSearchParams } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
+import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
-import { useSearchParams } from 'react-router-dom';
-import { Container, Spinner } from 'react-bootstrap';
+import useFetch from '../hooks/useFetch';
 
 const Downloaded = () => {
   const { user } = useContext(UserContext);

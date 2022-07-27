@@ -2,24 +2,21 @@ import { useState, useContext } from 'react';
 import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
-import SearchModal from './SearchModal';
+import ChangePasswordModal from './ChangePasswordModal';
 import LoginModal from './LoginModal';
+import SearchModal from './SearchModal';
 import SignupModal from './SignupModal';
 import UserIcon from './UserIcon';
-import ChangePasswordModal from './ChangePasswordModal';
 
 function NavigationBar() {
   const { user } = useContext(UserContext);
-
   const [showSearchModal, setSearchModal] = useState(false);
-
   const [showSignupModal, setSignupModal] = useState(false);
-  const handleShowSignup = () => setSignupModal(true);
-
   const [showLoginModal, setLoginModal] = useState(false);
-  const handleShowLogin = () => setLoginModal(true);
-
   const [showChangePasswordModal, setChangePasswordModal] = useState(false);
+
+  const handleShowLogin = () => setLoginModal(true);
+  const handleShowSignup = () => setSignupModal(true);
 
   let loggedOut = (
     <>
@@ -88,7 +85,7 @@ function NavigationBar() {
             window.localStorage.removeItem('user');
             window.location.reload(false);
           }}
-          className='mb-0'
+          className="mb-0"
         >
           Logout
         </NavDropdown.Item>

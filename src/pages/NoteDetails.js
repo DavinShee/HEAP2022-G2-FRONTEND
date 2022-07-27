@@ -15,22 +15,17 @@ import {
   Link
 } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
-//import DocumentPreviewCarousel from '../components/DocumentPreviewCarousel';
 import useFetch from '../hooks/useFetch';
 import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import axios from 'axios';
 import Comments from '../components/Comments';
-import { Worker } from '@react-pdf-viewer/core';
-import { Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { Viewer, Worker } from '@react-pdf-viewer/core';
+
 import { saveAs } from 'file-saver';
 import { Rating } from 'react-simple-star-rating';
-import downloadIcon from '../images/downloadIcon.png';
 
 function NoteDetails() {
-  //const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const { id } = useParams();
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
   const { user } = useContext(UserContext);
@@ -70,11 +65,11 @@ function NoteDetails() {
         }),
         { headers: requestHeader }
       )
-      .then((postResponse) => {
-        console.log(postResponse);
+      .then((_postResponse) => {
+        // console.log(_postResponse);
       })
-      .catch((postError) => {
-        console.log(postError);
+      .catch((_postError) => {
+        // console.log(_postError);
       });
 
     axios
@@ -85,14 +80,28 @@ function NoteDetails() {
         }),
         { headers: requestHeader }
       )
-      .then((postResponse) => {
-        console.log(postResponse);
+      .then((_postResponse) => {
+        // console.log(_postResponse);
       })
-      .catch((postError) => {
-        console.log(postError);
+      .catch((_postError) => {
+        // console.log(_postError);
       });
   };
-  console.log(data);
+
+  let downloadButton = <p>Please login to view/download</p>;
+  if (uploader) {
+    downloadButton = (
+      <Button variant className="edit-btn" as={Link} to={`/update/${id}`}>
+        Edit
+      </Button>
+    );
+  } else if (user) {
+    downloadButton = (
+      <Button variant className="download-btn" onClick={handleDownload}>
+        Download
+      </Button>
+    );
+  }
 
   return (
     <div className="note-details">
@@ -145,7 +154,7 @@ function NoteDetails() {
                       <h2>
                         <img
                           src="https://cdn-icons-png.flaticon.com/512/8083/8083574.png"
-                          alt="downloadIcon"
+                          alt="downloads"
                           height="45px"
                         />{' '}
                         &nbsp;
@@ -225,56 +234,15 @@ function NoteDetails() {
                       <Col>{data.data.note.download}</Col>
                     </Row>
                     <br />
-                    {/* <Row>
-                      <Col>
-                        {!data.data.note.rating ? (
-                          <>No ratings yet!</>
-                        ) : (
-                          <div
-                            className="ratings"
-                            style={{ textAlign: 'center' }}
-                          >
-                            {data.data.note.rating.toFixed(1)} out of 5
-                            <br />
-                            <Rating
-                              initialValue={data.data.note.rating}
-                              allowHalfIcon={true}
-                              readonly
-                              size={'18px'}
-                              fillColor={'black'}
-                            />
-                          </div>
-                        )}
-                      </Col>
-                    </Row> */}
                   </div>
                 </div>
                 <div className="button-or-login mt-auto ms-auto">
-                  {uploader ? (
-                    <Button
-                      variant
-                      className="edit-btn"
-                      as={Link}
-                      to={`/update/${id}`}
-                    >
-                      Edit
-                    </Button>
-                  ) : user ? (
-                    <Button
-                      variant
-                      className="download-btn"
-                      onClick={handleDownload}
-                    >
-                      Download
-                    </Button>
-                  ) : (
-                    <p>Please login to view/download</p>
-                  )}
+                  {downloadButton}
                 </div>
               </Col>
               <Col>
                 <Row>
-                  <div className="pdfText-notesdetail">
+                  <div className="pdfText-noteDetail">
                     <h5>PDF Preview</h5>
                   </div>
                   <div

@@ -24,7 +24,7 @@ function Upload() {
   });
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
-  
+
   const requestHeader = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -183,7 +183,10 @@ function Upload() {
                       required
                       type="number"
                       name="year"
-                      isInvalid={uploadFormValues.year <= 2009 || 2023 <= uploadFormValues.year}
+                      isInvalid={
+                        uploadFormValues.year <= 2009 ||
+                        2023 <= uploadFormValues.year
+                      }
                       placeholder="2010-2022"
                       value={uploadFormValues.year}
                       onChange={handleChange}

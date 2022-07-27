@@ -1,18 +1,9 @@
-import { useContext, useState } from 'react';
-import {
-  Alert,
-  Button,
-  Col,
-  Container,
-  FloatingLabel,
-  Form,
-  Modal,
-  Row
-} from 'react-bootstrap';
 import axios from 'axios';
+import { useContext, useState } from 'react';
+import { Alert, Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
 import { UserContext } from '../components/UserContext';
-import { useNavigate } from 'react-router-dom';
 
 const ChangePasswordModal = ({
   showChangePasswordModal,

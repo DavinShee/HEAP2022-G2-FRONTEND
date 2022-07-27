@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
-import { Button, Container, Spinner } from 'react-bootstrap';
+import { Button, Col, Container, Row, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { databaseURLs } from '../URLConstants';
-import useFetch from '../hooks/useFetch.js';
 import { UserContext } from '../components/UserContext';
 import CardList from '../components/CardList';
 import LoginModal from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
+import useFetch from '../hooks/useFetch.js';
 
 const Home = () => {
   const { data, loading, error } = useFetch(databaseURLs.search);
@@ -78,11 +78,26 @@ const Home = () => {
           ) : (
             <>
               <h1>
-                Be the first to share your notes! Upload now by clicking{' '}
-                <Link to="/account/upload" style={{ textDecoration: 'none' }}>
-                  this
-                </Link>
-                !
+                <Row>
+                  <Col xs={3}>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/7465/7465691.png"
+                      alt="No Results!"
+                      height={'100px'}
+                    />
+                  </Col>
+                  <Col>
+                    No results! <br />
+                    Upload now by clicking{' '}
+                    <Link
+                      to="/account/upload"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      this
+                    </Link>
+                    !
+                  </Col>
+                </Row>
               </h1>
             </>
           )}

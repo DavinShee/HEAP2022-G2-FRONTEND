@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
 import { Card, Container } from 'react-bootstrap';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { Link } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 
 const CardList = ({ notes }) => {
+  // PDF thumbnail settings
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
   return (
