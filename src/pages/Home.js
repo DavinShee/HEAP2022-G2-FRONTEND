@@ -99,7 +99,7 @@ const Home = () => {
                 <CardList notes={data.data.notes.slice(0, 6)} />
               </>
             ) : (
-              <>
+              <Container>
                 <h1>
                   <Row>
                     <Col xs={3}>
@@ -122,7 +122,7 @@ const Home = () => {
                     </Col>
                   </Row>
                 </h1>
-              </>
+              </Container>
             )}
           </>
         )}
