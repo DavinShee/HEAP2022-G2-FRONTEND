@@ -5,6 +5,7 @@ import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
 import notFound from '../images/notFound.png';
+import signinbackground from '../images/Search_bg.png';
 
 function Search() {
   const location = useLocation();
@@ -35,6 +36,13 @@ function Search() {
   console.log(data);
 
   return (
+    <div
+      style={{
+        backgroundColor: 'red',
+        backgroundImage: `url(${signinbackground})`,
+        backgroundSize: '750px',
+      }}
+    >
     <div className="search-results">
       {loading && (
         <div className="loading">
@@ -76,6 +84,7 @@ function Search() {
           )}
         </>
       )}
+    </div>
     </div>
   );
 }

@@ -33,6 +33,7 @@ function Update() {
     'https://www.asiaoceania.org/aogs2021/img/no_uploaded.png'
   );
 
+  //To store data from useFetch
   useEffect(() => {
     if (JSON.stringify(data) !== '{}') {
       setUpdateFormValues({
@@ -54,14 +55,16 @@ function Update() {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   };
 
+  //For update, check if all inputs are filled. If so, sends data to backend while displaying loading screen. Displays success and fail messages upon return.
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
-    event.preventDefault();
+
     setValidated(true);
+
     if (form.checkValidity() === true) {
       const updateData = {
         description: updateFormValues.description,
@@ -72,6 +75,7 @@ function Update() {
       };
 
       setLoadingPage(true);
+
       axios
         .patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
           headers: requestHeader
@@ -88,21 +92,9 @@ function Update() {
           setSendHomePage(false);
           setAlertMsg('Your update has failed.');
         });
-
-      event.preventDefault();
     }
   };
-
-  const handleImgChange = (e) => {
-    setUpdateFormValues((preValue) => {
-      return {
-        ...preValue,
-        image: e.target.files[0]
-      };
-    });
-    setPreviewImage(URL.createObjectURL(e.target.files[0]));
-  };
-
+  //onChange for form inputs
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -114,6 +106,7 @@ function Update() {
     });
   };
 
+  //axios call for deletion of notes
   const handleDelete = () => {
     setLoadingPage(true);
     axios
