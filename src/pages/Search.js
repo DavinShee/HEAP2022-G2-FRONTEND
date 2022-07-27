@@ -4,6 +4,7 @@ import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
 import useFetch from '../hooks/useFetch';
+import signinbackground from '../images/Search_bg.png';
 
 function Search() {
   const location = useLocation();
@@ -32,6 +33,12 @@ function Search() {
       : 'Search results';
 
   return (
+    <div
+      style={{
+        backgroundImage: `url(${signinbackground})`,
+        backgroundSize: '750px',
+      }}
+    >
     <div className="search-results">
       <Container>
         {loading && (
@@ -87,6 +94,7 @@ function Search() {
           </>
         )}
       </Container>
+    </div>
     </div>
   );
 }

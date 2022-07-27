@@ -9,20 +9,22 @@ import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import { useNavigate } from 'react-router-dom';
+import LoadingModal from '../components/LoadingModal';
+import AlertModal from '../components/AlertModal';
 
 function Upload() {
-  const navigate = useNavigate();
   const id = useContext(UserContext);
   const [pdfFile, setPdfFile] = useState(null);
-  const [pdfError, setPdfError] = useState('');
+  const [loadingPage, setLoadingPage] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [sendHomePage, setSendHomePage] = useState('');
   const [uploadFormValues, setUploadFormValues] = useState({
     description: '',
     mod: '',
     prof: '',
     year: '2022'
   });
-
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   const requestHeader = {
@@ -34,13 +36,14 @@ function Upload() {
 
   const [validated, setValidated] = useState(false);
 
+  //On form submit, check if all inputs are filled. If so, sends data to backend while displaying loading screen. Displays success and fail messages upon return.
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
-    event.preventDefault();
+
     setValidated(true);
     if (form.checkValidity() === true) {
       const uploadData = {
@@ -54,39 +57,37 @@ function Upload() {
         profName: uploadFormValues.prof,
         year: uploadFormValues.year
       };
-
+      setLoadingPage(true);
       axios
         .post(databaseURLs.upload, uploadData, {
           headers: requestHeader
         })
         .then(() => {
-          navigate('/');
-        }) //possible loading?
-        .catch((error) => console.log(error)); //todo
-
-      event.preventDefault();
+          setLoadingPage(false);
+          setSendHomePage(true);
+          setShowAlert(true);
+          setAlertMsg('Your notes has been posted!');
+        })
+        .catch((error) => {
+          setLoadingPage(false);
+          setShowAlert(true);
+          setSendHomePage(false);
+          setAlertMsg('Your upload has failed.');
+        });
     }
   };
 
+  //seperate onChange for pdf input for converting into DataURL format.
   const handleImgChange = (e) => {
-    const allowedFiles = ['application/pdf'];
     var selectedFile = e.target.files[0];
-    if (selectedFile) {
-      if (selectedFile && allowedFiles.includes(selectedFile.type)) {
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onloadend = (e) => {
-          setPdfError('');
-          setPdfFile(e.target.result);
-        };
-      } else {
-        setPdfError('Not a valid pdf: Please select only PDF');
-      }
-    } else {
-      console.log('Please select a PDF');
-    }
+    var reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = (e) => {
+      setPdfFile(e.target.result);
+    };
   };
 
+  //onChange for all other form inputs.
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -250,6 +251,13 @@ function Upload() {
           </Col>
         </Row>
       </Form>
+      <LoadingModal LoadingModal={loadingPage} />
+      <AlertModal
+        alertMsg={alertMsg}
+        sendHomePage={sendHomePage}
+        setShowAlert={setShowAlert}
+        showAlert={showAlert}
+      />
     </Container>
   );
 }
