@@ -1,5 +1,6 @@
 const UserIcon = ({ name }) => {
   let firstAlpha = (name.toUpperCase().match(/[a-zA-Z]/) || []).pop();
+  // Different UserIcon background colors
   const rgbColors = {
     0: '#7CB5D2',
     1: '#89C4C2',
@@ -28,6 +29,7 @@ const UserIcon = ({ name }) => {
     24: '#FFDFD3',
     25: '#FFE5B4'
   };
+  // Get random background color for users
   const randomNum = firstAlpha
     ? (firstAlpha.charCodeAt(0) + name.length) % Object.keys(rgbColors).length
     : 0;

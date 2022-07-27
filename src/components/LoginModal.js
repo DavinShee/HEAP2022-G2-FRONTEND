@@ -14,11 +14,13 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
     password: ''
   });
 
+  // Closes the login modal
   const handleCloseLogin = () => {
     setLoginModal(false);
     setShowAlert(false);
   };
 
+  // On every change in the login form, update the state to reflect the new changes
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -31,6 +33,7 @@ const LoginModal = ({ showLoginModal, setLoginModal, handleShowSignup }) => {
     });
   };
 
+  // Handles the login, posts data to the backend if successful, then reload the page
   const handleLogin = (e) => {
     e.preventDefault();
     e.stopPropagation();

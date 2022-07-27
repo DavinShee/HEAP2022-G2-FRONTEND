@@ -98,13 +98,6 @@ body {
   color: black;
 }
 
-.card-img {
-  border-radius: 10px 10px 0 0;
-  border-top: 10px solid rgb(194, 220, 255);
-  border-right: 10px solid rgb(194, 220, 255);
-  border-left: 10px solid rgb(194, 220, 255);
-}
-
 .filler-card {
   background-color: white;
 }

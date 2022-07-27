@@ -18,12 +18,6 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
     variant: '',
     message: ['']
   });
-
-  const handleCloseSignup = () => {
-    setShowAlert(false);
-    setSignupModal(false);
-  };
-
   const [signupFormValues, setSignupFormValues] = useState({
     firstName: '',
     lastName: '',
@@ -32,6 +26,13 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
     confirmPassword: ''
   });
 
+  // Closes the sign up modal
+  const handleCloseSignup = () => {
+    setShowAlert(false);
+    setSignupModal(false);
+  };
+
+  // On every change in the signup form, update the state to reflect the new changes
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
@@ -56,6 +57,7 @@ const SignupModal = ({ showSignupModal, setSignupModal, handleShowLogin }) => {
     }
   };
 
+  // Handles the signup, posts data to the backend
   const handleSignup = (e) => {
     e.preventDefault();
     e.stopPropagation();

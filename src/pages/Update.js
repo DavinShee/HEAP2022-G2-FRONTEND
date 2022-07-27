@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { Button, Col, Container, Row, Form, InputGroup } from 'react-bootstrap';
 import useFetch from '../hooks/useFetch';
 import { databaseURLs } from '../URLConstants';
 import axios from 'axios';
-import { Worker } from '@react-pdf-viewer/core';
-import { Viewer } from '@react-pdf-viewer/core';
+import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
@@ -20,7 +18,7 @@ function Update() {
   const [showAlert, setShowAlert] = useState(false);
   const [sendHomePage, setSendHomePage] = useState('');
   const { id } = useParams();
-  const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
+  const { data } = useFetch(databaseURLs.search + `/${id}`);
   const [updateFormValues, setUpdateFormValues] = useState({
     description: '',
     mod: '',
@@ -80,13 +78,13 @@ function Update() {
         .patch(databaseURLs.search + `/${id}`, JSON.stringify(updateData), {
           headers: requestHeader
         })
-        .then(() => {
+        .then((_response) => {
           setLoadingPage(false);
           setSendHomePage(true);
           setShowAlert(true);
           setAlertMsg('Your notes has been updated!');
         })
-        .catch((error) => {
+        .catch((_error) => {
           setLoadingPage(false);
           setShowAlert(true);
           setSendHomePage(false);
@@ -117,7 +115,7 @@ function Update() {
         setShowAlert(true);
         setAlertMsg('Your notes has been deleted!');
       })
-      .catch((error) => {
+      .catch((_error) => {
         setLoadingPage(false);
         setShowAlert(true);
         setSendHomePage(false);

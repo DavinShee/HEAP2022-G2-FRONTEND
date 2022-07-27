@@ -4,10 +4,12 @@ import { databaseURLs } from '../URLConstants';
 import CardList from '../components/CardList';
 import PaginationBar from '../components/PaginationBar';
 import useFetch from '../hooks/useFetch';
-import signinbackground from '../images/Search_bg.png';
+import signInBackground from '../images/Search_bg.png';
 
 function Search() {
+  // Get the url of current
   const location = useLocation();
+  // Get query variables
   const [searchParams] = useSearchParams();
   const searchParamObject = Object.fromEntries([...searchParams]);
   const query = [
@@ -17,10 +19,12 @@ function Search() {
   ];
   const pageNum = searchParams.get('page-num') || 1;
   const pageSize = searchParams.get('page-size') || 6;
+  // Fetch the notes
   const { data, loading, error } = useFetch(
     databaseURLs.search + location.search
   );
 
+  // Get query variables to display to the user. "Search results for (Mod/Author/Prof)"
   let details = [];
   query.forEach((item) => {
     if (item) {
@@ -35,24 +39,27 @@ function Search() {
   return (
     <div
       style={{
-        backgroundImage: `url(${signinbackground})`,
-        backgroundSize: '750px',
+        backgroundImage: `url(${signInBackground})`,
         height: '100vh',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: 'cover'
       }}
     >
       <div className="search-results">
         <Container>
+          {/* To be displayed while loading */}
           {loading && (
             <div className="loading">
               <Spinner animation="grow" variant="info" />
             </div>
           )}
+          {/* To be displayed when an error has occurred fetching data */}
           {error && <div>{error}</div>}
+          {/* Display once data has been fetched */}
           {data && !loading && !error && (
             <>
               {data && data.data && data.data.notes.length ? (
+                // To be displayed when there are notes in the DB
                 <>
                   <div className="search-header">
                     <div className="search-results-text">
@@ -69,6 +76,7 @@ function Search() {
                   <CardList notes={data.data.notes} />
                 </>
               ) : (
+                // To be displayed when there are NO notes in the DB
                 <>
                   <h1>
                     <Row>

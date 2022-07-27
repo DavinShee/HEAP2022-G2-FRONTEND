@@ -21,18 +21,23 @@ import CardList from '../components/CardList';
 import axios from 'axios';
 import Comments from '../components/Comments';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
-
 import { saveAs } from 'file-saver';
 import { Rating } from 'react-simple-star-rating';
 
 function NoteDetails() {
+  // Get note ID
   const { id } = useParams();
+  // Fetch note based on ID
   const { data, loading, error } = useFetch(databaseURLs.search + `/${id}`);
+  // Gets the user from Context
   const { user } = useContext(UserContext);
+  // Defaults the tab to "Related", among "Related" and "Review"
   const [key, setKey] = useState('related');
+
   const [noRelated, setNoRelated] = useState(false);
   const navigate = useNavigate();
 
+  // If there are no related notes, block the tab, and default to "Reviews"
   useEffect(() => {
     if (data && data.data && data.data.relatedNotes.length === 0) {
       setKey('comments');
@@ -40,11 +45,13 @@ function NoteDetails() {
     }
   }, [data]);
 
+  // Checks if user viewing the note is the uploader, assigns a boolean value
   let uploader = false;
   if (user && user.email && data && data.data && data.data.note) {
     uploader = user.email === data.data.note.email;
   }
 
+  // When download button is clicked, downloads the file to the user's computer
   const handleDownload = () => {
     const requestHeader = {
       'Content-Type': 'application/json',
@@ -56,6 +63,7 @@ function NoteDetails() {
       data.data.note.url,
       `${data.data.note.modId}-${data.data.note.authorName}.pdf`
     );
+    // Sends the current node that the user has downloaded to backend
     axios
       .post(
         databaseURLs.downloadHist,
@@ -72,6 +80,7 @@ function NoteDetails() {
         // console.log(_postError);
       });
 
+    // increases download count
     axios
       .patch(
         databaseURLs.search + `/${id}`,
@@ -88,6 +97,7 @@ function NoteDetails() {
       });
   };
 
+  // Changes what is shown to the user depending on the user's status -> Either uploader/logged-in user/logged-out user
   let downloadButton = <p>Please login to view/download</p>;
   if (uploader) {
     downloadButton = (
@@ -105,6 +115,7 @@ function NoteDetails() {
 
   return (
     <div className="note-details">
+      {/* To be displayed while loading */}
       {loading && (
         <div className="loading">
           <Container>
@@ -112,6 +123,7 @@ function NoteDetails() {
           </Container>
         </div>
       )}
+      {/* To be displayed when an error has occurred fetching data */}
       {error && (
         <>
           <div>
@@ -123,6 +135,7 @@ function NoteDetails() {
           </div>
         </>
       )}
+      {/* Display once data has been fetched */}
       {data && data.data && data.data.note && !loading && !error && (
         <>
           <Container>

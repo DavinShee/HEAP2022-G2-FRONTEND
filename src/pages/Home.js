@@ -7,8 +7,8 @@ import CardList from '../components/CardList';
 import LoginModal from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
 import useFetch from '../hooks/useFetch.js';
-import signoutbackground from '../images/Home_bg.png';
-import signinbackground from '../images/Search_bg.png';
+import signOutBackground from '../images/Home_bg.png';
+import signInBackground from '../images/Search_bg.png';
 
 const Home = () => {
   const { data, loading, error } = useFetch(databaseURLs.search);
@@ -18,20 +18,21 @@ const Home = () => {
   const [showLoginModal, setLoginModal] = useState(false);
   const handleShowLogin = () => setLoginModal(true);
 
+  // Logged out view
   let loggedOutHome = (
     <div
       className="home"
       style={{
-        backgroundImage: `url(${signoutbackground})`,
+        backgroundImage: `url(${signOutBackground})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right',
         backgroundSize: '750px',
         height: '85vh',
-        marginRight: '100px',
+        marginRight: '100px'
       }}
     >
       <div className="home-ctn1">
-        <div className="home-1">Notes.</div>
+        <div className="home-1">NotesNow.</div>
         <div className="home-2">
           Your one-stop marketplace to all things great.
         </div>
@@ -62,17 +63,18 @@ const Home = () => {
     </div>
   );
 
+  // Logged in view
   let loggedInHome = (
     <div
       style={{
-        backgroundImage: `url(${signinbackground})`,
-        backgroundSize: '750px',
-        height:'100vh',
+        backgroundImage: `url(${signInBackground})`,
+        height: '100vh',
         backgroundRepeat: 'no-repeat',
-        backgroundSize:'cover'
+        backgroundSize: 'cover'
       }}
     >
       <div className="search-results">
+        {/* To be displayed while loading */}
         {loading && (
           <div className="loading">
             <Container>
@@ -80,10 +82,13 @@ const Home = () => {
             </Container>
           </div>
         )}
+        {/* To be displayed when an error has occurred fetching data */}
         {error && <div>{error}</div>}
+        {/* Display once data has been fetched */}
         {data && data.data && data.data.notes && !loading && !error && (
           <>
             {data && data.data && data.data.notes.length !== 0 ? (
+              // To be displayed when there are notes in the DB
               <>
                 <div className="recent-ctn">
                   <div className="recently-uploaded">
@@ -97,6 +102,7 @@ const Home = () => {
                 <CardList notes={data.data.notes.slice(0, 6)} />
               </>
             ) : (
+              // To be displayed when there are NO notes in the DB
               <Container>
                 <h1>
                   <Row>
@@ -108,7 +114,8 @@ const Home = () => {
                       />
                     </Col>
                     <Col>
-                      Be the first to share your notes!<br />
+                      Be the first to share your notes!
+                      <br />
                       Upload now by clicking{' '}
                       <Link
                         to="/account/upload"

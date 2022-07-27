@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const useFetch = (queryURL) => {
+  // Initialise states
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,6 +10,7 @@ const useFetch = (queryURL) => {
   useEffect(() => {
     const controller = new AbortController();
 
+    // Define fetchData function
     const fetchData = async (url) => {
       setLoading(true);
       await axios

@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Button, Form, Row, Col, InputGroup, Container } from 'react-bootstrap';
 import axios from 'axios';
 import { databaseURLs } from '../URLConstants';
-import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
-import { Worker } from '@react-pdf-viewer/core';
-import { Viewer } from '@react-pdf-viewer/core';
+import { Worker, Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
@@ -68,7 +66,7 @@ function Upload() {
           setShowAlert(true);
           setAlertMsg('Your notes has been posted!');
         })
-        .catch((error) => {
+        .catch((_error) => {
           setLoadingPage(false);
           setShowAlert(true);
           setSendHomePage(false);
@@ -77,10 +75,10 @@ function Upload() {
     }
   };
 
-  //seperate onChange for pdf input for converting into DataURL format.
-  const handleImgChange = (e) => {
-    var selectedFile = e.target.files[0];
-    var reader = new FileReader();
+  //separate onChange for pdf input for converting into DataURL format.
+  const handleImgChange = (event) => {
+    let selectedFile = event.target.files[0];
+    let reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     reader.onloadend = (e) => {
       setPdfFile(e.target.result);

@@ -18,6 +18,7 @@ function NavigationBar() {
   const handleShowLogin = () => setLoginModal(true);
   const handleShowSignup = () => setSignupModal(true);
 
+  // Different views based on whether the user is logged in or out
   let loggedOut = (
     <>
       <Nav.Item>
@@ -45,6 +46,7 @@ function NavigationBar() {
     </>
   );
 
+  // Different views based on whether the user is logged in or out
   let loggedIn = (
     <>
       <Nav.Item>

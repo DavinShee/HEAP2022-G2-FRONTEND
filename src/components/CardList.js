@@ -18,7 +18,6 @@ const CardList = ({ notes }) => {
             border=""
             key={note._id}
           >
-            {/* <Card.Img className="card-img" variant="top" src={note.image} />  */}
             <div className="card-img-top card-img">
               <Document
                 file={`https://cors-anywhere.herokuapp.com/${note.url}`}

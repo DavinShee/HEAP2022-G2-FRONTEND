@@ -10,6 +10,7 @@ const PaginationPreloaded = ({
   const pageNumbers = [];
   const totalPages = Math.ceil(totalComments / pageSize);
 
+  // Logic to get the page numbers to be displayed.
   for (
     let i = Math.max(1, activePage - delta);
     i <= Math.min(totalPages, activePage + delta);

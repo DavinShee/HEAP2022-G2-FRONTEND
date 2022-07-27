@@ -10,7 +10,6 @@ const AlertModal = ({ alertMsg, sendHomePage, setShowAlert, showAlert }) => {
 
   if (sendHomePage) {
     setTimeout(() => {
-      // alertPage = false; do we need to close modal?
       navigate('/');
     }, 3000);
   }
