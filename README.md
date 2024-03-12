@@ -23,4 +23,5 @@ We used many different libraries to help us in developing this project.
 2. react-pdf-viewer: We spent many hours researching different libraries for a way to display PDFs and many were long and tedious and did not work in the end.
 
 Figma Link: https://www.figma.com/file/ENZUXnPB7zhfShZDklR13o/HEAP?node-id=0%3A1
+
 Backend Link: https://github.com/dailysponge/HEAP2022-G2-BACKEND
